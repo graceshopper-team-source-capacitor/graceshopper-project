@@ -1,6 +1,9 @@
 'use strict'
 
-const {db, models: {User} } = require('../server/db')
+const {
+  db,
+  models: { User, Product },
+} = require('../server/db')
 
 /**
  * seed - this function clears the database, updates tables to
@@ -21,8 +24,8 @@ async function seed() {
   return {
     users: {
       cody: users[0],
-      murphy: users[1]
-    }
+      murphy: users[1],
+    },
   }
 }
 

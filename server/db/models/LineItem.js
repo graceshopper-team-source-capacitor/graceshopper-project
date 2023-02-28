@@ -9,8 +9,8 @@ const LineItem = db.define('lineItem', {
       notEmpty: true,
     },
   },
-  price: {
-    type: Sequelize.FLOAT,
+  qty: {
+    type: Sequelize.INTEGER,
     allowNull: false,
     validate: {
       notEmpty: true,

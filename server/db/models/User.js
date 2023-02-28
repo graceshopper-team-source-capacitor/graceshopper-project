@@ -18,6 +18,10 @@ const User = db.define('user', {
     type: Sequelize.STRING,
     defaultValue: 'no-product.jpeg',
   },
+  isAdmin: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false,
+  },
 })
 
 module.exports = User

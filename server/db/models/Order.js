@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
 
-const Checkout = db.define('checkout', {
+const Order = db.define('order', {
   confirmationNum: {
     type: Sequelize.INTEGER,
     allowNull: false,
@@ -35,4 +35,4 @@ const Checkout = db.define('checkout', {
   },
 })
 
-module.exports = Checkout
+module.exports = Order

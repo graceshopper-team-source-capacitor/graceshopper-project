@@ -5,7 +5,7 @@ const db = require('./db')
 const User = require('./models/User')
 const Product = require('./models/Product')
 const Order = require('./models/Order')
-const LineItem = require('./model/LineItem')
+const LineItem = require('./models/LineItem')
 
 //associations could go here!
 

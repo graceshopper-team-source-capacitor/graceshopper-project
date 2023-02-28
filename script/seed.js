@@ -19,6 +19,16 @@ async function seed() {
     User.create({ username: 'murphy', password: '123' }),
   ])
 
+  const products = await Promise.all([
+    Product.create({
+      name: 'example product',
+      imageUrl: 'no-product.jpeg',
+      price: 1.99,
+      type: 'ETC',
+      description: 'This is a product description',
+    }),
+  ])
+
   console.log(`seeded ${users.length} users`)
   console.log(`seeded successfully`)
   return {

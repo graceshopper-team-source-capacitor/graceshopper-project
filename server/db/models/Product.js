@@ -23,7 +23,6 @@ const Product = db.define('product', {
   type: {
     type: Sequelize.ENUM('BREAD', 'DAIRY', 'PRODUCE', 'MEAT', 'ETC'),
     allowNull: false,
-    defaultValue: 'ECT',
   },
   description: {
     type: Sequelize.TEXT,

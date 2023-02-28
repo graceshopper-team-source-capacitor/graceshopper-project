@@ -247,87 +247,84 @@ async function seed() {
       description: `vegan, gluten-free, kosher, keto-friendly`,
       imageUrl: `veganbutter.jpg`,
     }),
-    Product.create(
-      {
-        name: "Tony's Chocoloney Milk Chocolate Everything Bar, 6.35 oz",
-        imageUrl: "Tonys_MilkChocEverything.jpg",
-        price: 4.99,
-        type: "specialty",
-        description:
-          "Ingredients: Sugar, Dry Whole Milk, Cocoa Butter, Chocolate Liquor, Caramel Pieces (Sugar, Wheat Syrup, Cream (Milk), Butter (Milk)), Almonds, Pretzel Crumbs (Wheat Flour, Salt, Sunflower Oil, Malted Wheat Flour, Yeast, Sodium Hydroxide), Honey-almond-nougat (Cane Sugar, Wheat Syrup, Almonds, Potato Starch, Honey, Cocoa Butter, Egg Whites), Sea Salt, Soy Lecithin.",
-      },
-      {
-        name: "Kettle Brand Jalapeno Potato Chips, 5 oz",
-        imageUrl: "Kettle_Jalapeno.jpg",
-        price: 3.49,
-        type: "specialty",
-        description:
-          "Ingredients: Potatoes, Vegetable Oils (Canola, Sunflower and/or Safflower), Salt, Sugar, Onion Powder, Spices, Torula Yeast, Yeast Extract, Garlic Powder, Jalapeno Pepper Powder, Natural Flavors, Parsley.",
-      },
-      {
-        name: "Smart Sweets Sourmelon Bites, 5.3 oz",
-        imageUrl: "SmartSweets.jpg",
-        price: 9.99,
-        type: "specialty",
-        description:
-          "Ingredients: Isomalto-oligosaccharides (Vegetable Source), Chicory Root Fiber, Water, Modified Potato Starch, Lactic Acid, Pectin, Malic Acid, Citric Acid, Fumaric Acid, Rice Flour, Stevia Leaf Extract, Fruit and Vegetable Juice (For Color), Spirulina Extract (For Color), Natural Flavors, Carnauba Wax, Coconut Oil.",
-      },
-      {
-        name: "UNREAL, Dar Chocolate Quinoa Crisp Gems, 5 oz",
-        imageUrl: "Unreal_CrispGems.jpg",
-        price: 6.49,
-        type: "specialty",
-        description:
-          "Ingredients: Dark Chocolate (Chocolate Liquor‡, Cane Sugar‡, Cocoa Butter‡, Vanilla), Organic Cane Sugar‡, Organic Quinoa Crisp, Gum Acacia, Colored With (Beet Juice, Spirulina Extract), Organic Tapioca Syrup, Carnauba Wax.",
-      },
-      {
-        name: "Annie's Organic White Cheddar Bunnies Crackers, 7.5 oz",
-        imageUrl: "Annies_Bunnies.jpg",
-        price: 5.15,
-        type: "specialty",
-        description:
-          "Best Ingredients: Organic Wheat Flour, Organic Expeller-pressed Sunflower Oil, Organic Cheddar Cheese (Pasteurized Organic Milk, Cheese Cultures, Salt, Non-animal Enzymes), Organic Dried Cheddar Cheese (Organic Cultured Milk, Salt, Non-animal Enzymes), Organic Whey, Salt, Organic Nonfat Dry Milk, Organic Yeast, Leavening (Monocalcium Phosphate, Baking Soda), Organic Paprika, Organic Onion Powder, Organic Cane Sugar, Organic Celery Seed, Non-animal Enzymes.",
-      },
-      {
-        name: "Ines Rosales Sweet Seville Orange Torta, 6.34 oz",
-        imageUrl: "InesRosales.jpg",
-        price: 6.99,
-        type: "specialty",
-        description:
-          "Ingredients: Unbleached Wheat Flour, Extra Virgin Olive Oil, Sugar, Caramelized Orange (Glucose and Fructose Syrup, Orange Peel, Sugar and Citric Acid), Sesame Seeds, Yeast, Natural Orange Flavor, Sea Salt",
-      },
-      {
-        name: "Nature's Bakery Rasperry Fig Bars, 12 oz",
-        imageUrl: "NaturesBakery.jpg",
-        price: 4.99,
-        type: "specialty",
-        description:
-          "Ingredients: Whole Wheat Flour, Cane Sugar, Fig Paste, Brown Rice Syrup, Raspberry Jam (Naturally Milled Sugar, Cane Sugar, Glycerin, Rice Starch, Raspberries, Apple Powder, Natural Flavor, Pectin, Citric Acid, Locust Bean Gum), Canola Oil, Whole Grain Oats, Glycerin, Fruit Juice (For Color), Sea Salt, Natural Flavor, Citric Acid, Baking Soda.",
-      },
-      {
-        name: "Bobo's Lemon Poppyseed Oat Bars, 3 oz",
-        imageUrl: "Bobos.jpg",
-        price: 9.99,
-        type: "specialty",
-        description:
-          "Ingredients: Whole Grain Rolled Oats, Brown Rice Syrup, Coconut Oil, Cane Sugar, Vegetable Glycerin, Poppy Seeds, Lemon Oil, Xanthan Gum, Sea Salt, Vitamin E (For Freshness).",
-      },
-      {
-        name: "Angie's Boom Chicka Pop Sweet & Salty Kettle Corn, 7 oz",
-        imageUrl: "BoomChicka.jpg",
-        price: 3.99,
-        type: "specialty",
-        description:
-          "Ingredients: Popcorn, Sunflower Oil, Cane Sugar, Sea Salt.",
-      },
-      {
-        name: "Wonderful Pistacios Roasted Shelled Pistacios, 12 oz",
-        imageUrl: "Pistacios.jpg",
-        price: 12.79,
-        type: "specialty",
-        description: "Ingredients: Pistachios, Sea Salt.",
-      }
-    ),
+    Product.create({
+      name: "Tony's Chocoloney Milk Chocolate Everything Bar, 6.35 oz",
+      imageUrl: "Tonys_MilkChocEverything.jpg",
+      price: 4.99,
+      type: "specialty",
+      description:
+        "Ingredients: Sugar, Dry Whole Milk, Cocoa Butter, Chocolate Liquor, Caramel Pieces (Sugar, Wheat Syrup, Cream (Milk), Butter (Milk)), Almonds, Pretzel Crumbs (Wheat Flour, Salt, Sunflower Oil, Malted Wheat Flour, Yeast, Sodium Hydroxide), Honey-almond-nougat (Cane Sugar, Wheat Syrup, Almonds, Potato Starch, Honey, Cocoa Butter, Egg Whites), Sea Salt, Soy Lecithin.",
+    }),
+    Product.create({
+      name: "Kettle Brand Jalapeno Potato Chips, 5 oz",
+      imageUrl: "Kettle_Jalapeno.jpg",
+      price: 3.49,
+      type: "specialty",
+      description:
+        "Ingredients: Potatoes, Vegetable Oils (Canola, Sunflower and/or Safflower), Salt, Sugar, Onion Powder, Spices, Torula Yeast, Yeast Extract, Garlic Powder, Jalapeno Pepper Powder, Natural Flavors, Parsley.",
+    }),
+    Product.create({
+      name: "Smart Sweets Sourmelon Bites, 5.3 oz",
+      imageUrl: "SmartSweets.jpg",
+      price: 9.99,
+      type: "specialty",
+      description:
+        "Ingredients: Isomalto-oligosaccharides (Vegetable Source), Chicory Root Fiber, Water, Modified Potato Starch, Lactic Acid, Pectin, Malic Acid, Citric Acid, Fumaric Acid, Rice Flour, Stevia Leaf Extract, Fruit and Vegetable Juice (For Color), Spirulina Extract (For Color), Natural Flavors, Carnauba Wax, Coconut Oil.",
+    }),
+    Product.create({
+      name: "UNREAL, Dar Chocolate Quinoa Crisp Gems, 5 oz",
+      imageUrl: "Unreal_CrispGems.jpg",
+      price: 6.49,
+      type: "specialty",
+      description:
+        "Ingredients: Dark Chocolate (Chocolate Liquor‡, Cane Sugar‡, Cocoa Butter‡, Vanilla), Organic Cane Sugar‡, Organic Quinoa Crisp, Gum Acacia, Colored With (Beet Juice, Spirulina Extract), Organic Tapioca Syrup, Carnauba Wax.",
+    }),
+    Product.create({
+      name: "Annie's Organic White Cheddar Bunnies Crackers, 7.5 oz",
+      imageUrl: "Annies_Bunnies.jpg",
+      price: 5.15,
+      type: "specialty",
+      description:
+        "Best Ingredients: Organic Wheat Flour, Organic Expeller-pressed Sunflower Oil, Organic Cheddar Cheese (Pasteurized Organic Milk, Cheese Cultures, Salt, Non-animal Enzymes), Organic Dried Cheddar Cheese (Organic Cultured Milk, Salt, Non-animal Enzymes), Organic Whey, Salt, Organic Nonfat Dry Milk, Organic Yeast, Leavening (Monocalcium Phosphate, Baking Soda), Organic Paprika, Organic Onion Powder, Organic Cane Sugar, Organic Celery Seed, Non-animal Enzymes.",
+    }),
+    Product.create({
+      name: "Ines Rosales Sweet Seville Orange Torta, 6.34 oz",
+      imageUrl: "InesRosales.jpg",
+      price: 6.99,
+      type: "specialty",
+      description:
+        "Ingredients: Unbleached Wheat Flour, Extra Virgin Olive Oil, Sugar, Caramelized Orange (Glucose and Fructose Syrup, Orange Peel, Sugar and Citric Acid), Sesame Seeds, Yeast, Natural Orange Flavor, Sea Salt",
+    }),
+    Product.create({
+      name: "Nature's Bakery Rasperry Fig Bars, 12 oz",
+      imageUrl: "NaturesBakery.jpg",
+      price: 4.99,
+      type: "specialty",
+      description:
+        "Ingredients: Whole Wheat Flour, Cane Sugar, Fig Paste, Brown Rice Syrup, Raspberry Jam (Naturally Milled Sugar, Cane Sugar, Glycerin, Rice Starch, Raspberries, Apple Powder, Natural Flavor, Pectin, Citric Acid, Locust Bean Gum), Canola Oil, Whole Grain Oats, Glycerin, Fruit Juice (For Color), Sea Salt, Natural Flavor, Citric Acid, Baking Soda.",
+    }),
+    Product.create({
+      name: "Bobo's Lemon Poppyseed Oat Bars, 3 oz",
+      imageUrl: "Bobos.jpg",
+      price: 9.99,
+      type: "specialty",
+      description:
+        "Ingredients: Whole Grain Rolled Oats, Brown Rice Syrup, Coconut Oil, Cane Sugar, Vegetable Glycerin, Poppy Seeds, Lemon Oil, Xanthan Gum, Sea Salt, Vitamin E (For Freshness).",
+    }),
+    Product.create({
+      name: "Angie's Boom Chicka Pop Sweet & Salty Kettle Corn, 7 oz",
+      imageUrl: "BoomChicka.jpg",
+      price: 3.99,
+      type: "specialty",
+      description: "Ingredients: Popcorn, Sunflower Oil, Cane Sugar, Sea Salt.",
+    }),
+    Product.create({
+      name: "Wonderful Pistacios Roasted Shelled Pistacios, 12 oz",
+      imageUrl: "Pistacios.jpg",
+      price: 12.79,
+      type: "specialty",
+      description: "Ingredients: Pistachios, Sea Salt.",
+    }),
   ]);
 
   console.log(`seeded ${users.length} users`);

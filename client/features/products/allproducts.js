@@ -14,8 +14,10 @@ const ProductList = () => {
     dispatch(fetchProductsAsync())
   }, [dispatch])
 
-  console.log(products)
-
+  //   const handleDelete = async (id) => {
+  //     await dispatch(deleteProductAsync(id));
+  //     Navigate("/allproducts");
+  //   };
   //   const handleDelete = async (id) => {
   //     await dispatch(deleteProductAsync(id));
   //     Navigate("/allproducts");

@@ -18,7 +18,6 @@ export const me = createAsyncThunk('auth/me', async () => {
           authorization: token,
         },
       })
-      console.log('res data', res.data)
       return res.data
     } else {
       return {}
@@ -68,7 +67,6 @@ export const authSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(me.fulfilled, (state, action) => {
       state.me = action.payload
-      console.log(action.payload)
     })
     builder.addCase(me.rejected, (state, action) => {
       state.error = action.error

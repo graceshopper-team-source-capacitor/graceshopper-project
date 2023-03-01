@@ -12,9 +12,15 @@ const Product = () => {
         dispatch(fetchSingleProductAsync(id));
     }, [dispatch]);
 
+    console.log(product.imageUrl)
     return (
         <div>
+            {/* <img src={`../../../public/${product.imageUrl}`}/> */}
+            <img src="bakery1.jpg"/>
             <p>{product.name}</p>
+            <p>${product.price}</p>
+            <p>{product.type}</p>
+            <p>{product.description}</p>
         </div>
     )
 }

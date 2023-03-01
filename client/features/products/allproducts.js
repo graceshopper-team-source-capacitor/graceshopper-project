@@ -14,10 +14,10 @@ const ProductList = () => {
     dispatch(fetchProductsAsync());
   }, [dispatch, products]);
 
-//   const handleDelete = async (id) => {
-//     await dispatch(deleteProductAsync(id));
-//     Navigate("/allproducts");
-  };
+  //   const handleDelete = async (id) => {
+  //     await dispatch(deleteProductAsync(id));
+  //     Navigate("/allproducts");
+  //   };
 
   return (
     <ul id="products">
@@ -30,7 +30,7 @@ const ProductList = () => {
             to={`/Products/${product.id}`}
             key={`All Products: ${product.id}`}
           > */}
-            <h2>{product.name}</h2>
+          <h2>{product.name}</h2>
           {/* </NavLink> */}
           <img className="Product" src={product.imageUrl} />
           {/* <NavLink to={`/allproducts/${product.id}/edit`}>
@@ -41,5 +41,6 @@ const ProductList = () => {
       ))}
     </ul>
   );
+};
 
 export default ProductList;

@@ -2,6 +2,8 @@ const router = require('express').Router()
 const { models: { Product }} = require('../db')
 module.exports = router
 
+
+//route for all paths
 router.get('/', async (req, res, next) => {
   try {
       res.send(await Product.findAll({

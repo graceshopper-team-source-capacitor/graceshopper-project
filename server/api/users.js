@@ -1,17 +1,40 @@
 const router = require('express').Router()
-const { models: { User }} = require('../db')
+const {
+  models: { User, Order },
+} = require('../db')
 module.exports = router
 
+// /api/users/
 router.get('/', async (req, res, next) => {
   try {
     const users = await User.findAll({
       // explicitly select only the id and username fields - even though
       // users' passwords are encrypted, it won't help if we just
       // send everything to anyone who asks!
-      attributes: ['id', 'username']
+      attributes: ['id', 'username'],
     })
     res.json(users)
   } catch (err) {
     next(err)
+  }
+})
+
+// /api/users/:userId
+router.get('/:userId', async (req, res, next) => {
+  try {
+    const userById = await User.findOne({
+      where: { id: req.params.userId },
+      //TODO: do we need to hide this from all users?
+      include: [
+        {
+          model: Order,
+          as: 'orders',
+        },
+      ],
+      attributes: ['id', 'username', 'imageUrl'],
+    })
+    res.send(userById)
+  } catch (error) {
+    next(error)
   }
 })

@@ -16,7 +16,7 @@ const User = db.define('user', {
   },
   imageUrl: {
     type: Sequelize.STRING,
-    defaultValue: 'no-product.jpeg',
+    defaultValue: 'no-product.jpg',
   },
   isAdmin: {
     type: Sequelize.BOOLEAN,

@@ -26,17 +26,19 @@ const AppRoutes = () => {
           {/* <Route path="/*" element={<Home />} /> */}
           <Route path="/profile" element={<UserProfile />} />
           <Route path="/" element={<Home />} />
+          <Route path="/products" element={<ProductList />} />
         </Routes>
       ) : (
         <Routes>
           <Route path="/*" element={<AuthForm name="login" displayName="Login" />} />
           <Route path="/login" element={<AuthForm name="login" displayName="Login" />} />
           <Route path="/signup" element={<AuthForm name="signup" displayName="Sign Up" />} />
+          <Route path="/products" element={<ProductList />} />
         </Routes>
       )}
-      <Routes>
-        <Route path="/allproducts" element={<ProductList/>}/>
-      </Routes>
+      {/* <Routes>
+        <Route path="/products" element={<ProductList />} />
+      </Routes> */}
     </div>
   )
 }

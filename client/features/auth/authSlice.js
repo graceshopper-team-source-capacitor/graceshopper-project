@@ -1,52 +1,53 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import axios from 'axios'
 
 /*
   CONSTANT VARIABLES
 */
-const TOKEN = 'token';
+const TOKEN = 'token'
 
 /*
   THUNKS
 */
 export const me = createAsyncThunk('auth/me', async () => {
-  const token = window.localStorage.getItem(TOKEN);
+  const token = window.localStorage.getItem(TOKEN)
   try {
     if (token) {
       const res = await axios.get('/auth/me', {
         headers: {
           authorization: token,
         },
-      });
-      return res.data;
+      })
+      console.log('res data', res.data)
+      return res.data
     } else {
-      return {};
+      return {}
     }
   } catch (err) {
     if (err.response.data) {
-      return thunkAPI.rejectWithValue(err.response.data);
+      return thunkAPI.rejectWithValue(err.response.data)
     } else {
-      return 'There was an issue with your request.';
+      return 'There was an issue with your request.'
     }
   }
-});
+})
 
 export const authenticate = createAsyncThunk(
   'auth/authenticate',
   async ({ username, password, method }, thunkAPI) => {
     try {
-      const res = await axios.post(`/auth/${method}`, { username, password });
-      window.localStorage.setItem(TOKEN, res.data.token);
-      thunkAPI.dispatch(me());
+      const res = await axios.post(`/auth/${method}`, { username, password })
+      window.localStorage.setItem(TOKEN, res.data.token)
+      thunkAPI.dispatch(me())
     } catch (err) {
       if (err.response.data) {
-        return thunkAPI.rejectWithValue(err.response.data);
+        return thunkAPI.rejectWithValue(err.response.data)
       } else {
-        return 'There was an issue with your request.';
+        return 'There was an issue with your request.'
       }
     }
   }
-);
+)
 
 /*
   SLICE
@@ -59,30 +60,31 @@ export const authSlice = createSlice({
   },
   reducers: {
     logout(state, action) {
-      window.localStorage.removeItem(TOKEN);
-      state.me = {};
-      state.error = null;
+      window.localStorage.removeItem(TOKEN)
+      state.me = {}
+      state.error = null
     },
   },
   extraReducers: (builder) => {
     builder.addCase(me.fulfilled, (state, action) => {
-      state.me = action.payload;
-    });
+      state.me = action.payload
+      console.log(action.payload)
+    })
     builder.addCase(me.rejected, (state, action) => {
-      state.error = action.error;
-    });
+      state.error = action.error
+    })
     builder.addCase(authenticate.rejected, (state, action) => {
-      state.error = action.payload;
-    });
+      state.error = action.payload
+    })
   },
-});
+})
 
 /*
   ACTIONS
 */
-export const { logout } = authSlice.actions;
+export const { logout } = authSlice.actions
 
 /*
   REDUCER
 */
-export default authSlice.reducer;
+export default authSlice.reducer

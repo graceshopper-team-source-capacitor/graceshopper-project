@@ -2,7 +2,7 @@
 
 const {
   db,
-  models: { User, Product, Order, LineItem },
+  models: { User, Product, Order, LineItem, Cart },
 } = require('../server/db')
 
 /**
@@ -342,6 +342,19 @@ async function seed() {
         shippingAddress: '456 Fake Address',
       }),
     ])
+    // creates a cart
+    const carts = await Promise.all([
+      Cart.create({ id: 1 }),
+      Cart.create({ id: 2 }),
+    ])
+
+    // creates a line item
+    const lineItems = await Promise.all([
+      LineItem.create({ id: 1, qty: 4 }), //expect to see croissants
+      LineItem.create({ id: 2, qty: 5 }), //expect tortillas
+    ])
+
+    const [cart1, cart2] = carts
     const [cody, murphy] = users
     const [
       croissants,
@@ -388,10 +401,17 @@ async function seed() {
       pistachios,
     ] = products
     const [order1, order2] = orders
+    const [lineItem1, lineItem2] = lineItems
 
     // Magic method associations
     await order1.setUser(cody)
     await order2.setUser(murphy)
+    await cart1.setUser(cody)
+    await cart2.setUser(murphy)
+    // await lineItem1.setCart(cart1)
+    console.log(cart1)
+    console.log(lineItem1)
+    await cart1.setLineItem(lineItem1)
 
     console.log(`seeded ${users.length} users`)
     console.log(`seeded successfully`)

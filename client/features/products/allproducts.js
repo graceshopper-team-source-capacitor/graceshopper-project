@@ -36,7 +36,7 @@ const ProductList = () => {
           > */}
             <h2>{product.name}</h2>
             {/* </NavLink> */}
-            {/* <img className="Product" src={product.imageUrl} /> */}
+            <img src={`/${product.imageUrl}`} />
             {/* <NavLink to={`/allproducts/${product.id}/edit`}>
             <button>Edit</button>
           </NavLink> */}

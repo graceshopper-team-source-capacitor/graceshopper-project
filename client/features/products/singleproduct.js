@@ -15,8 +15,8 @@ const Product = () => {
     console.log(product.imageUrl)
     return (
         <div>
-            {/* <img src={`../../../public/${product.imageUrl}`}/> */}
-            <img src="bakery1.jpg"/>
+            {/* <img src="/bakery1.jpg" /> */}
+            <img src={`/${product.imageUrl}`} />
             <p>{product.name}</p>
             <p>${product.price}</p>
             <p>{product.type}</p>

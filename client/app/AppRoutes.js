@@ -10,6 +10,7 @@ import Product from "../features/products/singleproduct";
 import GuestCart from "../features/cart/GuestCart";
 import UserList from "../features/users/UserList";
 import EditProduct from "../features/products/editproduct";
+import AddProduct from "../features/products/addproduct";
 
 /**
  * COMPONENT
@@ -49,9 +50,12 @@ const AppRoutes = () => {
           />
           <Route path="/products" element={<ProductList />} />
           <Route path="/products/:id" element={<Product />} />
-          <Route path="/products/:id/edit" element={<EditProduct />} />
           <Route path="/cart" element={<GuestCart />} />
+          {/* vvv These routes need to be exclusively for the admin. vvv */}
+          <Route path="/products/:id/edit" element={<EditProduct />} />
+          <Route path="products/new" element={<AddProduct />} />
           <Route path="/users" element={<UserList />} />
+          {/* ^^^These routes need to be exclusively for the admin.^^^ */}
         </Routes>
       )}
     </div>

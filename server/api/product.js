@@ -35,3 +35,22 @@ router.put('/:id', async (req, res) => {
         console.log("There was a problem updating product.", err)
     }
 })
+
+router.delete('/:id', async (req, res) => {
+    try {
+      const product = await Product.findByPk(req.params.id);
+      await product.destroy();
+      res.send(product);
+    } catch (err){
+      console.log("Could not delete!", err);
+    }
+  })
+
+  router.post('/', async (req, res) => {
+    try {
+      const createdProduct = await Product.create(req.body)
+      res.send(createdProduct);
+    } catch (err){
+      next(err);
+    }
+  })

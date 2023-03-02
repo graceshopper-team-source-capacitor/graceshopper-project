@@ -36,20 +36,10 @@ const GuestCart = (props) => {
 
   // REMOVING ITEM FROM CART (START)
   const removeFromCart = (index, cart) => {
-    // return the index of the item you want to remove
-    function indexOfItemClicked() {
-      for (let i = 0; i < cart.length; i++) {
-        if (cart[index]) {
-          return index
-        }
-      }
-    }
-
-    // save that index
-    let indexOfCartItem = indexOfItemClicked()
-    // delete that one index from the cart
-    let splicedCart = cart.splice(indexOfCartItem, 1)
-    //set the cart to the new array (not including the removed item)
+    // delete one item at index from the cart
+    let splicedCart = cart.splice(index, 1)
+    // set the cart (not including the removed item)
+    // need to create a clone of cart since you cannot modify state directly
     setCart(structuredClone(cart))
   }
   // REMOVING ITEM FROM CART (END)

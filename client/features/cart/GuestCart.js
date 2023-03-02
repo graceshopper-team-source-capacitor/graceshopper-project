@@ -1,9 +1,5 @@
 import React, { useState, useEffect } from 'react'
 
-// TODO:
-// add to cart qty,
-// subtract from cart qty,
-
 /**
  * COMPONENT
  */
@@ -26,13 +22,31 @@ const GuestCart = (props) => {
     localStorage.setItem('cart', JSON.stringify(cart))
   }, [cart])
 
-  function subractFromQty() {
-    console.log('subtracting...')
+  // SUBTRACTING ITEM QTY IN CART (START)
+  function subtractFromQty(index, cart) {
+    // if the cart item quantiy is more than 1
+    if (cart[index].qty > 1) {
+      // subract one from the qty
+      cart[index].qty = cart[index].qty - 1
+      // set the cart (with new item qty)
+      // need to create a clone of cart since you cannot modify state directly
+      setCart(structuredClone(cart))
+    } else if ((cart[index].qty = 1)) {
+      //if the cart item qty is one, remove that item from the cart
+      removeFromCart(index, cart)
+    }
   }
+  // SUBTRACTING ITEM QTY IN CART (END)
 
-  function addToQty() {
-    console.log('adding...')
+  // ADDING ITEM QTY IN CART (START)
+  function addToQty(index, cart) {
+    // add one to that cart item's qty
+    cart[index].qty = cart[index].qty + 1
+    // set the cart (with new item qty)
+    // need to create a clone of cart since you cannot modify state directly
+    setCart(structuredClone(cart))
   }
+  // ADDING ITEM QTY IN CART (END)
 
   // REMOVING ITEM FROM CART (START)
   const removeFromCart = (index, cart) => {
@@ -70,10 +84,12 @@ const GuestCart = (props) => {
         {cart.map((item, index) => (
           <li key={item.id}>
             <h4>{item.name}</h4>
-            <button onClick={subractFromQty}>-</button>
-            <h4>Quantity: {item.qty}</h4>
-            <button onClick={addToQty}>+</button>
-
+            <img src={item.imageUrl} />
+            <div>
+              <button onClick={() => subtractFromQty(index, cart)}>-</button>
+              <h4>Quantity: {item.qty}</h4>
+              <button onClick={() => addToQty(index, cart)}>+</button>
+            </div>
             <h4>Price: ${Number(item.qty * item.price).toFixed(2)}</h4>
             <button onClick={() => removeFromCart(index, cart)}>Remove</button>
           </li>

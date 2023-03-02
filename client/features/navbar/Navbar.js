@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import { logout } from '../../app/store'
+import { selectGuestCart } from '../cart/guestCartSlice'
 
 const Navbar = () => {
   const isLoggedIn = useSelector((state) => !!state.auth.me.id)
+  const numItemsInCart = useSelector((state) => state.guestCart.numItemsInCart)
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const logoutAndRedirectHome = () => {
@@ -32,7 +34,7 @@ const Navbar = () => {
             <Link to="/login">Login</Link>
             <Link to="/signup">Sign Up</Link>
             <Link to="/products">Products</Link>
-            <Link to="/cart">Cart</Link>
+            <Link to="/cart">Cart({numItemsInCart})</Link>
           </div>
         )}
       </nav>

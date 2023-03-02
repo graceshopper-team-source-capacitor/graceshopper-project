@@ -64,6 +64,22 @@ const cartSlice = createSlice({
   },
 });
 
+export const confirmationPage = createAsyncThunk(
+	'confirmation order',
+	async ({ token, cart, user }) => {
+		try {
+			const { data } = await axios.post(
+				'/api/checkout/checkout-session',
+				cart,
+				{ headers: { authorization: token } }
+			);
+			data && (window.location = data.url);
+		} catch (error) {
+			console.log(error);
+		}
+	}
+);
+
 export const selectCart = (state) => state.cart;
 
 export default cartSlice.reducer;

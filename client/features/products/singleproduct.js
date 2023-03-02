@@ -27,14 +27,21 @@ const Product = () => {
     setAmount(amount + 1)
   }
 
-  //if item already exists in cart, add one to quantity rather than adding another array item
   const addToCart = () => {
+    const itemAlreadyInCart = cart.find((cartItem) => cartItem.id === product.id)
+    const itemAlreadyInCartIndex = cart.findIndex((cartItem) => cartItem.id === product.id)
+
     const addedItem = { ...product, qty: amount }
     if (cart.length === 0) {
       setCart([addedItem])
     } else if (cart.length > 0) {
-      const newCart = [...cart, addedItem]
-      setCart(newCart)
+      if (itemAlreadyInCart === undefined) {
+        const newCart = [...cart, addedItem]
+        setCart(newCart)
+      } else {
+        cart[itemAlreadyInCartIndex].qty = itemAlreadyInCart.qty + amount
+        setCart([...cart])
+      }
     }
   }
 

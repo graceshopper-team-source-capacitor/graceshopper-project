@@ -13,7 +13,8 @@ import {
 const EditProduct = () => {
   const dispatch = useDispatch();
   const productObject = useSelector(selectSingleProduct);
-  const { productId } = useParams();
+  const productId = useParams().id;
+  console.log(productId)
 
   const Navigate = useNavigate();
 
@@ -25,7 +26,7 @@ const EditProduct = () => {
 
   useEffect(() => {
     dispatch(fetchSingleProductAsync(productId));
-  }, [dispatch, productId]);
+  }, [dispatch, productId]); console.log(productId)
 
   const handleSubmit = async (evt) => {
     evt.preventDefault();
@@ -42,10 +43,10 @@ const EditProduct = () => {
     Navigate(`/products`);
   };
 
-  const { product } = productObject;
-
+  const product  = productObject;
+  console.log(product)
   return (
-    <>
+    <> 
       <div key={product.id}>
         <h2>Currently Editing: </h2>
         <Link to={`/products/${product.id}`}>

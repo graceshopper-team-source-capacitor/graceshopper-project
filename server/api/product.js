@@ -29,7 +29,7 @@ router.get('/:id', async (req, res) => {
 router.put('/:id', async (req, res) => {
     try {
         const product = await Product.findByPk(req.params.id);
-        res.send(await product.update(req.body))
+        res.json(await product.update(req.body))
     }
     catch (err) {
         console.log("There was a problem updating product.", err)

@@ -21,6 +21,7 @@ export const editProductAsync = createAsyncThunk(
       description,
       type,
     });
+    console.log(`data:`, data)
     return data;
   }
 );

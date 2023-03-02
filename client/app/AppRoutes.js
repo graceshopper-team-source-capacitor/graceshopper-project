@@ -7,6 +7,7 @@ import ProductList from '../features/products/allproducts'
 import UserProfile from '../features/userProfile/UserProfile'
 import { me } from './store'
 import Product from '../features/products/singleproduct'
+import GuestCart from '../features/cart/GuestCart'
 
 /**
  * COMPONENT
@@ -37,11 +38,9 @@ const AppRoutes = () => {
           <Route path="/signup" element={<AuthForm name="signup" displayName="Sign Up" />} />
           <Route path="/products" element={<ProductList />} />
           <Route path="/products/:id" element={<Product />} />
+          <Route path="/cart" element={<GuestCart />} />
         </Routes>
       )}
-      {/* <Routes>
-        <Route path="/products" element={<ProductList />} />
-      </Routes> */}
     </div>
   )
 }

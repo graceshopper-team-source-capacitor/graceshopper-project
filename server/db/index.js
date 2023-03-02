@@ -21,18 +21,19 @@ const Cart = require('./models/Cart')
 // A belongs to many B and B belongs to many A 
 // Product belongs to many order, order has many product 
 Product.belongsToMany(Order, { through: LineItem}) 
-Product.belongsToMany(Cart, { through: LineItem })
+// Product.belongsToMany(Cart, { through: LineItem })
 
 // User.hasMany(Product)
 User.hasMany(Order)
-User.hasOne(Cart)
+// User.hasOne(Cart)
 
-Cart.belongsTo(User)
+// Cart.belongsTo(User)
 // Cart.hasMany(Product, { through: LineItem })
 
-Order.belongsTo(User)
 
-LineItem.hasOne(Product)
+// Order.belongsTo(Cart)
+LineItem.belongsTo(Product)
+Order.belongsTo(User)
 Order.hasMany(LineItem)
 
 module.exports = {
@@ -42,6 +43,6 @@ module.exports = {
     Product,
     Order,
     LineItem,
-    Cart
+    // Cart
   },
 }

@@ -30,9 +30,15 @@ const GuestCart = (props) => {
     console.log('subtracting...')
   }
 
-  function addToQty() {
-    console.log('adding...')
+  // ADDING ITEM QTY IN CART (START)
+  function addToQty(index, cart) {
+    // add one to that cart item's qty
+    cart[index].qty = cart[index].qty + 1
+    // set the cart (with new item qty)
+    // need to create a clone of cart since you cannot modify state directly
+    setCart(structuredClone(cart))
   }
+  // ADDING ITEM QTY IN CART (END)
 
   // REMOVING ITEM FROM CART (START)
   const removeFromCart = (index, cart) => {
@@ -72,7 +78,7 @@ const GuestCart = (props) => {
             <h4>{item.name}</h4>
             <button onClick={subractFromQty}>-</button>
             <h4>Quantity: {item.qty}</h4>
-            <button onClick={addToQty}>+</button>
+            <button onClick={() => addToQty(index, cart)}>+</button>
 
             <h4>Price: ${Number(item.qty * item.price).toFixed(2)}</h4>
             <button onClick={() => removeFromCart(index, cart)}>Remove</button>

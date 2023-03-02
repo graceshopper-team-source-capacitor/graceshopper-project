@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from 'react'
 
+// TODO:
+// add to cart qty,
+// subtract from cart qty,
+// remove item from cart
+
 /**
  * COMPONENT
  */
@@ -21,6 +26,22 @@ const GuestCart = (props) => {
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cart))
   }, [cart])
+
+  // TOTAL CART PRICE (START)
+  // creates an array of all prices in local cart
+  const cartPriceArray = []
+  for (let i = 0; i < cart.length; i++) {
+    cartPriceArray.push(cart[i].price * cart[i].qty)
+  }
+
+  // adds all the prices together
+  const initialValue = 0
+  const sumOfPrices = cartPriceArray.reduce(
+    (previousValue, currentValue) => previousValue + currentValue,
+    initialValue
+  )
+  // TOTAL CART PRICE (END)
+
   return (
     <>
       <h3>Cart</h3>
@@ -33,6 +54,7 @@ const GuestCart = (props) => {
           </li>
         ))}
       </ul>
+      <h4>Total Price: ${sumOfPrices}</h4>
     </>
   )
 }

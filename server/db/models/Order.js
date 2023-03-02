@@ -8,6 +8,7 @@ const Order = db.define('order', {
 		type: Sequelize.BOOLEAN,
 		defaultValue: true,
 	},
+  //isenum is one cart, is one order, then flip once cart becomes order
   confirmationNum: {
     type: Sequelize.INTEGER,
     allowNull: false,

@@ -346,11 +346,7 @@ async function seed() {
         lineItemId: 2
       }),
     ])
-    // creates a cart
-    // const carts = await Promise.all([
-    //   Cart.create({ id: 1 }),
-    //   Cart.create({ id: 2 }),
-    // ])
+
 
     // creates a line item
     const lineItems = await Promise.all([
@@ -358,7 +354,6 @@ async function seed() {
       LineItem.create({ productId: 3, qty: 5, orderId: 2 }), //expect tortillas
     ])
 
-    // const [cart1, cart2] = carts
     const [cody, murphy] = users
     const [
       croissants,
@@ -405,23 +400,10 @@ async function seed() {
       pistachios,
     ] = products
 
-    // const [order1, order2] = await Promise.all(orders.map(
-    //   order => Order.create(order)));
-    //    await order1.setUser(cody);
-    //    await order2.setUser(murphy);
- 
-
     const [lineItem1, lineItem2] = lineItems
 
     // Magic method associations
-
-    // await cart1.setUser(cody)
-    // await cart2.setUser(murphy)
-    // await lineItem1.setCart(cart1)
-    // console.log(cart1)
     console.log(lineItem1)
-    // await cart1.setLineItem(lineItem1)
-
     console.log(`seeded ${users.length} users`)
     console.log(`seeded successfully`)
 

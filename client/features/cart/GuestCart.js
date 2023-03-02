@@ -26,9 +26,21 @@ const GuestCart = (props) => {
     localStorage.setItem('cart', JSON.stringify(cart))
   }, [cart])
 
-  function subractFromQty() {
-    console.log('subtracting...')
+  // SUBTRACTING ITEM QTY IN CART (START)
+  function subtractFromQty(index, cart) {
+    // if the cart item quantiy is more than 1
+    if (cart[index].qty > 1) {
+      // subract one from the qty
+      cart[index].qty = cart[index].qty - 1
+      // set the cart (with new item qty)
+      // need to create a clone of cart since you cannot modify state directly
+      setCart(structuredClone(cart))
+    } else if ((cart[index].qty = 1)) {
+      //if the cart item qty is one, remove that item from the cart
+      removeFromCart(index, cart)
+    }
   }
+  // SUBTRACTING ITEM QTY IN CART (END)
 
   // ADDING ITEM QTY IN CART (START)
   function addToQty(index, cart) {
@@ -76,7 +88,7 @@ const GuestCart = (props) => {
         {cart.map((item, index) => (
           <li key={item.id}>
             <h4>{item.name}</h4>
-            <button onClick={subractFromQty}>-</button>
+            <button onClick={() => subtractFromQty(index, cart)}>-</button>
             <h4>Quantity: {item.qty}</h4>
             <button onClick={() => addToQty(index, cart)}>+</button>
 

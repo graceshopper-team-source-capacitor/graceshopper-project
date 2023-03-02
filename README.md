@@ -44,14 +44,14 @@ Sync and seed your database by running `npm run seed`. Running `npm run start:de
 - start:dev:seed will start your server and also seed your database (this is useful when you are making schema changes and you don't want to run your seed script separately)
 
 ### As a customer/visitor, I want to be able to:
-  [x] access a deployed* version of the website so I can browse and purchase products. (the website works with a localhost) <-
+  [x] access a deployed* version of the website so I can browse and purchase products. (the website works with a localhost) <- will be handled as a group tomorrow (3/3)
   [x] view all available products so I can pick from a variety.
   [x] view a single product so I can see more details.
   [x] add a product to my cart so I can collect my desired products in one place.
-  [] edit my cart if I change my mind:
-    [] change the quantity of a product in my cart.
+  [x] edit my cart if I change my mind:
+    [x] change the quantity of a product in my cart.
     [x] remove a product in my cart.
-    [x] No one else should be able to edit my cart except me. <- discuss with ellen
+    [x] No one else should be able to edit my cart except me. <- specific to the local storage, when logged in as a user, need to be logged in as that user to access their cart
   [] __"checkout" the items in my cart so I can purchase my desired goods. - need to make a confirmation page component__
     Think of a typical user experience on popular websites from a guest user and logged-in user perspective.
     You can just start with by simulating the experience of checking out with a simple confirmation page.
@@ -64,7 +64,8 @@ Sync and seed your database by running `npm run seed`. Running `npm run start:de
 
 ### As an administrator, I want to be able to:
   [] have validated data to ensure reliability. (may need to edit the model?)
-    i.e. each customer that creates an account should only be able to do so once with a single email address. (need to have a unique log-in)
+    i.e. each customer that creates an account should only be able to do so once with a single email address. (need to have a unique log-in) <- data validation, for models, what requirements would a functional database have? (unique log-in)
+    if the data is rejected, there can be a message (tier 2)
   [] __have full rights to make backend requests to add, edit, and remove products.__ 
     No one else should have access.
   [] __view user information. (usernames (+ orders))__ 
@@ -75,4 +76,5 @@ Sync and seed your database by running `npm run seed`. Running `npm run start:de
     - By doing this, you really set yourselves up to tackle many of the points throughout the tiers. In the long run, this will save you, potentially, tons of time.
     - For example, seed hundreds of products with dummy data so that when you get to the “pagination” user story, you won’t have to worry about adding more products.
     - Likewise, add a bunch of users with products in their carts so editing the cart can be worked on without already having the “add to cart” functionality built out.
-  [] user data to be secure so that no one can unrightfully manipulate information. <-
+  [] user data to be secure so that no one can unrightfully manipulate information. <- no one should be able to edit an other existing user's cart, keeping routes secure, and ensuring the buttons to edit, add, and delete things require admin privileges (authorization -> needs a token for admin)
+

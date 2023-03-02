@@ -2,8 +2,7 @@ const router = require('express').Router()
 const { models: { Product }} = require('../db')
 module.exports = router
 
-
-//route for all paths
+//route for all products
 router.get('/', async (req, res, next) => {
   try {
       res.send(await Product.findAll({
@@ -25,3 +24,33 @@ router.get('/:id', async (req, res) => {
       console.log("There was a problem fetching the product.", err)
   }
 })
+
+//edits the product
+router.put('/:id', async (req, res) => {
+    try {
+        const product = await Product.findByPk(req.params.id);
+        res.json(await product.update(req.body))
+    }
+    catch (err) {
+        console.log("There was a problem updating product.", err)
+    }
+})
+
+router.delete('/:id', async (req, res) => {
+    try {
+      const product = await Product.findByPk(req.params.id);
+      await product.destroy();
+      res.send(product);
+    } catch (err){
+      console.log("Could not delete!", err);
+    }
+  })
+
+  router.post('/', async (req, res) => {
+    try {
+      const createdProduct = await Product.create(req.body)
+      res.send(createdProduct);
+    } catch (err){
+      next(err);
+    }
+  })

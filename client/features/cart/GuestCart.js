@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react'
 // TODO:
 // add to cart qty,
 // subtract from cart qty,
-// remove item from cart
 
 /**
  * COMPONENT

@@ -16,6 +16,7 @@ const Product = () => {
   useEffect(() => {
     try {
       let localCart = localStorage.getItem('cart') || ''
+      // convert cart into json because local storage can only read strings & primative types
       let jsonCart = JSON.parse(localCart)
       if (localCart) setCart(jsonCart)
     } catch (err) {}

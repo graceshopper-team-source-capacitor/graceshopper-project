@@ -35,7 +35,7 @@ const GuestCart = (props) => {
     console.log('adding...')
   }
 
-  // REMOVING ITEM FROM CART
+  // REMOVING ITEM FROM CART (START)
   const removeFromCart = (index, cart) => {
     // return the index of the item you want to remove
     function indexOfItemClicked() {
@@ -53,6 +53,7 @@ const GuestCart = (props) => {
     //set the cart to the new array (not including the removed item)
     setCart(structuredClone(cart))
   }
+  // REMOVING ITEM FROM CART (END)
 
   // TOTAL CART PRICE (START)
   // creates an array of all prices in local cart
@@ -89,7 +90,7 @@ const GuestCart = (props) => {
           </li>
         ))}
       </ul>
-      <h4>Total Price: ${sumOfPrices}</h4>
+      <h4>Total Price: ${sumOfPrices.toFixed(2)}</h4>
       <button onClick={handleCheckoutButton}>Checkout</button>
     </>
   )

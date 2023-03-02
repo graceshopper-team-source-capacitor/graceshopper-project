@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 /**
  * COMPONENT
  */
 const GuestCart = (props) => {
+  const navigate = useNavigate()
   const [cart, setCart] = useState([])
 
   // on first render, gets the cart saved in local storage
@@ -75,6 +77,7 @@ const GuestCart = (props) => {
 
   function handleCheckoutButton() {
     console.log('Checking out...')
+    navigate('/confirm')
   }
 
   return (

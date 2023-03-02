@@ -35,8 +35,23 @@ const GuestCart = (props) => {
     console.log('adding...')
   }
 
-  function removeFromCart() {
-    console.log('removing item...')
+  // REMOVING ITEM FROM CART
+  const removeFromCart = (index, cart) => {
+    // return the index of the item you want to remove
+    function indexOfItemClicked() {
+      for (let i = 0; i < cart.length; i++) {
+        if (cart[index]) {
+          return index
+        }
+      }
+    }
+
+    // save that index
+    let indexOfCartItem = indexOfItemClicked()
+    // delete that one index from the cart
+    let splicedCart = cart.splice(indexOfCartItem, 1)
+    //set the cart to the new array (not including the removed item)
+    setCart(structuredClone(cart))
   }
 
   // TOTAL CART PRICE (START)
@@ -62,7 +77,7 @@ const GuestCart = (props) => {
     <>
       <h3>Cart</h3>
       <ul>
-        {cart.map((item) => (
+        {cart.map((item, index) => (
           <li key={item.id}>
             <h4>{item.name}</h4>
             <button onClick={subractFromQty}>-</button>
@@ -70,7 +85,7 @@ const GuestCart = (props) => {
             <button onClick={addToQty}>+</button>
 
             <h4>Price: ${Number(item.qty * item.price).toFixed(2)}</h4>
-            <button onClick={removeFromCart}>Remove</button>
+            <button onClick={() => removeFromCart(index, cart)}>Remove</button>
           </li>
         ))}
       </ul>

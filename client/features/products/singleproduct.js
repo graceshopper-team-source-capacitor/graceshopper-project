@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { fetchSingleProductAsync, selectSingleProduct } from './singleProductSlice'
 import { useSelector, useDispatch } from 'react-redux'
 import { useParams, Link, useNavigate } from 'react-router-dom'
+import { incrementByAmount } from '../cart/guestCartSlice'
 
 const Product = () => {
   const dispatch = useDispatch()
@@ -62,6 +63,9 @@ const Product = () => {
         setCart([...cart])
       }
     }
+    // add amount of items to the total number of items
+    // needed to update navbar cart counter
+    dispatch(incrementByAmount(amount))
   }
 
   return (

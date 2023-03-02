@@ -12,6 +12,14 @@ const Product = () => {
   const [cart, setCart] = useState([])
 
   useEffect(() => {
+    try {
+      let localCart = localStorage.getItem('cart') || ''
+      let jsonCart = JSON.parse(localCart)
+      if (localCart) setCart(jsonCart)
+    } catch (err) {}
+  }, [])
+
+  useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cart))
   }, [cart])
 

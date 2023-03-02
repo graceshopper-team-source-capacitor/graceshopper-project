@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { selectProducts } from './allProductsSlice'
 import { useSelector } from 'react-redux'
-import { NavLink, useNavigate } from 'react-router-dom'
+import { NavLink, useNavigate, Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { fetchProductsAsync } from './allProductsSlice'
 
@@ -34,9 +34,13 @@ const ProductList = () => {
             to={`/Products/${product.id}`}
             key={`All Products: ${product.id}`}
           > */}
+            <NavLink to={`/products/${product.id}`}>
             <h2>{product.name}</h2>
+            </NavLink>
             {/* </NavLink> */}
+            <NavLink to={`/products/${product.id}`}>
             <img src={`/${product.imageUrl}`} />
+            </NavLink>
             {/* <NavLink to={`/allproducts/${product.id}/edit`}>
             <button>Edit</button>
           </NavLink> */}

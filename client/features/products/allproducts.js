@@ -38,6 +38,7 @@ const ProductList = () => {
             {/* </NavLink> */}
             <NavLink to={`/products/${product.id}`}>
             <img src={`/${product.imageUrl}`} />
+            </NavLink>
             {/* vvv These buttons need to be exclusively for the admin. vvv */}
             <button className="delete" onClick={() => handleDelete(product.id)}>X</button> 
             <NavLink to={`/products/${product.id}/edit`}>

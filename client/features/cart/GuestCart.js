@@ -27,6 +27,18 @@ const GuestCart = (props) => {
     localStorage.setItem('cart', JSON.stringify(cart))
   }, [cart])
 
+  function subractFromQty() {
+    console.log('subtracting...')
+  }
+
+  function addToQty() {
+    console.log('adding...')
+  }
+
+  function removeFromCart() {
+    console.log('removing item...')
+  }
+
   // TOTAL CART PRICE (START)
   // creates an array of all prices in local cart
   const cartPriceArray = []
@@ -53,8 +65,12 @@ const GuestCart = (props) => {
         {cart.map((item) => (
           <li key={item.id}>
             <h4>{item.name}</h4>
+            <button onClick={subractFromQty}>-</button>
             <h4>Quantity: {item.qty}</h4>
+            <button onClick={addToQty}>+</button>
+
             <h4>Price: ${Number(item.qty * item.price).toFixed(2)}</h4>
+            <button onClick={removeFromCart}>Remove</button>
           </li>
         ))}
       </ul>

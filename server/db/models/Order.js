@@ -4,9 +4,9 @@ const db = require('../db')
 // Order refers to a completed order whereas Cart is a staging area for an Order
 
 const Order = db.define('order', {
-  isCart: {
-		type: Sequelize.BOOLEAN,
-		defaultValue: true,
+  isActiveCart: {
+		type: Sequelize.ENUM("activeCart", "completedOrder"),
+		defaultValue: "activeCart",
 	},
   //isenum is one cart, is one order, then flip once cart becomes order
   confirmationNum: {

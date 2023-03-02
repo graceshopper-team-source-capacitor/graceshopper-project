@@ -6,7 +6,7 @@ const User = require('./models/User')
 const Product = require('./models/Product')
 const Order = require('./models/Order')
 const LineItem = require('./models/LineItem')
-const Cart = require('./models/Cart')
+
 
 //associations could go here!
 

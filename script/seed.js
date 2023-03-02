@@ -403,7 +403,7 @@ async function seed() {
     const [lineItem1, lineItem2] = lineItems
 
     // Magic method associations
-    console.log(lineItem1)
+    // console.log(lineItem1)
     console.log(`seeded ${users.length} users`)
     console.log(`seeded successfully`)
 

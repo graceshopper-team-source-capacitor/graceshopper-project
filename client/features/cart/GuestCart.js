@@ -42,6 +42,10 @@ const GuestCart = (props) => {
   )
   // TOTAL CART PRICE (END)
 
+  function handleCheckoutButton() {
+    console.log('Checking out...')
+  }
+
   return (
     <>
       <h3>Cart</h3>
@@ -55,6 +59,7 @@ const GuestCart = (props) => {
         ))}
       </ul>
       <h4>Total Price: ${sumOfPrices}</h4>
+      <button onClick={handleCheckoutButton}>Checkout</button>
     </>
   )
 }

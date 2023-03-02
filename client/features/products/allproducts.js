@@ -1,18 +1,18 @@
-import React, { useEffect } from 'react'
-import { selectProducts } from './allProductsSlice'
-import { useSelector } from 'react-redux'
-import { NavLink, useNavigate } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
-import { fetchProductsAsync } from './allProductsSlice'
+import React, { useEffect } from "react";
+import { selectProducts } from "./allProductsSlice";
+import { useSelector } from "react-redux";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { fetchProductsAsync } from "./allProductsSlice";
 
 const ProductList = () => {
-  const dispatch = useDispatch()
-  const products = useSelector(selectProducts)
-  const Navigate = useNavigate()
+  const dispatch = useDispatch();
+  const products = useSelector(selectProducts);
+  const Navigate = useNavigate();
 
   useEffect(() => {
-    dispatch(fetchProductsAsync())
-  }, [dispatch])
+    dispatch(fetchProductsAsync());
+  }, [dispatch]);
 
   //   const handleDelete = async (id) => {
   //     await dispatch(deleteProductAsync(id));
@@ -37,15 +37,15 @@ const ProductList = () => {
             <h2>{product.name}</h2>
             {/* </NavLink> */}
             <img src={`/${product.imageUrl}`} />
-            {/* <NavLink to={`/allproducts/${product.id}/edit`}>
-            <button>Edit</button>
-          </NavLink> */}
+            <NavLink to={`/products/${product.id}/edit`}>
+              <button>Edit</button>
+            </NavLink>
             <h3>{product.price}</h3>
           </li>
         ))}
       </ul>
     </div>
-  )
-}
+  );
+};
 
-export default ProductList
+export default ProductList;

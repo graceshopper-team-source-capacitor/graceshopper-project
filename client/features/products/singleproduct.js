@@ -9,7 +9,11 @@ const Product = () => {
   const product = useSelector(selectSingleProduct)
 
   const [amount, setAmount] = useState(1)
-  const [cart, setCart] = useState([{ name: 'fakeItem' }])
+  const [cart, setCart] = useState([])
+
+  useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(cart))
+  }, [cart])
 
   useEffect(() => {
     dispatch(fetchSingleProductAsync(id))
@@ -23,10 +27,15 @@ const Product = () => {
     setAmount(amount + 1)
   }
 
+  //if item already exists in cart, add one to quantity rather than adding another array item
   const addToCart = () => {
     const addedItem = { ...product, qty: amount }
-    const newCart = [...cart, addedItem]
-    setCart(newCart)
+    if (cart.length === 0) {
+      setCart([addedItem])
+    } else if (cart.length > 0) {
+      const newCart = [...cart, addedItem]
+      setCart(newCart)
+    }
   }
 
   return (

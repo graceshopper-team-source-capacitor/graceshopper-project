@@ -88,10 +88,12 @@ const GuestCart = (props) => {
         {cart.map((item, index) => (
           <li key={item.id}>
             <h4>{item.name}</h4>
-            <button onClick={() => subtractFromQty(index, cart)}>-</button>
-            <h4>Quantity: {item.qty}</h4>
-            <button onClick={() => addToQty(index, cart)}>+</button>
-
+            <img src={item.imageUrl} />
+            <div>
+              <button onClick={() => subtractFromQty(index, cart)}>-</button>
+              <h4>Quantity: {item.qty}</h4>
+              <button onClick={() => addToQty(index, cart)}>+</button>
+            </div>
             <h4>Price: ${Number(item.qty * item.price).toFixed(2)}</h4>
             <button onClick={() => removeFromCart(index, cart)}>Remove</button>
           </li>

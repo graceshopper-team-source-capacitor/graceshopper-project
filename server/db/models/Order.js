@@ -11,21 +11,21 @@ const Order = db.define('order', {
   //isenum is one cart, is one order, then flip once cart becomes order
   confirmationNum: {
     type: Sequelize.INTEGER,
-    allowNull: false,
+    // allowNull: false,
     unique: true,
   },
   name: {
     type: Sequelize.STRING,
-    allowNull: false,
+    // allowNull: false,
   },
   cardNum: {
     type: Sequelize.INTEGER,
-    allowNull: false,
+    // allowNull: false,
     unique: true,
   },
   shippingAddress: {
     type: Sequelize.STRING,
-    allowNull: false,
+    // allowNull: false,
   },
 })
 

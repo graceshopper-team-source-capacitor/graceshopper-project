@@ -73,7 +73,6 @@ console.log(updatedQuantity)
   }
 })
 
-
 //edits the line Item quantity
 router.put('/lineItem/:lineItemId', async (req, res, next) =>{
   try{
@@ -89,39 +88,33 @@ router.put('/lineItem/:lineItemId', async (req, res, next) =>{
      }
     });
 
-// router.post('/:userId/:productId', async (req, res, next) => {
-//   try {
-//     let useOrderId;
+//add one whole line item to the cart
+//first we need to 
+//  If order with given `userId` && `orderStatusCodeId` of 1 (in-cart) doesn't exist, create new
+//  cart (order) instance and use new `orderId`
+router.post('/:userId/:productId', async (req, res, next) => {
+  try {
 
-//     // guest users: Create new order, send orderId with cookie
-//     if (req.params.userId === `guest`) {
-//       if (req.cookies.orderId) {
-//         useOrderId = req.cookies.orderId
-//       } else {
-//         const guestOrder = await Order.create({ orderStatusCodeId: 1 })
-//         res.cookie('orderId', `${guestOrder.id}`)
-//         useOrderId = guestOrder.id
-//       }
-//     } else {
-//       // If order with given `userId` && `orderStatusCodeId` of 1 (in-cart) doesn't exist, create new
-//       // cart (order) instance and use new `orderId`
-//       const existingOrder = await Order.findOne({
-//         where: {
-//           customerId: req.params.userId,
-//           orderStatusCodeId: 1
-//         }
-//       })
+    const existingOrder = await Order.findOne({
+        where: {
+          userId: req.params.userId,
+        }
+      })
+      console.log(existingOrder)
+      if (!existingOrder) {
+        const newOrder = await Order.build()
+        newOrder.userId = req.params.userId
+        console.log(newOrder)
+      await newOrder.save()
 
-//       if (!existingOrder) {
-//         const newOrder = Order.build()
-//         newOrder.customerId = req.params.userId
-//         newOrder.orderStatusCodeId = 1
-//         await newOrder.save()
-//         useThisOrderId = newOrder.id
-//       } else {
-//         useThisOrderId = existingOrder.id
-//       }
-//     }
+       
+      // } else {
+      //   useThisOrderId = existingOrder.id
+      }
+      }catch(err){
+      console.log(err)
+    }
+  })
 
 //     const [item, wasCreated] = await OrderItem.findOrCreate({
 //       where: {

@@ -106,8 +106,6 @@ router.put('/lineItem/:lineItemId', async (req, res, next) => {
 //add one whole line item to the cart
 router.post('/:userId/:productId', async (req, res, next) => {
   try {
-    console.log('req body', req.body)
-    // console.log("req",req.params)
     // if there is an existing order
     // how do we add a new line item in addition to an exisiting line item?
     const existingOrder = await Order.findOne({
@@ -117,15 +115,12 @@ router.post('/:userId/:productId', async (req, res, next) => {
         isActiveCart: 'activeCart',
       },
     })
-    console.log(existingOrder)
-    // if there is not an exisiting order
     if (!existingOrder) {
       // we build the new order but it doesn't get an order id until we save it
       const newOrder = await Order.build()
       newOrder.userId = req.params.userId
       // after the save, the order now has an order id
       await newOrder.save()
-      // console.log("new order pre save:", newOrder);
       // we can create the new line item passing it the product id of the product we are on and the orderId of the order we just created
       // I had to give the LineItem model a default value for qty otherwise it was throwing an error
       // need to figure out how we are capturing the desired qty and passing it to the new line item for creation
@@ -133,33 +128,21 @@ router.post('/:userId/:productId', async (req, res, next) => {
       const newLineItem = await LineItem.create({
         productId: req.params.productId,
         orderId: newOrder.dataValues.id,
-        // id: req.body.id,
         qty: req.body.qty,
       })
-      // console.log("new order post lineItem creation:", newOrder);
-      // console.log("newLineItem pre save:", newLineItem);
-      // here we save the new line item
-      // console.log('new line item post save', newLineItem)
       res.send(newLineItem)
-      // res.sendStatus(200)
-    }
-    // is an exisiting order
-    else if (existingOrder) {
+    } else if (existingOrder) {
       const orderId = existingOrder.dataValues.id
-      const productId = req.params.productId
 
       const additionalLineItem = await LineItem.create({
         productId: req.params.productId,
-        // productId: productId,
         orderId: orderId,
         qty: req.body.qty,
       })
-      console.log('line item', additionalLineItem)
       res.send(additionalLineItem)
-      // res.sendStatus(200)
     }
   } catch (err) {
-    console.log('error 404', err)
+    console.log(err)
   }
 })
 

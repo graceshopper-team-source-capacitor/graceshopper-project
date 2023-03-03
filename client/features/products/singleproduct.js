@@ -69,7 +69,7 @@ const Product = () => {
     }
     // add amount of items to the total number of items
     // needed to update navbar cart counter
-    dispatch(incrementByAmount(amount))
+    // dispatch(incrementByAmount(amount))
     dispatch(addLineItemAsync(id, amount))
   }
 

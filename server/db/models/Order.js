@@ -1,13 +1,19 @@
-const Sequelize = require('sequelize')
-const db = require('../db')
+const Sequelize = require("sequelize");
+const db = require("../db");
 
 // Order refers to a completed order whereas Cart is a staging area for an Order
 
-const Order = db.define('order', {
+const Order = db.define("order", {
+  id: {
+    type: Sequelize.BIGINT,
+    primaryKey: true,
+    allowNull: false,
+    autoIncrement: true,
+  },
   isActiveCart: {
-		type: Sequelize.ENUM("activeCart", "completedOrder"),
-		defaultValue: "activeCart",
-	},
+    type: Sequelize.ENUM("activeCart", "completedOrder"),
+    defaultValue: "activeCart",
+  },
   //isenum is one cart, is one order, then flip once cart becomes order
   confirmationNum: {
     type: Sequelize.INTEGER,
@@ -27,6 +33,6 @@ const Order = db.define('order', {
     type: Sequelize.STRING,
     // allowNull: false,
   },
-})
+});
 
-module.exports = Order
+module.exports = Order;

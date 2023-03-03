@@ -89,33 +89,30 @@ router.put('/lineItem/:lineItemId', async (req, res, next) =>{
     });
 
 //add one whole line item to the cart
-//first we need to 
-//  If order with given `userId` && `orderStatusCodeId` of 1 (in-cart) doesn't exist, create new
-//  cart (order) instance and use new `orderId`
 router.post('/:userId/:productId', async (req, res, next) => {
   try {
-
+// console.log("req",req.params)
     const existingOrder = await Order.findOne({
         where: {
           userId: req.params.userId,
         }
       })
-      console.log(existingOrder)
+      // console.log(existingOrder)
       if (!existingOrder) {
         const newOrder = await Order.build()
         newOrder.userId = req.params.userId
-        console.log(newOrder)
-      await newOrder.save()
-
-       
-      // } else {
-      //   useThisOrderId = existingOrder.id
+      // await newOrder.save()
+      const newLineItem = await LineItem.build()
+      console.log(newLineItem)
+      newLineItem.orderId = req.params.productId
+      const newI = await newOrder.save()
+      console.log(newI)
       }
       }catch(err){
       console.log(err)
     }
   })
-
+//cart does exist need to create lineitem for cart associated with user
 //     const [item, wasCreated] = await OrderItem.findOrCreate({
 //       where: {
 //         productId: req.params.productId,

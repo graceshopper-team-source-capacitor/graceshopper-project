@@ -86,7 +86,6 @@ const GuestCart = (props) => {
   // TOTAL CART PRICE (END)
 
   function handleCheckoutButton() {
-    console.log('Checking out...')
     navigate('/confirm')
   }
 

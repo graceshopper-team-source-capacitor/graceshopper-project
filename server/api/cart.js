@@ -99,34 +99,76 @@ router.put("/lineItem/:lineItemId", async (req, res, next) => {
   }
 });
 
+// when a cart is active and has a line item already in it and we want to add another line item, we need:
+// POST route for creating the LineItem
+// PUT route for editing the specific Order
+
 //add one whole line item to the cart
 router.post("/:userId/:productId", async (req, res, next) => {
   try {
     // console.log("req",req.params)
+    // if there is an existing order
+    // how do we add a new line item in addition to an exisiting line item?
     const existingOrder = await Order.findOne({
       where: {
         userId: req.params.userId,
+        // also need to make sure its an active cart so we aren't fetching a completed order
+        isActiveCart: "activeCart",
       },
     });
-    // console.log(existingOrder)
+    console.log(existingOrder);
+    // if there is not an exisiting order
     if (!existingOrder) {
+      // we build the new order but it doesn't get an order id until we save it
       const newOrder = await Order.build();
       newOrder.userId = req.params.userId;
+      // after the save, the order now has an order id
       await newOrder.save();
       // console.log("new order pre save:", newOrder);
+      // we can create the new line item passing it the product id of the product we are on and the orderId of the order we just created
+      // I had to give the LineItem model a default value for qty otherwise it was throwing an error
+      // need to figure out how we are capturing the desired qty and passing it to the new line item for creation
       const newLineItem = await LineItem.build({
         productId: req.params.productId,
         orderId: newOrder.dataValues.id,
       });
       // console.log("new order post lineItem creation:", newOrder);
       // console.log("newLineItem pre save:", newLineItem);
+      // here we save the new line item
       await newLineItem.save();
       // console.log("new line item post save", newLineItem);
+    }
+    // is an exisiting order
+    else {
+      const orderId = existingOrder.dataValues.id;
+      const productId = req.params.productId;
+
+      const additionalLineItem = await LineItem.create({
+        productId: productId,
+        orderId: orderId,
+      });
     }
   } catch (err) {
     console.log(err);
   }
 });
+
+// a route for updating an Order to include an additional line item
+// router.post("/:orderId/:productId", async (req, res) => {
+//   try {
+//     const orderId = req.params.orderId;
+//     const productId = req.params.productId;
+
+//     await LineItem.build({
+//       productId: productId,
+//       orderId: orderId,
+//     });
+//     await LineItem.save();
+//   } catch (err) {
+//     console.log(err);
+//   }
+// });
+
 //cart does exist need to create lineitem for cart associated with user
 //     const [item, wasCreated] = await OrderItem.findOrCreate({
 //       where: {

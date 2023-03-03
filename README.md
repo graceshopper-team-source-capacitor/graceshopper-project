@@ -52,7 +52,7 @@ Sync and seed your database by running `npm run seed`. Running `npm run start:de
     [x] change the quantity of a product in my cart.
     [x] remove a product in my cart.
     [x] No one else should be able to edit my cart except me. <- specific to the local storage, when logged in as a user, need to be logged in as that user to access their cart
-  [] __"checkout" the items in my cart so I can purchase my desired goods. - need to make a confirmation page component__
+  [x] __"checkout" the items in my cart so I can purchase my desired goods. - need to make a confirmation page component__
     Think of a typical user experience on popular websites from a guest user and logged-in user perspective.
     You can just start with by simulating the experience of checking out with a simple confirmation page.
   [x] create an account so I can have a logged-in experience.
@@ -63,12 +63,12 @@ Sync and seed your database by running `npm run seed`. Running `npm run start:de
     [] No one else should be able to edit my cart except me.
 
 ### As an administrator, I want to be able to:
-  [] have validated data to ensure reliability. (may need to edit the model?)
+  [x] have validated data to ensure reliability. (may need to edit the model?)git 
     i.e. each customer that creates an account should only be able to do so once with a single email address. (need to have a unique log-in) <- data validation, for models, what requirements would a functional database have? (unique log-in)
     if the data is rejected, there can be a message (tier 2)
-  [] __have full rights to make backend requests to add, edit, and remove products.__ 
+  [x] __have full rights to make backend requests to add, edit, and remove products.__ 
     No one else should have access.
-  [] __view user information. (usernames (+ orders))__ 
+  [x] __view user information. (usernames (+ orders))__ 
     No one else should have access.
 
 ### As an engineer, I want to:

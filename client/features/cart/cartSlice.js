@@ -4,7 +4,7 @@ import axios from 'axios'
 //accepts userId as param
 export const getCartThunk = createAsyncThunk('cart/getCartThunk', async (id) => {
   try {
-    const { data } = await axios.get(`api/order/${id}/cart`)
+    const { data } = await axios.get(`/api/order/${id}/cart`)
     return data
   } catch (error) {
     next(error)
@@ -14,7 +14,7 @@ export const getCartThunk = createAsyncThunk('cart/getCartThunk', async (id) => 
 // HERE
 // adding a line item to the cart
 export const addLineItemAsync = createAsyncThunk('cart/addLineItem', async ({ id, qty }) => {
-  const { data } = await axios.post('api/getUserCart/:userId/:productId', {
+  const { data } = await axios.post('/api/getUserCart/:userId/:productId', {
     id: id,
     qty: qty,
   })

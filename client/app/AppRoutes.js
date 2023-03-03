@@ -34,8 +34,8 @@ const AppRoutes = () => {
         <Routes>
           <Route path="/profile" element={<UserProfile />} />
           <Route path="/" element={<Home />} />
-          <Route path="/products" element={<ProductList />} />
-          <Route path="/products/:id" element={<Product />} />
+          <Route exact path="/products" element={<ProductList />} />
+          <Route exact path="/products/:id" element={<Product />} />
         </Routes>}
       {!isLoggedIn &&
         <Routes>
@@ -52,15 +52,15 @@ const AppRoutes = () => {
             path="/signup"
             element={<AuthForm name="signup" displayName="Sign Up" />}
           />
-          <Route path="/products" element={<ProductList />} />
-          <Route path="/products/:id" element={<Product />} />
+          <Route exact path="/products" element={<ProductList />} />
+          <Route exact path="/products/:id" element={<Product />} />
           <Route path="/cart" element={<GuestCart />} />
         </Routes>
       }
       {isLoggedIn && loggedInAdmin && (
         <Routes>
           <Route path="/products/:id/edit" element={<EditProduct />} />
-          <Route path="products/add" element={<AddProduct />} />
+          <Route exact path="/addproduct" element={<AddProduct />} />
           <Route path="/users" element={<UserList />} />
           <Route path="/confirm" element={<ConfirmationPage />} />
         </Routes>

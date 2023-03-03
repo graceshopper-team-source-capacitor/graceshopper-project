@@ -28,7 +28,7 @@ const ProductList = () => {
       <ul id="products">
         {/* The add new product page is rendering the single product page as well? for some reason?*/}
         {loggedInAdmin && (
-          <NavLink to={`/products/add`} className="newProduct">
+          <NavLink to={`/addproduct`} className="newProduct">
             Add New Product
           </NavLink>
         )}

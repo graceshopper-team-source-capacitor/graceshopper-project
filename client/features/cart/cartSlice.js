@@ -45,6 +45,21 @@ export const removeFromCart = createAsyncThunk(
   }
 );
 
+//edit Cart logic needs to have /api/getUserCart/lineItem/${lineItemId} in its axios.put 
+//async({lineItemId, qty})
+export const editCart = createAsyncThunk(
+  "cart/editCart",
+  async ({lineItemId, qty}) => {
+    try{
+      const { data } = await axios.put(
+        `/api/getUserCart/lineItem/${lineItemId}`, qty);
+      return data;
+    } catch (error){
+    next(error)
+  }
+}
+);
+
 const initialState = [];
 
 const cartSlice = createSlice({

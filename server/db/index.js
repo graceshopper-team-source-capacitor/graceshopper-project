@@ -22,7 +22,7 @@ const LineItem = require('./models/LineItem')
 Product.belongsToMany(Order, { through: LineItem}) 
 
 User.hasMany(Order)
-
+LineItem.belongsTo(Order)
 LineItem.belongsTo(Product)
 Order.belongsTo(User)
 Order.hasMany(LineItem)

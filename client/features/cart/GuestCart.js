@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { increment } from '../cart/guestCartSlice'
+import { decrement } from '../cart/guestCartSlice'
 
 /**
  * COMPONENT
  */
 const GuestCart = (props) => {
+  const dispatch = useDispatch()
   const navigate = useNavigate()
   const [cart, setCart] = useState([])
 
@@ -37,6 +41,9 @@ const GuestCart = (props) => {
       //if the cart item qty is one, remove that item from the cart
       removeFromCart(index, cart)
     }
+    // subtract one to the total number of items
+    // needed to update navbar cart counter
+    dispatch(decrement())
   }
   // SUBTRACTING ITEM QTY IN CART (END)
 
@@ -47,6 +54,9 @@ const GuestCart = (props) => {
     // set the cart (with new item qty)
     // need to create a clone of cart since you cannot modify state directly
     setCart(structuredClone(cart))
+    // add one to the total number of items
+    // needed to update navbar cart counter
+    dispatch(increment())
   }
   // ADDING ITEM QTY IN CART (END)
 

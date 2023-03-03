@@ -34,6 +34,7 @@ const AppRoutes = () => {
           <Route path="/" element={<Home />} />
           <Route path="/products" element={<ProductList />} />
           <Route path="/products/:id" element={<Product />} />
+          <Route path="/cart" element={<GuestCart />} />
         </Routes>
       ) : (
         <Routes>
@@ -48,6 +49,7 @@ const AppRoutes = () => {
           <Route path="products/new" element={<AddProduct />} />
           <Route path="/users" element={<UserList />} />
           <Route path="/confirm" element={<ConfirmationPage />} />
+
           {/* ^^^These routes need to be exclusively for the admin.^^^ */}
         </Routes>
       )}

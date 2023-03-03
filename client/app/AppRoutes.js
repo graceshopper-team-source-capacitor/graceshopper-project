@@ -60,7 +60,7 @@ const AppRoutes = () => {
       {isLoggedIn && loggedInAdmin && (
         <Routes>
           <Route path="/products/:id/edit" element={<EditProduct />} />
-          <Route path="products/new" element={<AddProduct />} />
+          <Route path="products/add" element={<AddProduct />} />
           <Route path="/users" element={<UserList />} />
           <Route path="/confirm" element={<ConfirmationPage />} />
         </Routes>

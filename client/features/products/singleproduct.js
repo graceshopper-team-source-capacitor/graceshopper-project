@@ -3,6 +3,7 @@ import { fetchSingleProductAsync, selectSingleProduct } from './singleProductSli
 import { useSelector, useDispatch } from 'react-redux'
 import { useParams, Link, useNavigate } from 'react-router-dom'
 import { incrementByAmount } from '../cart/guestCartSlice'
+import { addLineItemAsync } from '../cart/cartSlice'
 
 const Product = () => {
   const dispatch = useDispatch()
@@ -16,6 +17,9 @@ const Product = () => {
   // local storage persist on refresh
   useEffect(() => {
     try {
+      // USER CART READS AND WRITES FROM/TO LOCAL STORAGE
+      // IF LOGGED IN, SET LS CART TO DB CART
+      // IF NOT LOGGED IN CONTINUE BELOW
       let localCart = localStorage.getItem('cart') || ''
       // convert cart into json because local storage can only read strings & primative types
       let jsonCart = JSON.parse(localCart)
@@ -40,7 +44,7 @@ const Product = () => {
     setAmount(amount + 1)
   }
 
-  const addToCart = () => {
+  const addToCart = (id, amount) => {
     // returns the product object if it exists in the local storage cart
     const itemAlreadyInCart = cart.find((cartItem) => cartItem.id === product.id)
     // returns the product object index if it exists in the local storage cart
@@ -66,6 +70,7 @@ const Product = () => {
     // add amount of items to the total number of items
     // needed to update navbar cart counter
     dispatch(incrementByAmount(amount))
+    dispatch(addLineItemAsync(id, amount))
   }
 
   return (
@@ -78,7 +83,7 @@ const Product = () => {
       <button onClick={subtractFromAmount}>-</button>
       <p>{amount}</p>
       <button onClick={addToAmount}>+</button>
-      <button onClick={addToCart}>Add to Cart</button>
+      <button onClick={() => addToCart(product.id, amount)}>Add to Cart</button>
     </div>
   )
 }

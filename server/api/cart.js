@@ -39,7 +39,7 @@ router.delete('/:orderId/:productId', async (req, res, next) => {
 })
 
 //subtract one from line item
-router.put('/lineItem/:lineItemId', async (req, res, next) => {
+router.put('/lineItem/subtract/:lineItemId', async (req, res, next) => {
   try {
     const lineItemId = req.params.lineItemId;
     const lineItem = await LineItem.findByPk(lineItemId)
@@ -49,6 +49,21 @@ router.put('/lineItem/:lineItemId', async (req, res, next) => {
     } 
     // console.log(lineItem)
     const updatedQuantity = lineItem.dataValues.qty-1
+console.log(updatedQuantity)
+    res.send( await LineItem.update( {qty: updatedQuantity}, {
+      where: {id: lineItemId}
+      }))
+  } catch (err) {
+    next(err)
+  }
+})
+
+//add one item to line item
+router.put('/lineItem/add/:lineItemId', async (req, res, next) => {
+  try {
+    const lineItemId = req.params.lineItemId;
+    const lineItem = await LineItem.findByPk(lineItemId)
+    const updatedQuantity = lineItem.dataValues.qty+1
 console.log(updatedQuantity)
     res.send( await LineItem.update( {qty: updatedQuantity}, {
       where: {id: lineItemId}

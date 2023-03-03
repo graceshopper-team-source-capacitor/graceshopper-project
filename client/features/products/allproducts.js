@@ -47,7 +47,7 @@ const ProductList = () => {
               <button>Edit</button>
             </NavLink>
             {/* ^^^These buttons need to be exclusively for the admin.^^^ */}
-            <h3>{product.price}</h3>
+            <h3>${Number(product.price).toFixed(2)}</h3>
           </li>
         ))}
       </ul>

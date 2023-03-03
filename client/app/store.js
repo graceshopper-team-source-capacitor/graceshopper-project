@@ -9,6 +9,8 @@ import storage from 'redux-persist/lib/storage'
 import { persistReducer } from 'redux-persist'
 import { combineReducers } from '@reduxjs/toolkit'
 
+// redux-persist is a library that persists state of redux store on refresh
+
 const persistConfig = {
   key: 'root',
   version: 1,

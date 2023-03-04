@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { addOneToLineItemQty, fetchCartById, selectCart } from '../cart/cartSlice'
+import {
+  addOneToLineItemQty,
+  deleteLineItemById,
+  fetchCartById,
+  selectCart,
+  subtractOneFromLineItemQty,
+} from '../cart/cartSlice'
 import { fetchProductsAsync, selectProducts } from '../products/allProductsSlice'
 
 /**
@@ -12,7 +18,6 @@ const UserCart = (props) => {
   const navigate = useNavigate()
   const [cart, setCart] = useState([])
   const [amount, setAmount] = useState(1)
-  const [rerender, setRerender] = useState(false)
   const fetchedCart = useSelector(selectCart)
   const allProducts = useSelector(selectProducts)
   const me = useSelector((state) => state.auth.me)
@@ -56,9 +61,35 @@ const UserCart = (props) => {
   const allUserProductsWithQty = getUserProductWithQtyFunc()
   // FETCHING A USERS CART - (END)
 
+  // SUBTRACT FROM QTY (START)
+  function subtractFromQty(itemId, itemQty) {
+    console.log('subtract')
+    console.log('item qty', itemQty)
+    if (itemQty > 1) {
+      dispatch(subtractOneFromLineItemQty({ userId: me.id, productId: itemId, amount }))
+      // TODO:
+      // updating qty in database but not updating view
+      // need to query from database again
+
+      // workaround but is not optimal:
+      window.location.reload()
+    } else {
+      // remove whole line item
+      dispatch(deleteLineItemById({ orderId: fetchedCart.id, productId: itemId }))
+      // TODO:
+      // updating qty in database but not updating view
+      // need to query from database again
+
+      // workaround but is not optimal:
+      window.location.reload()
+    }
+  }
+  // SUBTRACT FROM QTY (END)
+
+  // console.log(allUserProductsWithQty[0].qty)
+
   // ADD TO QTY (START)
   function addToQty(itemId) {
-    console.log('add')
     dispatch(addOneToLineItemQty({ userId: me.id, productId: itemId, amount }))
     // TODO:
     // updating qty in database but not updating view
@@ -97,7 +128,7 @@ const UserCart = (props) => {
             <h4>{item.name}</h4>
             <img src={item.imageUrl} />
             <div>
-              <button onClick={() => subtractFromQty(index, cart)}>-</button>
+              <button onClick={() => subtractFromQty(item.id, item.qty)}>-</button>
               <h4>Quantity: {item.qty}</h4>
               <button onClick={() => addToQty(item.id)}>+</button>
             </div>

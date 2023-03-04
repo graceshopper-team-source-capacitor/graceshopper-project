@@ -12,13 +12,14 @@ const UserCart = (props) => {
   const navigate = useNavigate()
   const [cart, setCart] = useState([])
   const [amount, setAmount] = useState(1)
+  const [rerender, setRerender] = useState(false)
   const fetchedCart = useSelector(selectCart)
   const allProducts = useSelector(selectProducts)
   const me = useSelector((state) => state.auth.me)
   // console.log(me)
   // console.log('line items', fetchedCart.lineItems)
   // console.log('allProducts', allProducts)
-  console.log('cart', fetchedCart)
+  console.log('fetched cart', fetchedCart)
 
   useEffect(() => {
     dispatch(fetchCartById(me.id))
@@ -59,7 +60,12 @@ const UserCart = (props) => {
   function addToQty(itemId) {
     console.log('add')
     dispatch(addOneToLineItemQty({ userId: me.id, productId: itemId, amount }))
-    //updating qty in databse but not updating view
+    // TODO:
+    // updating qty in database but not updating view
+    // need to query from database again
+
+    // workaround but is not optimal:
+    window.location.reload()
   }
   // ADD TO QTY (END)
 

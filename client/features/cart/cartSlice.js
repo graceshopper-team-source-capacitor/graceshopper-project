@@ -26,6 +26,7 @@ export const addOneToLineItemQty = createAsyncThunk(
       productId: productId,
       qty: amount,
     })
+    console.log('thunk data', data)
     return data
   }
 )
@@ -38,7 +39,7 @@ export const subtractOneFromLineItemQty = createAsyncThunk(
       productId: productId,
       qty: amount,
     })
-    console.log('thunk', data)
+    // console.log('thunk', data)
     return data
   }
 )
@@ -78,7 +79,9 @@ const cartSlice = createSlice({
         return action.payload
       })
     builder.addCase(addOneToLineItemQty.fulfilled, (state, action) => {
+      console.log('action', action.payload)
       state.cart = action.payload
+      // console.log('state of cart', state.cart)
     })
     builder.addCase(subtractOneFromLineItemQty.fulfilled, (state, action) => {
       return action.payload

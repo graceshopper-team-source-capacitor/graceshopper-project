@@ -30,52 +30,29 @@ const UserCart = (props) => {
 
   // FETCHING A USERS CART - (START)
   // creates an array of all the product ids in the user cart line items
-  function getProductIdsForUserArr() {
-    let productIdArr = []
+  function getUserProductWithQtyFunc() {
+    const productIdArr = []
+    const producQtyArr = []
+    const userProducts = []
+    const allUserProductsWithQty = []
     for (let i = 0; i < fetchedCart.lineItems?.length; i++) {
       productIdArr.push(fetchedCart.lineItems[i].productId)
+      producQtyArr.push(fetchedCart.lineItems[i].qty)
     }
-    return productIdArr
-  }
-
-  function getProductQtyForUserArr() {
-    let productIdArr = []
-    for (let i = 0; i < fetchedCart.lineItems?.length; i++) {
-      productIdArr.push(fetchedCart.lineItems[i].qty)
-    }
-    return productIdArr
-  }
-
-  const userProductIdsArr = getProductIdsForUserArr()
-
-  // creates an array of the products in a user's cart
-  function getUserProducts() {
-    const userProducts = []
     for (let i = 0; i < allProducts.length; i++) {
-      for (let j = 0; j < userProductIdsArr.length; j++) {
-        if (allProducts[i].id === userProductIdsArr[j]) {
+      for (let j = 0; j < productIdArr.length; j++) {
+        if (allProducts[i].id === productIdArr[j]) {
           userProducts.push(allProducts[i])
         }
       }
     }
-    return userProducts
-  }
-
-  const userProductQtysArr = getProductQtyForUserArr()
-  const allUserProducts = getUserProducts()
-
-  // creates an array of the products in a user's cart with quantity of that item
-  function allUserProductsWithQtyArr() {
-    const allUserProductsWithQty = []
-    for (let i = 0; i < allUserProducts.length; i++) {
-      allUserProductsWithQty.push(
-        (allUserProducts[i] = { ...allUserProducts[i], qty: userProductQtysArr[i] })
-      )
+    for (let i = 0; i < userProducts.length; i++) {
+      allUserProductsWithQty.push((userProducts[i] = { ...userProducts[i], qty: producQtyArr[i] }))
     }
     return allUserProductsWithQty
   }
 
-  const allUserProductsWithQty = allUserProductsWithQtyArr()
+  const allUserProductsWithQty = getUserProductWithQtyFunc()
   // FETCHING A USERS CART - (END)
 
   // ADD TO QTY (START)

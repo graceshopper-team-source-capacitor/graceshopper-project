@@ -63,8 +63,6 @@ const UserCart = (props) => {
 
   // SUBTRACT FROM QTY (START)
   function subtractFromQty(itemId, itemQty) {
-    console.log('subtract')
-    console.log('item qty', itemQty)
     if (itemQty > 1) {
       dispatch(subtractOneFromLineItemQty({ userId: me.id, productId: itemId, amount }))
       // TODO:
@@ -100,6 +98,19 @@ const UserCart = (props) => {
   }
   // ADD TO QTY (END)
 
+  // REMOVE FROM CART (START)
+  function removeFromCart(itemId) {
+    // remove whole line item
+    dispatch(deleteLineItemById({ orderId: fetchedCart.id, productId: itemId }))
+    // TODO:
+    // updating qty in database but not updating view
+    // need to query from database again
+
+    // workaround but is not optimal:
+    window.location.reload()
+  }
+  // REMOVE FROM CART (START)
+
   // TOTAL CART PRICE (START)
   // creates an array of all prices in local cart
   const cartPriceArray = []
@@ -133,7 +144,7 @@ const UserCart = (props) => {
               <button onClick={() => addToQty(item.id)}>+</button>
             </div>
             <h4>Price: ${Number(item.qty * item.price).toFixed(2)}</h4>
-            <button onClick={() => removeFromCart(index, cart)}>Remove</button>
+            <button onClick={() => removeFromCart(item.id, item.qty)}>Remove</button>
           </li>
         ))}
       </ul>

@@ -6,6 +6,7 @@ import { incrementByAmount } from '../cart/guestCartSlice'
 import {
   addOneToLineItemQty,
   addManyToLineItemQty,
+  addLineItemForUserCart,
   subtractOneFromLineItemQty,
   deleteWholeCartById,
   fetchCartById,
@@ -51,6 +52,7 @@ const Product = () => {
 
   useEffect(() => {
     // dispatch(addManyToLineItemQty({ userId: me.id, productId: id, amount }))
+    dispatch(addLineItemForUserCart({ userId: me.id, productId: id, amount }))
   }, [amount])
 
   useEffect(() => {

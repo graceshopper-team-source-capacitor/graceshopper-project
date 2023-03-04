@@ -58,6 +58,17 @@ export const addManyToLineItemQty = createAsyncThunk(
 //IN PROGRESS
 // adding line item for user cart
 
+export const addLineItemForUserCart = createAsyncThunk(
+  'cart/lineItem/addLineItemToCart',
+  async ({ userId, productId, amount }) => {
+    const { data } = await axios.post(`/api/cart/${userId}/${productId}`, {
+      // id: productId,
+      qty: amount,
+    })
+    return data
+  }
+)
+
 const cartSlice = createSlice({
   name: 'cart',
   initialState: {},
@@ -76,6 +87,9 @@ const cartSlice = createSlice({
       return action.payload
     })
     builder.addCase(addManyToLineItemQty.fulfilled, (state, action) => {
+      return action.payload
+    })
+    builder.addCase(addLineItemForUserCart.fulfilled, (state, action) => {
       return action.payload
     })
   },

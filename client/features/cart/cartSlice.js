@@ -79,7 +79,7 @@ const cartSlice = createSlice({
     })
     builder.addCase(addLineItemAsync.rejected, (state, action) => {
       console.log('action', action.payload)
-      // state.cart.push(action.payload)
+      state.cart.push(action.payload)
     })
   },
 })

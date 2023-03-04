@@ -1,27 +1,27 @@
-import React, { useEffect } from "react";
-import { selectProducts } from "./allProductsSlice";
-import { useSelector } from "react-redux";
-import { NavLink, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { fetchProductsAsync, deleteProductAsync } from "./allProductsSlice";
-import { me } from "../../../client/app/store";
-import AuthForm from "../auth/AuthForm";
+import React, { useEffect } from 'react'
+import { selectProducts } from './allProductsSlice'
+import { useSelector } from 'react-redux'
+import { NavLink, useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { fetchProductsAsync, deleteProductAsync } from './allProductsSlice'
+import { me } from '../../../client/app/store'
+import AuthForm from '../auth/AuthForm'
 
 const ProductList = () => {
-  const dispatch = useDispatch();
-  const products = useSelector(selectProducts);
-  const Navigate = useNavigate();
-  const loggedInAdmin = useSelector((state) => !!state.auth.me.isAdmin);
-  console.log(useSelector((state) => state.auth.me.isAdmin));
+  const dispatch = useDispatch()
+  const products = useSelector(selectProducts)
+  const Navigate = useNavigate()
+  const loggedInAdmin = useSelector((state) => !!state.auth.me.isAdmin)
+  // console.log(useSelector((state) => state.auth.me.isAdmin));
 
   useEffect(() => {
-    dispatch(fetchProductsAsync());
-  }, [dispatch]);
+    dispatch(fetchProductsAsync())
+  }, [dispatch])
 
   const handleDelete = async (id) => {
-    await dispatch(deleteProductAsync(id));
-    Navigate("/products");
-  };
+    await dispatch(deleteProductAsync(id))
+    Navigate('/products')
+  }
 
   return (
     <div>
@@ -48,10 +48,7 @@ const ProductList = () => {
             {/* vvv These buttons need to be exclusively for the admin. vvv */}
             {loggedInAdmin && (
               <div>
-                <button
-                  className="delete"
-                  onClick={() => handleDelete(product.id)}
-                >
+                <button className="delete" onClick={() => handleDelete(product.id)}>
                   X
                 </button>
                 <NavLink to={`/products/${product.id}/edit`}>
@@ -65,7 +62,7 @@ const ProductList = () => {
         ))}
       </ul>
     </div>
-  );
-};
+  )
+}
 
-export default ProductList;
+export default ProductList

@@ -6,7 +6,6 @@ const Product = require('./models/Product')
 const Order = require('./models/Order')
 const LineItem = require('./models/LineItem')
 
-
 //associations could go here!
 
 // What if the order and cart were the same thing? The difference is whether or not you've checked out
@@ -17,9 +16,9 @@ const LineItem = require('./models/LineItem')
 
 // focus on storing the cart in local storage
 
-// A belongs to many B and B belongs to many A 
-// Product belongs to many order, order has many product 
-Product.belongsToMany(Order, { through: LineItem}) 
+// A belongs to many B and B belongs to many A
+// Product belongs to many order, order has many product
+Product.belongsToMany(Order, { through: LineItem })
 
 User.hasMany(Order)
 LineItem.belongsTo(Order)

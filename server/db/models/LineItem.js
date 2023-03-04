@@ -1,12 +1,12 @@
-const Sequelize = require("sequelize");
-const db = require("../db");
+const Sequelize = require('sequelize')
+const db = require('../db')
 
 // A LineItem creates a pointer to a Product id, and holds a qty of the given Product
 // Can think of it as a Product + a qty of said Product
 
-const LineItem = db.define("lineItem", {
+const LineItem = db.define('lineItem', {
   id: {
-    type: Sequelize.BIGINT,
+    type: Sequelize.INTEGER,
     primaryKey: true,
     allowNull: false,
     autoIncrement: true,
@@ -16,6 +16,6 @@ const LineItem = db.define("lineItem", {
     allowNull: false,
     defaultValue: 1,
   },
-});
+})
 
-module.exports = LineItem;
+module.exports = LineItem

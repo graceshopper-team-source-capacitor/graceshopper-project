@@ -1,102 +1,99 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 
-//accepts userId as param
-export const getCartThunk = createAsyncThunk('cart/getCartThunk', async (id) => {
+// WORKING
+export const fetchCartById = createAsyncThunk('cart/fetchById', async (userId) => {
   try {
-    const { data } = await axios.get(`/api/order/${id}/cart`)
+    const { data } = await axios.get(`/api/cart/${userId}`)
+    console.log('data', data)
     return data
-  } catch (error) {
-    next(error)
+  } catch (err) {
+    console.log(err)
   }
 })
 
-// HERE
-// adding a line item to the cart
-export const addLineItemAsync = createAsyncThunk('cart/addLineItem', async ({ id, qty }) => {
-  const { data } = await axios.post('/api/getUserCart/:userId/:productId', {
-    id: id,
-    qty: qty,
-  })
-  console.log('post', data)
+// WORKING
+export const deleteWholeCartById = createAsyncThunk('cart/delete', async (userId) => {
+  const { data } = await axios.delete(`/api/cart/${userId}`)
   return data
 })
 
-//add to specific user cart
-export const addToCart = createAsyncThunk('cart/addToCart', async ({ userId, productId }) => {
-  try {
-    const { data } = await axios.put(`/api/order/${userId}/cart/${productId}`)
+// WORKING
+export const addOneToLineItemQty = createAsyncThunk(
+  'cart/lineItem/addOneToQty',
+  async ({ userId, productId, amount }) => {
+    const { data } = await axios.put(`/api/cart/addOne/${userId}/${productId}`, {
+      productId: productId,
+      qty: amount,
+    })
     return data
-  } catch (error) {
-    console.log(error)
-    next(error)
-  }
-})
-
-//remove from single user  cart
-export const removeFromCart = createAsyncThunk(
-  'cart/removeFromCart',
-  async ({ userId, productId }) => {
-    try {
-      const { data } = await axios.put(`/api/order/${userId}/cart/${productId}/removeone`)
-      return data
-    } catch (error) {
-      next(error)
-    }
   }
 )
 
-//edit Cart logic needs to have /api/getUserCart/lineItem/${lineItemId} in its axios.put
-//async({lineItemId, qty})
-export const editCart = createAsyncThunk('cart/editCart', async ({ lineItemId, qty }) => {
-  try {
-    const { data } = await axios.put(`/api/getUserCart/lineItem/${lineItemId}`, qty)
+// WORKING
+export const subtractOneFromLineItemQty = createAsyncThunk(
+  'cart/lineItem/SubtractOneFromQty',
+  async ({ userId, productId, amount }) => {
+    const { data } = await axios.put(`/api/cart/subtractOne/${userId}/${productId}`, {
+      productId: productId,
+      qty: amount,
+    })
+    console.log('thunk', data)
     return data
-  } catch (error) {
-    next(error)
   }
-})
+)
 
-const initialState = []
+// WORKING
+export const addManyToLineItemQty = createAsyncThunk(
+  'cart/lineItem/addManyToQty',
+  async ({ userId, productId, amount }) => {
+    const { data } = await axios.put(`/api/cart/addMany/${userId}/${productId}`, {
+      productId: productId,
+      qty: amount,
+    })
+    return data
+  }
+)
+
+//IN PROGRESS
+// adding line item for user cart
+// adding line item but not handling amount
+export const addLineItemForUserCart = createAsyncThunk(
+  'cart/lineItem/addLineItemToCart',
+  async ({ userId, productId, amount }) => {
+    const { data } = await axios.post(`/api/cart/${userId}/${productId}`, {
+      productId: productId,
+      qty: amount,
+    })
+    return data
+  }
+)
 
 const cartSlice = createSlice({
   name: 'cart',
-  initialState,
+  initialState: {},
+  reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(getCartThunk.fulfilled, (state, action) => {
-      // Add cart to the state array
+    builder.addCase(fetchCartById.fulfilled, (state, action) => {
+      return action.payload
+    }),
+      builder.addCase(deleteWholeCartById.fulfilled, (state, action) => {
+        return action.payload
+      })
+    builder.addCase(addOneToLineItemQty.fulfilled, (state, action) => {
       return action.payload
     })
-    builder.addCase(addToCart.fulfilled, (state, action) => {
+    builder.addCase(subtractOneFromLineItemQty.fulfilled, (state, action) => {
       return action.payload
     })
-    builder.addCase(removeFromCart.fulfilled, (state, action) => {
+    builder.addCase(addManyToLineItemQty.fulfilled, (state, action) => {
       return action.payload
     })
-    builder.addCase(addLineItemAsync.fulfilled, (state, action) => {
-      console.log('action', action.payload)
-      state.cart.push(action.payload)
-    })
-    builder.addCase(addLineItemAsync.rejected, (state, action) => {
-      console.log('action', action.payload)
-      // state.cart.push(action.payload)
+    builder.addCase(addLineItemForUserCart.fulfilled, (state, action) => {
+      return action.payload
     })
   },
 })
-
-export const confirmationPage = createAsyncThunk(
-  'confirmation order',
-  async ({ token, cart, user }) => {
-    try {
-      const { data } = await axios.post('/api/checkout/checkout-session', cart, {
-        headers: { authorization: token },
-      })
-      data && (window.location = data.url)
-    } catch (error) {
-      console.log(error)
-    }
-  }
-)
 
 export const selectCart = (state) => state.cart
 

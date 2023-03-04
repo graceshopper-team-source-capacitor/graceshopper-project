@@ -3,15 +3,33 @@ import { fetchSingleProductAsync, selectSingleProduct } from './singleProductSli
 import { useSelector, useDispatch } from 'react-redux'
 import { useParams, Link, useNavigate } from 'react-router-dom'
 import { incrementByAmount } from '../cart/guestCartSlice'
-import { addLineItemAsync } from '../cart/cartSlice'
+import {
+  addOneToLineItemQty,
+  addManyToLineItemQty,
+  addLineItemForUserCart,
+  subtractOneFromLineItemQty,
+  deleteWholeCartById,
+  fetchCartById,
+  selectCart,
+} from '../cart/cartSlice'
+import { me } from '../auth/authSlice'
 
 const Product = () => {
   const dispatch = useDispatch()
-  const { id } = useParams()
+  const id = useParams().id
   const product = useSelector(selectSingleProduct)
+  const fetchedCart = useSelector(selectCart)
+  const me = useSelector((state) => state.auth.me)
 
   const [amount, setAmount] = useState(1)
   const [cart, setCart] = useState([])
+
+  useEffect(() => {}, [])
+
+  // console.log(me.id)
+  // console.log('id', id)
+  // console.log('product id', product.id)
+  // console.log('fetchedCart', fetchedCart)
 
   // on first render, gets the cart saved in local storage
   // local storage persist on refresh
@@ -33,7 +51,17 @@ const Product = () => {
   }, [cart])
 
   useEffect(() => {
+    // dispatch(addManyToLineItemQty({ userId: me.id, productId: id, amount }))
+    dispatch(addLineItemForUserCart({ userId: me.id, productId: id, amount }))
+  }, [amount])
+
+  useEffect(() => {
     dispatch(fetchSingleProductAsync(id))
+
+    // dispatch(fetchCartById(me.id))
+    // dispatch(deleteWholeCartById(me.id))
+    // dispatch(addOneToLineItemQty({ userId: me.id, productId: id, amount }))
+    // dispatch(subtractOneFromLineItemQty({ userId: me.id, productId: id, amount }))
   }, [dispatch])
 
   const subtractFromAmount = () => {
@@ -70,7 +98,7 @@ const Product = () => {
     // add amount of items to the total number of items
     // needed to update navbar cart counter
     // dispatch(incrementByAmount(amount))
-    dispatch(addLineItemAsync(id, amount))
+    dispatch(fetchCartById(me.id))
   }
 
   return (

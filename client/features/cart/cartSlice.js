@@ -23,7 +23,7 @@ export const addOneToLineItemQty = createAsyncThunk(
   'cart/lineItem/addOneToQty',
   async ({ userId, productId, amount }) => {
     const { data } = await axios.put(`/api/cart/addOne/${userId}/${productId}`, {
-      id: productId,
+      productId: productId,
       qty: amount,
     })
     return data
@@ -35,7 +35,7 @@ export const subtractOneFromLineItemQty = createAsyncThunk(
   'cart/lineItem/SubtractOneFromQty',
   async ({ userId, productId, amount }) => {
     const { data } = await axios.put(`/api/cart/subtractOne/${userId}/${productId}`, {
-      id: productId,
+      productId: productId,
       qty: amount,
     })
     console.log('thunk', data)
@@ -48,7 +48,7 @@ export const addManyToLineItemQty = createAsyncThunk(
   'cart/lineItem/addManyToQty',
   async ({ userId, productId, amount }) => {
     const { data } = await axios.put(`/api/cart/addMany/${userId}/${productId}`, {
-      id: productId,
+      productId: productId,
       qty: amount,
     })
     return data
@@ -62,7 +62,7 @@ export const addLineItemForUserCart = createAsyncThunk(
   'cart/lineItem/addLineItemToCart',
   async ({ userId, productId, amount }) => {
     const { data } = await axios.post(`/api/cart/${userId}/${productId}`, {
-      // id: productId,
+      productId: productId,
       qty: amount,
     })
     return data

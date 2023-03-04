@@ -77,7 +77,7 @@ router.put('/addOne/:userId/:productId', async (req, res, next) => {
   })
   const orderId = orderById.dataValues.id
   const updatedLineItem = await lineItem.update({
-    id: req.body.id,
+    // id: req.body.id,
     qty: lineItem.dataValues.qty + 1,
     productId: req.params.productId,
     orderId: orderId,

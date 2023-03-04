@@ -29,7 +29,7 @@ const UserCart = (props) => {
   }, [dispatch])
 
   // FETCHING A USERS CART - (START)
-  // creates an array of all the product ids in the user cart line items
+  // creates an array of all the product's in user cart with qtys
   function getUserProductWithQtyFunc() {
     const productIdArr = []
     const producQtyArr = []

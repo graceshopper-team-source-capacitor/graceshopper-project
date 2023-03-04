@@ -78,7 +78,7 @@ const cartSlice = createSlice({
         return action.payload
       })
     builder.addCase(addOneToLineItemQty.fulfilled, (state, action) => {
-      return action.payload
+      state.cart = action.payload
     })
     builder.addCase(subtractOneFromLineItemQty.fulfilled, (state, action) => {
       return action.payload

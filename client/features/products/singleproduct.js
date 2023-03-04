@@ -50,7 +50,7 @@ const Product = () => {
   }, [cart])
 
   useEffect(() => {
-    dispatch(addManyToLineItemQty({ userId: me.id, productId: id, amount }))
+    // dispatch(addManyToLineItemQty({ userId: me.id, productId: id, amount }))
   }, [amount])
 
   useEffect(() => {
@@ -60,8 +60,6 @@ const Product = () => {
     // dispatch(deleteWholeCartById(me.id))
     // dispatch(addOneToLineItemQty({ userId: me.id, productId: id, amount }))
     // dispatch(subtractOneFromLineItemQty({ userId: me.id, productId: id, amount }))
-    console.log('amount', amount)
-    dispatch(addManyToLineItemQty({ userId: me.id, productId: id, amount }))
   }, [dispatch])
 
   const subtractFromAmount = () => {

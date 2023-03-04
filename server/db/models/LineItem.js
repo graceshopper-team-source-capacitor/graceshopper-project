@@ -9,7 +9,7 @@ const LineItem = db.define('lineItem', {
     type: Sequelize.INTEGER,
     primaryKey: true,
     allowNull: false,
-    // autoIncrement: true,
+    autoIncrement: true,
   },
   qty: {
     type: Sequelize.INTEGER,

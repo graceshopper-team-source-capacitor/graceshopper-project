@@ -56,6 +56,7 @@ export const addManyToLineItemQty = createAsyncThunk(
 )
 
 //IN PROGRESS
+// adding line item for user cart
 
 const cartSlice = createSlice({
   name: 'cart',

@@ -351,8 +351,8 @@ async function seed() {
 
     // creates a line item
     const lineItems = await Promise.all([
-      LineItem.create({ productId: 1, qty: 4, orderId: 1 }), //expect to see croissants
-      LineItem.create({ productId: 3, qty: 5, orderId: 2 }), //expect tortillas
+      LineItem.create({ id: 1, productId: 1, qty: 4, orderId: 1 }), //expect to see croissants
+      LineItem.create({ id: 2, productId: 3, qty: 5, orderId: 2 }), //expect tortillas
     ])
 
     const [cody, murphy] = users

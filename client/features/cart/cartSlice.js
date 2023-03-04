@@ -16,7 +16,7 @@ export const deleteWholeCartById = createAsyncThunk('cart/delete', async (userId
   return data
 })
 
-//WORKING
+// IN PROGRESS
 export const addOneToLineItemQty = createAsyncThunk(
   'cart/lineItem/addOneToQty',
   async ({ userId, productId, amount }) => {

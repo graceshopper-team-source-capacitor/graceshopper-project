@@ -46,7 +46,9 @@ const Product = () => {
   }, [cart])
 
   useEffect(() => {
-    dispatch(fetchCartById(me.id))
+    dispatch(fetchSingleProductAsync(id))
+
+    // dispatch(fetchCartById(me.id))
     // dispatch(deleteWholeCartById(me.id))
     dispatch(addOneToLineItemQty(me.id, id, amount))
   }, [dispatch])

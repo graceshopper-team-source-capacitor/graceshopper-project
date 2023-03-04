@@ -8,6 +8,7 @@ import UsersSlice from '../features/users/userListSlice'
 import storage from 'redux-persist/lib/storage'
 import { persistReducer } from 'redux-persist'
 import { combineReducers } from '@reduxjs/toolkit'
+import cartSlice from '../features/cart/cartSlice'
 
 // redux-persist is a library that persists state of redux store on refresh
 
@@ -23,6 +24,7 @@ const reducer = combineReducers({
   singleProduct: singleProductSlice,
   guestCart: guestCartSlice,
   users: UsersSlice,
+  cart: cartSlice,
 })
 
 const persistedReducer = persistReducer(persistConfig, reducer)

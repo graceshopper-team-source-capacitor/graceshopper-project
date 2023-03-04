@@ -11,6 +11,11 @@ export const fetchCartById = createAsyncThunk('cart/fetchById', async (userId) =
   }
 })
 
+export const deleteWholeCartById = createAsyncThunk('cart/delete', async (userId) => {
+  const { data } = await axios.delete(`/api/cart/${userId}`)
+  return data
+})
+
 const cartSlice = createSlice({
   name: 'cart',
   initialState: {},
@@ -19,7 +24,10 @@ const cartSlice = createSlice({
     builder.addCase(fetchCartById.fulfilled, (state, action) => {
       console.log('action payload', action.payload)
       return action.payload
-    })
+    }),
+      builder.addCase(deleteWholeCartById.fulfilled, (state, action) => {
+        return action.payload
+      })
   },
 })
 

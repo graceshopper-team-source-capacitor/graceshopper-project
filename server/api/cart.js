@@ -34,7 +34,7 @@ router.delete('/:userId', async (req, res, next) => {
 })
 
 // /api/cart/:userId/:productId - ADD A LINE ITEM FOR USER CART
-// THUNK IN PROGRESS, ROUTE IN PROGRESS
+// THUNK IN PROGRESS, ROUTE IN POSTMAN WORKING
 router.post('/:userId/:productId', async (req, res, next) => {
   // console.log('req.params', req.params.userId)
   const existingOrder = await Order.findOne({
@@ -46,9 +46,6 @@ router.post('/:userId/:productId', async (req, res, next) => {
     const orderId = existingOrder.dataValues.id
     // console.log('orderID', orderById.dataValues.id)
     const createLineItem = await LineItem.create({
-      // HERE
-      // this sets the id to be the id passed in the body but we need it to autoincrement
-      // id: req.body.id,
       qty: req.body.qty,
       productId: req.params.productId,
       orderId: orderId,
@@ -59,9 +56,6 @@ router.post('/:userId/:productId', async (req, res, next) => {
     newOrder.userId = req.params.userId
     await newOrder.save()
     const newLineItem = await LineItem.create({
-      // HERE
-      // this sets the id to be the id passed in the body but we need it to autoincrement
-      // id: req.body.id,
       productId: req.params.productId,
       orderId: newOrder.dataValues.id,
       qty: req.body.qty,

@@ -12,14 +12,14 @@ import {
   fetchCartById,
   selectCart,
 } from '../cart/cartSlice'
-import { me } from '../auth/authSlice'
+// import { me } from '../auth/authSlice'
 
-const Product = () => {
+const GuestSingleProduct = () => {
   const dispatch = useDispatch()
   const id = useParams().id
   const product = useSelector(selectSingleProduct)
   const fetchedCart = useSelector(selectCart)
-  const me = useSelector((state) => state.auth.me)
+  // const me = useSelector((state) => state.auth.me)
 
   const [amount, setAmount] = useState(1)
   const [cart, setCart] = useState([])
@@ -52,7 +52,7 @@ const Product = () => {
 
   useEffect(() => {
     // dispatch(addManyToLineItemQty({ userId: me.id, productId: id, amount }))
-    dispatch(addLineItemForUserCart({ userId: me.id, productId: id, amount }))
+    // dispatch(addLineItemForUserCart({ userId: me.id, productId: id, amount }))
   }, [amount])
 
   useEffect(() => {
@@ -98,7 +98,7 @@ const Product = () => {
     // add amount of items to the total number of items
     // needed to update navbar cart counter
     // dispatch(incrementByAmount(amount))
-    dispatch(fetchCartById(me.id))
+    // dispatch(fetchCartById(me.id))
   }
 
   return (
@@ -116,4 +116,4 @@ const Product = () => {
   )
 }
 
-export default Product
+export default GuestSingleProduct

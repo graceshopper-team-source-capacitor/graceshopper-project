@@ -55,9 +55,6 @@ export const addManyToLineItemQty = createAsyncThunk(
   }
 )
 
-//IN PROGRESS
-// adding line item for user cart
-// adding line item but not handling amount
 export const addLineItemForUserCart = createAsyncThunk(
   'cart/lineItem/addLineItemToCart',
   async ({ userId, productId, amount }) => {

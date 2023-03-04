@@ -29,6 +29,14 @@ const UserCart = (props) => {
     return productIdArr
   }
 
+  function getProductQtyForUserArr() {
+    let productIdArr = []
+    for (let i = 0; i < fetchedCart.lineItems.length; i++) {
+      productIdArr.push(fetchedCart.lineItems[i].qty)
+    }
+    return productIdArr
+  }
+
   const userProductIdsArr = getProductIdsForUserArr()
 
   // creates an array of the products in a user's cart
@@ -44,7 +52,21 @@ const UserCart = (props) => {
     return userProducts
   }
 
+  const userProductQtysArr = getProductQtyForUserArr()
   const allUserProducts = getUserProducts()
+
+  // creates an array of the products in a user's cart with quantity of that item
+  function allUserProductsWithQtyArr() {
+    const allUserProductsWithQty = []
+    for (let i = 0; i < allUserProducts.length; i++) {
+      allUserProductsWithQty.push(
+        (allUserProducts[i] = { ...allUserProducts[i], qty: userProductQtysArr[i] })
+      )
+    }
+    return allUserProductsWithQty
+  }
+
+  const allUserProductsWithQty = allUserProductsWithQtyArr()
   // FETCHING A USERS CART - (END)
 
   useEffect(() => {
@@ -78,7 +100,7 @@ const UserCart = (props) => {
     <>
       <h3>Cart</h3>
       <ul>
-        {allUserProducts.map((item, index) => (
+        {allUserProductsWithQty.map((item, index) => (
           <li key={item.id}>
             <h4>{item.name}</h4>
             <img src={item.imageUrl} />

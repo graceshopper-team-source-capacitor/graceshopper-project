@@ -16,6 +16,18 @@ export const deleteWholeCartById = createAsyncThunk('cart/delete', async (userId
   return data
 })
 
+//WORKING
+export const addOneToLineItemQty = createAsyncThunk(
+  'cart/lineItem/addOneToQty',
+  async ({ userId, productId, amount }) => {
+    const { data } = await axios.put(`/api/cart/addOne/${userId}/${productId}`, {
+      id: productId,
+      qty: amount,
+    })
+    return data
+  }
+)
+
 const cartSlice = createSlice({
   name: 'cart',
   initialState: {},
@@ -28,6 +40,9 @@ const cartSlice = createSlice({
       builder.addCase(deleteWholeCartById.fulfilled, (state, action) => {
         return action.payload
       })
+    builder.addCase(addOneToLineItemQty.fulfilled, (state, action) => {
+      return action.payload
+    })
   },
 })
 

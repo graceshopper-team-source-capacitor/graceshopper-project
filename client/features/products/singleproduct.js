@@ -3,7 +3,12 @@ import { fetchSingleProductAsync, selectSingleProduct } from './singleProductSli
 import { useSelector, useDispatch } from 'react-redux'
 import { useParams, Link, useNavigate } from 'react-router-dom'
 import { incrementByAmount } from '../cart/guestCartSlice'
-import { deleteWholeCartById, fetchCartById, selectCart } from '../cart/cartSlice'
+import {
+  addOneToLineItemQty,
+  deleteWholeCartById,
+  fetchCartById,
+  selectCart,
+} from '../cart/cartSlice'
 import { me } from '../auth/authSlice'
 
 const Product = () => {
@@ -43,6 +48,7 @@ const Product = () => {
   useEffect(() => {
     dispatch(fetchCartById(me.id))
     // dispatch(deleteWholeCartById(me.id))
+    dispatch(addOneToLineItemQty(me.id, id, amount))
   }, [dispatch])
 
   const subtractFromAmount = () => {

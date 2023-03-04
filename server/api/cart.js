@@ -35,8 +35,9 @@ router.delete('/:userId', async (req, res, next) => {
 })
 
 // /api/cart/:userId/:productId - ADD A LINE ITEM FOR USER CART
+
 router.post('/:userId/:productId', async (req, res, next) => {
-  console.log('req.params', req.params.userId)
+  // console.log('req.params', req.params.userId)
   const orderById = await Order.findOne({
     where: { userId: req.params.userId },
     include: LineItem,
@@ -53,6 +54,8 @@ router.post('/:userId/:productId', async (req, res, next) => {
 })
 
 // /api/cart/addOne/:userId/:productId - ADD ONE TO LINE ITEM
+// WORKING
+
 router.put('/addOne/:userId/:productId', async (req, res, next) => {
   console.log('req.params', req.params.userId)
   const orderById = await Order.findOne({

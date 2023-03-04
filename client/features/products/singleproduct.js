@@ -13,7 +13,7 @@ import { me } from '../auth/authSlice'
 
 const Product = () => {
   const dispatch = useDispatch()
-  const { id } = useParams()
+  const id = useParams().id
   const product = useSelector(selectSingleProduct)
   const fetchedCart = useSelector(selectCart)
   const me = useSelector((state) => state.auth.me)
@@ -24,7 +24,9 @@ const Product = () => {
   useEffect(() => {}, [])
 
   console.log(me.id)
-  console.log('fetchedCart', fetchedCart)
+  console.log('id', id)
+  // console.log('product id', product.id)
+  // console.log('fetchedCart', fetchedCart)
 
   // on first render, gets the cart saved in local storage
   // local storage persist on refresh
@@ -50,7 +52,7 @@ const Product = () => {
 
     // dispatch(fetchCartById(me.id))
     // dispatch(deleteWholeCartById(me.id))
-    // dispatch(addOneToLineItemQty(me.id, id, amount))
+    dispatch(addOneToLineItemQty({ userId: me.id, productId: id, amount }))
   }, [dispatch])
 
   const subtractFromAmount = () => {

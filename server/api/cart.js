@@ -56,7 +56,9 @@ router.post('/:userId/:productId', async (req, res, next) => {
 // ROUTE WORKING IN POSTMAN
 // THUNK IN PROGRESS
 router.put('/addOne/:userId/:productId', async (req, res, next) => {
-  console.log('req.params', req.params.userId)
+  console.log('req.params', req.params)
+  // coming up as undefined through thunk, working in postman
+  // console.log('req.params.productId', req.params.productId) //[object, Object]
   const orderById = await Order.findOne({
     where: { userId: req.params.userId },
     include: LineItem,
@@ -65,7 +67,7 @@ router.put('/addOne/:userId/:productId', async (req, res, next) => {
   const lineItem = await LineItem.findOne({
     where: { id: req.params.productId },
   })
-  console.log('lineItem', lineItem)
+  // console.log('lineItem', lineItem)
   const orderId = orderById.dataValues.id
   // console.log('orderID', orderById.dataValues.lineItems.dataValues.qty)
   // const previousLineItemQty = orderById.dataValues.lineItems.dataValues.qty
@@ -80,7 +82,7 @@ router.put('/addOne/:userId/:productId', async (req, res, next) => {
 
 // /api/cart/addMany/:userId/:productId - ADD MANY TO LINE ITEM
 router.put('/addMany/:userId/:productId', async (req, res, next) => {
-  console.log('req.params', req.params.userId)
+  // console.log('req.params', req.params.userId)
   const orderById = await Order.findOne({
     where: { userId: req.params.userId },
     include: LineItem,

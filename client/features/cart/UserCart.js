@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
-import { increment } from '../cart/guestCartSlice'
-import { decrement } from '../cart/guestCartSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchCartById, selectCart } from '../cart/cartSlice'
+import { fetchProductsAsync, selectProducts } from '../products/allProductsSlice'
 
 /**
  * COMPONENT
@@ -11,64 +11,49 @@ const UserCart = (props) => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const [cart, setCart] = useState([])
+  const fetchedCart = useSelector(selectCart)
+  const allProducts = useSelector(selectProducts)
+  const me = useSelector((state) => state.auth.me)
+  // console.log(me)
+  // console.log('line items', fetchedCart.lineItems)
+  // console.log('allProducts', allProducts)
+  // console.log('cart', fetchedCart)
 
-  // on first render, gets the cart saved in local storage
-  // local storage persist on refresh
-  // useEffect(() => {
-  //   try {
-  //     let localCart = localStorage.getItem('cart') || ''
-  //     // convert cart into json because local storage can only read strings & primative types
-  //     let jsonCart = JSON.parse(localCart)
-  //     if (localCart) setCart(jsonCart)
-  //   } catch (err) {}
-  // }, [])
-
-  // when cart updates set cart local storage
-  // useEffect(() => {
-  //   localStorage.setItem('cart', JSON.stringify(cart))
-  // }, [cart])
-
-  // SUBTRACTING ITEM QTY IN CART (START)
-  function subtractFromQty(index, cart) {
-    // if the cart item quantiy is more than 1
-    if (cart[index].qty > 1) {
-      // subract one from the qty
-      cart[index].qty = cart[index].qty - 1
-      // set the cart (with new item qty)
-      // need to create a clone of cart since you cannot modify state directly
-      setCart(structuredClone(cart))
-    } else if ((cart[index].qty = 1)) {
-      //if the cart item qty is one, remove that item from the cart
-      removeFromCart(index, cart)
+  // FETCHING A USERS CART - (START)
+  // creates an array of all the product ids in the user cart line items
+  function getProductIdsForUserArr() {
+    let productIdArr = []
+    for (let i = 0; i < fetchedCart.lineItems.length; i++) {
+      productIdArr.push(fetchedCart.lineItems[i].productId)
     }
-    // subtract one to the total number of items
-    // needed to update navbar cart counter
-    dispatch(decrement())
+    return productIdArr
   }
-  // SUBTRACTING ITEM QTY IN CART (END)
 
-  // ADDING ITEM QTY IN CART (START)
-  function addToQty(index, cart) {
-    // add one to that cart item's qty
-    cart[index].qty = cart[index].qty + 1
-    // set the cart (with new item qty)
-    // need to create a clone of cart since you cannot modify state directly
-    setCart(structuredClone(cart))
-    // add one to the total number of items
-    // needed to update navbar cart counter
-    dispatch(increment())
-  }
-  // ADDING ITEM QTY IN CART (END)
+  const userProductIdsArr = getProductIdsForUserArr()
 
-  // REMOVING ITEM FROM CART (START)
-  const removeFromCart = (index, cart) => {
-    // delete one item at index from the cart
-    let splicedCart = cart.splice(index, 1)
-    // set the cart (not including the removed item)
-    // need to create a clone of cart since you cannot modify state directly
-    setCart(structuredClone(cart))
+  // creates an array of the products in a user's cart
+  function getUserProducts() {
+    const userProducts = []
+    for (let i = 0; i < allProducts.length; i++) {
+      for (let j = 0; j < userProductIdsArr.length; j++) {
+        if (allProducts[i].id === userProductIdsArr[j]) {
+          userProducts.push(allProducts[i])
+        }
+      }
+    }
+    return userProducts
   }
-  // REMOVING ITEM FROM CART (END)
+
+  const allUserProducts = getUserProducts()
+  // FETCHING A USERS CART - (END)
+
+  useEffect(() => {
+    dispatch(fetchCartById(me.id))
+  }, [])
+
+  useEffect(() => {
+    fetchProductsAsync()
+  }, [dispatch])
 
   // TOTAL CART PRICE (START)
   // creates an array of all prices in local cart
@@ -93,7 +78,7 @@ const UserCart = (props) => {
     <>
       <h3>Cart</h3>
       <ul>
-        {cart.map((item, index) => (
+        {allUserProducts.map((item, index) => (
           <li key={item.id}>
             <h4>{item.name}</h4>
             <img src={item.imageUrl} />

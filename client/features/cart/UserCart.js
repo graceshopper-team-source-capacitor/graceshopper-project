@@ -23,7 +23,7 @@ const UserCart = (props) => {
   // creates an array of all the product ids in the user cart line items
   function getProductIdsForUserArr() {
     let productIdArr = []
-    for (let i = 0; i < fetchedCart.lineItems.length; i++) {
+    for (let i = 0; i < fetchedCart.lineItems?.length; i++) {
       productIdArr.push(fetchedCart.lineItems[i].productId)
     }
     return productIdArr
@@ -31,7 +31,7 @@ const UserCart = (props) => {
 
   function getProductQtyForUserArr() {
     let productIdArr = []
-    for (let i = 0; i < fetchedCart.lineItems.length; i++) {
+    for (let i = 0; i < fetchedCart.lineItems?.length; i++) {
       productIdArr.push(fetchedCart.lineItems[i].qty)
     }
     return productIdArr

@@ -16,7 +16,6 @@ import { fetchProductsAsync, selectProducts } from '../products/allProductsSlice
 const UserCart = (props) => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const [cart, setCart] = useState([])
   const [amount, setAmount] = useState(1)
   const fetchedCart = useSelector(selectCart)
   const allProducts = useSelector(selectProducts)
@@ -83,8 +82,6 @@ const UserCart = (props) => {
     }
   }
   // SUBTRACT FROM QTY (END)
-
-  // console.log(allUserProductsWithQty[0].qty)
 
   // ADD TO QTY (START)
   function addToQty(itemId) {

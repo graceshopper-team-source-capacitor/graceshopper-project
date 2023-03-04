@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchCartById, selectCart } from '../cart/cartSlice'
+import { addOneToLineItemQty, fetchCartById, selectCart } from '../cart/cartSlice'
 import { fetchProductsAsync, selectProducts } from '../products/allProductsSlice'
 
 /**
@@ -11,13 +11,22 @@ const UserCart = (props) => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const [cart, setCart] = useState([])
+  const [amount, setAmount] = useState(1)
   const fetchedCart = useSelector(selectCart)
   const allProducts = useSelector(selectProducts)
   const me = useSelector((state) => state.auth.me)
   // console.log(me)
   // console.log('line items', fetchedCart.lineItems)
   // console.log('allProducts', allProducts)
-  // console.log('cart', fetchedCart)
+  console.log('cart', fetchedCart)
+
+  useEffect(() => {
+    dispatch(fetchCartById(me.id))
+  }, [])
+
+  useEffect(() => {
+    fetchProductsAsync()
+  }, [dispatch])
 
   // FETCHING A USERS CART - (START)
   // creates an array of all the product ids in the user cart line items
@@ -69,13 +78,13 @@ const UserCart = (props) => {
   const allUserProductsWithQty = allUserProductsWithQtyArr()
   // FETCHING A USERS CART - (END)
 
-  useEffect(() => {
-    dispatch(fetchCartById(me.id))
-  }, [])
-
-  useEffect(() => {
-    fetchProductsAsync()
-  }, [dispatch])
+  // ADD TO QTY (START)
+  function addToQty(itemId) {
+    console.log('add')
+    dispatch(addOneToLineItemQty({ userId: me.id, productId: itemId, amount }))
+    //updating qty in databse but not updating view
+  }
+  // ADD TO QTY (END)
 
   // TOTAL CART PRICE (START)
   // creates an array of all prices in local cart
@@ -107,7 +116,7 @@ const UserCart = (props) => {
             <div>
               <button onClick={() => subtractFromQty(index, cart)}>-</button>
               <h4>Quantity: {item.qty}</h4>
-              <button onClick={() => addToQty(index, cart)}>+</button>
+              <button onClick={() => addToQty(item.id)}>+</button>
             </div>
             <h4>Price: ${Number(item.qty * item.price).toFixed(2)}</h4>
             <button onClick={() => removeFromCart(index, cart)}>Remove</button>

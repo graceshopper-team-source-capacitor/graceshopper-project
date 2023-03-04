@@ -140,7 +140,7 @@ router.put('/addMany/:userId/:productId', async (req, res, next) => {
 // THUNK WRITTEN & WORKING
 router.put('/subtractOne/:userId/:productId', async (req, res, next) => {
   try {
-    console.log('req.params', req.params.userId)
+    // console.log('req.params', req.params.userId)
     const orderById = await Order.findOne({
       where: { userId: req.params.userId },
       include: LineItem,

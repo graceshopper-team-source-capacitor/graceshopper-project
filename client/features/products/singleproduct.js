@@ -26,8 +26,8 @@ const Product = () => {
 
   useEffect(() => {}, [])
 
-  console.log(me.id)
-  console.log('id', id)
+  // console.log(me.id)
+  // console.log('id', id)
   // console.log('product id', product.id)
   // console.log('fetchedCart', fetchedCart)
 

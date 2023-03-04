@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 
+// WORKING
 export const fetchCartById = createAsyncThunk('cart/fetchById', async (userId) => {
   try {
     const { data } = await axios.get(`/api/cart/${userId}`)
@@ -11,22 +12,24 @@ export const fetchCartById = createAsyncThunk('cart/fetchById', async (userId) =
   }
 })
 
+// WORKING
 export const deleteWholeCartById = createAsyncThunk('cart/delete', async (userId) => {
   const { data } = await axios.delete(`/api/cart/${userId}`)
   return data
 })
 
 // IN PROGRESS
-export const addOneToLineItemQty = createAsyncThunk(
-  'cart/lineItem/addOneToQty',
-  async ({ userId, productId, amount }) => {
-    const { data } = await axios.put(`/api/cart/addOne/${userId}/${productId}`, {
-      id: productId,
-      qty: amount,
-    })
-    return data
-  }
-)
+// export const addOneToLineItemQty = createAsyncThunk(
+//   'cart/lineItem/addOneToQty',
+//   async ({ userId, productId, amount }) => {
+//     const { data } = await axios.put(`/api/cart/addOne/${userId}/${productId}`, {
+//       id: productId,
+//       qty: amount,
+//     })
+//     console.log('thunk', data)
+//     return data
+//   }
+// )
 
 const cartSlice = createSlice({
   name: 'cart',
@@ -40,9 +43,9 @@ const cartSlice = createSlice({
       builder.addCase(deleteWholeCartById.fulfilled, (state, action) => {
         return action.payload
       })
-    builder.addCase(addOneToLineItemQty.fulfilled, (state, action) => {
-      return action.payload
-    })
+    // builder.addCase(addOneToLineItemQty.fulfilled, (state, action) => {
+    //   return action.payload
+    // })
   },
 })
 

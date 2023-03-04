@@ -35,7 +35,6 @@ router.delete('/:userId', async (req, res, next) => {
 })
 
 // /api/cart/:userId/:productId - ADD A LINE ITEM FOR USER CART
-
 router.post('/:userId/:productId', async (req, res, next) => {
   // console.log('req.params', req.params.userId)
   const orderById = await Order.findOne({
@@ -54,7 +53,8 @@ router.post('/:userId/:productId', async (req, res, next) => {
 })
 
 // /api/cart/addOne/:userId/:productId - ADD ONE TO LINE ITEM
-// IN PROGRESS
+// ROUTE WORKING IN POSTMAN
+// THUNK IN PROGRESS
 router.put('/addOne/:userId/:productId', async (req, res, next) => {
   console.log('req.params', req.params.userId)
   const orderById = await Order.findOne({

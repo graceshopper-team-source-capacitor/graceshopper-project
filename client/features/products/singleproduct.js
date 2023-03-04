@@ -50,7 +50,7 @@ const Product = () => {
 
     // dispatch(fetchCartById(me.id))
     // dispatch(deleteWholeCartById(me.id))
-    dispatch(addOneToLineItemQty(me.id, id, amount))
+    // dispatch(addOneToLineItemQty(me.id, id, amount))
   }, [dispatch])
 
   const subtractFromAmount = () => {

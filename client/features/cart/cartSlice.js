@@ -55,13 +55,14 @@ export const addManyToLineItemQty = createAsyncThunk(
   }
 )
 
+//IN PROGRESS
+
 const cartSlice = createSlice({
   name: 'cart',
   initialState: {},
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchCartById.fulfilled, (state, action) => {
-      console.log('action payload', action.payload)
       return action.payload
     }),
       builder.addCase(deleteWholeCartById.fulfilled, (state, action) => {

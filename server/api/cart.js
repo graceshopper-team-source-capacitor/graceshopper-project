@@ -4,7 +4,6 @@ const {
 } = require('../db')
 
 // /api/cart - GETS ALL CARTS
-
 router.get('/', async (req, res, next) => {
   const order = await Order.findAll({
     include: LineItem,
@@ -35,21 +34,36 @@ router.delete('/:userId', async (req, res, next) => {
 })
 
 // /api/cart/:userId/:productId - ADD A LINE ITEM FOR USER CART
+// THUNK IN PROGRESS, ROUTE WORKING IN POSTMAN
+// so far only works if an order exists
 router.post('/:userId/:productId', async (req, res, next) => {
   // console.log('req.params', req.params.userId)
-  const orderById = await Order.findOne({
+  const existingOrder = await Order.findOne({
     where: { userId: req.params.userId },
     include: LineItem,
   })
-  const orderId = orderById.dataValues.id
-  // console.log('orderID', orderById.dataValues.id)
-  const createLineItem = await LineItem.create({
-    id: req.body.id,
-    qty: req.body.qty,
-    productId: req.params.productId,
-    orderId: orderId,
-  })
-  res.send(createLineItem)
+
+  if (existingOrder) {
+    const orderId = existingOrder.dataValues.id
+    // console.log('orderID', orderById.dataValues.id)
+    const createLineItem = await LineItem.create({
+      id: req.body.id,
+      qty: req.body.qty,
+      productId: req.params.productId,
+      orderId: orderId,
+    })
+    res.send(createLineItem)
+  } else {
+    const newOrder = await Order.build()
+    newOrder.userId = req.params.userId
+    await newOrder.save()
+    const newLineItem = await LineItem.create({
+      productId: req.params.productId,
+      orderId: newOrder.dataValues.id,
+      qty: req.body.qty,
+    })
+    res.send(newLineItem)
+  }
 })
 
 // /api/cart/addOne/:userId/:productId - ADD ONE TO LINE ITEM

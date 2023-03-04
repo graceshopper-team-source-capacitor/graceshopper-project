@@ -4,14 +4,20 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useParams, Link, useNavigate } from 'react-router-dom'
 import { incrementByAmount } from '../cart/guestCartSlice'
 import { addLineItemAsync } from '../cart/cartSlice'
+import { me } from '../auth/authSlice'
 
 const Product = () => {
   const dispatch = useDispatch()
   const { id } = useParams()
   const product = useSelector(selectSingleProduct)
+  const me = useSelector((state) => state.auth.me)
 
   const [amount, setAmount] = useState(1)
   const [cart, setCart] = useState([])
+
+  useEffect(() => {}, [])
+
+  // console.log(typeof me.id)
 
   // on first render, gets the cart saved in local storage
   // local storage persist on refresh
@@ -70,7 +76,7 @@ const Product = () => {
     // add amount of items to the total number of items
     // needed to update navbar cart counter
     // dispatch(incrementByAmount(amount))
-    dispatch(addLineItemAsync(id, amount))
+    dispatch(addLineItemAsync(id, amount, me.id))
   }
 
   return (

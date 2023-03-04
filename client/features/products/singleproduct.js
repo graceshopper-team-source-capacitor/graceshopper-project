@@ -5,6 +5,8 @@ import { useParams, Link, useNavigate } from 'react-router-dom'
 import { incrementByAmount } from '../cart/guestCartSlice'
 import {
   addOneToLineItemQty,
+  addManyToLineItemQty,
+  subtractOneFromLineItemQty,
   deleteWholeCartById,
   fetchCartById,
   selectCart,
@@ -48,11 +50,18 @@ const Product = () => {
   }, [cart])
 
   useEffect(() => {
+    dispatch(addManyToLineItemQty({ userId: me.id, productId: id, amount }))
+  }, [amount])
+
+  useEffect(() => {
     dispatch(fetchSingleProductAsync(id))
 
     // dispatch(fetchCartById(me.id))
     // dispatch(deleteWholeCartById(me.id))
-    dispatch(addOneToLineItemQty({ userId: me.id, productId: id, amount }))
+    // dispatch(addOneToLineItemQty({ userId: me.id, productId: id, amount }))
+    // dispatch(subtractOneFromLineItemQty({ userId: me.id, productId: id, amount }))
+    console.log('amount', amount)
+    dispatch(addManyToLineItemQty({ userId: me.id, productId: id, amount }))
   }, [dispatch])
 
   const subtractFromAmount = () => {

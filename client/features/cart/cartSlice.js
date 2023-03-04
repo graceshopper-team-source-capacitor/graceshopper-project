@@ -26,7 +26,31 @@ export const addOneToLineItemQty = createAsyncThunk(
       id: productId,
       qty: amount,
     })
+    return data
+  }
+)
+
+// WORKING
+export const subtractOneFromLineItemQty = createAsyncThunk(
+  'cart/lineItem/SubtractOneFromQty',
+  async ({ userId, productId, amount }) => {
+    const { data } = await axios.put(`/api/cart/subtractOne/${userId}/${productId}`, {
+      id: productId,
+      qty: amount,
+    })
     console.log('thunk', data)
+    return data
+  }
+)
+
+// WORKING
+export const addManyToLineItemQty = createAsyncThunk(
+  'cart/lineItem/addManyToQty',
+  async ({ userId, productId, amount }) => {
+    const { data } = await axios.put(`/api/cart/addMany/${userId}/${productId}`, {
+      id: productId,
+      qty: amount,
+    })
     return data
   }
 )
@@ -44,6 +68,12 @@ const cartSlice = createSlice({
         return action.payload
       })
     builder.addCase(addOneToLineItemQty.fulfilled, (state, action) => {
+      return action.payload
+    })
+    builder.addCase(subtractOneFromLineItemQty.fulfilled, (state, action) => {
+      return action.payload
+    })
+    builder.addCase(addManyToLineItemQty.fulfilled, (state, action) => {
       return action.payload
     })
   },

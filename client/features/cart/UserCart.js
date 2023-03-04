@@ -114,8 +114,8 @@ const UserCart = (props) => {
   // TOTAL CART PRICE (START)
   // creates an array of all prices in local cart
   const cartPriceArray = []
-  for (let i = 0; i < cart.length; i++) {
-    cartPriceArray.push(cart[i].price * cart[i].qty)
+  for (let i = 0; i < allUserProductsWithQty.length; i++) {
+    cartPriceArray.push(allUserProductsWithQty[i].price * allUserProductsWithQty[i].qty)
   }
 
   // adds all the prices together

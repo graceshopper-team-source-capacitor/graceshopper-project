@@ -4,6 +4,7 @@ const {
 } = require('../db')
 
 // /api/cart - GETS ALL CARTS
+
 router.get('/', async (req, res, next) => {
   const order = await Order.findAll({
     include: LineItem,
@@ -13,6 +14,7 @@ router.get('/', async (req, res, next) => {
 })
 
 // /api/cart/:userId - GET A SINGLE CART
+// THUNK WRITTEN & WORKING
 router.get('/:userId', async (req, res, next) => {
   const orderById = await Order.findOne({
     where: { userId: req.params.userId },
@@ -22,6 +24,7 @@ router.get('/:userId', async (req, res, next) => {
 })
 
 // /api/cart/:userId - DELETE A WHOLE CART BY USER ID
+// THUNK WRITTEN & WORKING
 router.delete('/:userId', async (req, res, next) => {
   const orderById = await Order.findOne({
     where: { userId: req.params.userId },

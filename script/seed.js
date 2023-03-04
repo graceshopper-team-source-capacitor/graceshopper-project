@@ -333,7 +333,7 @@ async function seed() {
     const orders = await Promise.all([
       Order.create({
         confirmationNum: 1,
-        name: 'cody',
+        name: 'nameOnCard',
         cardNum: 1000000001,
         shippingAddress: '123 Fake Address',
         userId: 1,
@@ -341,7 +341,7 @@ async function seed() {
       }),
       Order.create({
         confirmationNum: 2,
-        name: 'murphy',
+        name: 'nameOnCard',
         cardNum: 1000000002,
         shippingAddress: '456 Fake Address',
         userId: 2,

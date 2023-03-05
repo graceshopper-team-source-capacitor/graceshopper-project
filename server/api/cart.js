@@ -74,6 +74,14 @@ router.post('/:userId/:productId', async (req, res, next) => {
       include: LineItem,
     })
 
+    // if there's an existing order
+    // and that line item doesnt exist by id
+    // then creat a new line item
+
+    // if there's an existing order
+    // and that line item does exist by id
+    // update the qty passed in as amount
+
     if (existingOrder) {
       const orderId = existingOrder.dataValues.id
       // console.log('orderID', orderById.dataValues.id)

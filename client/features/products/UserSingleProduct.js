@@ -19,7 +19,8 @@ const UserSingleProduct = () => {
   const id = useParams().id
   const product = useSelector(selectSingleProduct)
   const fetchedCart = useSelector(selectCart)
-  // const me = useSelector((state) => state.auth.me)
+  const me = useSelector((state) => state.auth.me)
+  const navigate = useNavigate()
 
   const [amount, setAmount] = useState(1)
   const [cart, setCart] = useState([])
@@ -77,24 +78,11 @@ const UserSingleProduct = () => {
   }
 
   const addToCart = (id, amount) => {
-    // // returns the product object if it exists in the local storage cart
-    // const itemAlreadyInCart = cart.find((cartItem) => cartItem.id === product.id)
-    // // returns the product object index if it exists in the local storage cart
-    // const itemAlreadyInCartIndex = cart.findIndex((cartItem) => cartItem.id === product.id)
-    // // the product object plus a new key value pair of quanity of product
-    // const addedItem = { ...product, qty: amount }
-    // if (cart.length === 0) {
-    //   setCart([addedItem])
-    // } else if (cart.length > 0) {
-    //   //if the item does not already exist in the local storage cart
-    //   if (itemAlreadyInCart === undefined) {
-    //     const newCart = [...cart, addedItem]
-    //     // add that item to the local storage cart
-    //     setCart(newCart)
-    //   } else {
-    //     // if the item already exists in local storage cart, update the quantity
-    //     cart[itemAlreadyInCartIndex].qty = itemAlreadyInCart.qty + amount
-    //     setCart([...cart])
+    dispatch(addLineItemForUserCart({ userId: me.id, productId: id, amount }))
+    dispatch(addManyToLineItemQty({ userId: me.id, productId: id, amount }))
+
+    console.log('amount', amount)
+
     //   }
     // }
     // add amount of items to the total number of items

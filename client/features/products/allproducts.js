@@ -24,27 +24,26 @@ const ProductList = () => {
   };
 
   return (
-    <div>
-      <ul id="products">
-        {/* The add new product page is rendering the single product page as well? for some reason?*/}
-        {loggedInAdmin && (
-          <NavLink to={`/addproduct`} className="newProduct">
-            Add New Product
-          </NavLink>
-        )}
-        <h2>Currently Available Products</h2>
+    <div className="productListParentDiv">
+      <h1 className="productListHeader">All Products</h1>
+      {loggedInAdmin && (
+        <NavLink to={`/addproduct`} className="newProduct">
+          Add New Product
+        </NavLink>
+      )}
+      <div id="productsList">
         {products.map((product) => (
-          <li key={product.id}>
-            {/* <NavLink
-            to={`/Products/${product.id}`}
-            key={`All Products: ${product.id}`}
-          > */}
+          <div className="productInList" key={product.id}>
             <NavLink to={`/products/${product.id}`}>
-              <h2>{product.name}</h2>
+              <img src={`/${product.imageUrl}`} className="productListImg" />
             </NavLink>
-            {/* </NavLink> */}
-            <NavLink to={`/products/${product.id}`} />
-            <img src={`/${product.imageUrl}`} />
+            <NavLink
+              to={`/products/${product.id}`}
+              className="productNameProductList"
+            >
+              <h2 className="productNameProductList">{product.name}</h2>
+            </NavLink>
+            <hr></hr>
             {/* vvv These buttons need to be exclusively for the admin. vvv */}
             {loggedInAdmin && (
               <div>
@@ -60,10 +59,10 @@ const ProductList = () => {
               </div>
             )}
             {/* ^^^These buttons need to be exclusively for the admin.^^^ */}
-            <h3>${Number(product.price).toFixed(2)}</h3>
-          </li>
+            {/* <h3>${Number(product.price).toFixed(2)}</h3> */}
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 };

@@ -80,6 +80,7 @@ const UserSingleProduct = () => {
   const addToCart = (id, amount) => {
     dispatch(addLineItemForUserCart({ userId: me.id, productId: id, amount }))
     dispatch(addManyToLineItemQty({ userId: me.id, productId: id, amount }))
+    navigate('/cart')
 
     console.log('amount', amount)
 

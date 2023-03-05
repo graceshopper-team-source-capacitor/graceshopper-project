@@ -61,6 +61,7 @@ img {
   flex-direction: column;
   justify-content: center;
   margin: 3rem;
+  gap: 2rem;
 }
 
 #productsList {
@@ -99,7 +100,8 @@ img {
   font-size: 3rem;
 }
 
-.productNameProductList:hover {
+.productNameProductList:hover,
+.newProduct:hover {
   color: #4c5b2f;
 }
 
@@ -234,4 +236,36 @@ img {
   color: #4c5b2fa3;
   padding: 0.5rem;
   border: 1px solid #ab9bbc;
+}
+
+.newProduct {
+  font-family: "new-order", sans-serif;
+  color: #4c5b2fa3;
+  font-size: 1.5rem;
+  font-style: italic;
+}
+
+.deleteEditButtonsDiv {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+}
+
+.edit,
+.delete {
+  border: none;
+  border-radius: 50px;
+  background-color: #4c5b2fa3;
+  padding: 0.75rem;
+  font-family: "new-order", sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  color: #ffffff;
+  width: 6rem;
+}
+
+.edit:hover,
+.delete:hover {
+  cursor: pointer;
+  background-color: #4c5b2f;
 }

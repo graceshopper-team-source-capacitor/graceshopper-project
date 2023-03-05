@@ -28,7 +28,7 @@ const ProductList = () => {
       <h1 className="productListHeader">ALL PRODUCTS</h1>
       {loggedInAdmin && (
         <NavLink to={`/addproduct`} className="newProduct">
-          Add New Product
+          + Add New Product
         </NavLink>
       )}
       <div id="productsList">
@@ -46,16 +46,16 @@ const ProductList = () => {
             <hr></hr>
             {/* vvv These buttons need to be exclusively for the admin. vvv */}
             {loggedInAdmin && (
-              <div>
+              <div className="deleteEditButtonsDiv">
+                <NavLink to={`/products/${product.id}/edit`}>
+                  <button className="edit">Edit</button>
+                </NavLink>
                 <button
                   className="delete"
                   onClick={() => handleDelete(product.id)}
                 >
-                  X
+                  Delete
                 </button>
-                <NavLink to={`/products/${product.id}/edit`}>
-                  <button>Edit</button>
-                </NavLink>
               </div>
             )}
             {/* ^^^These buttons need to be exclusively for the admin.^^^ */}

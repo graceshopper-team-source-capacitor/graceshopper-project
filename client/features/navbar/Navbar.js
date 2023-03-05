@@ -52,6 +52,7 @@ const Navbar = () => {
             <Link to="/cart" className="navLink">
               Cart({numItemsInCart})
             </Link>
+            <hr></hr>
           </div>
         )}
       </nav>

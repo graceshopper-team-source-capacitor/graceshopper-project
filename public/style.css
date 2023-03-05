@@ -7,7 +7,6 @@ label {
 }
 
 nav {
-  background-color: #e26969;
   display: flex;
   justify-content: center;
   width: 100%;
@@ -24,7 +23,7 @@ nav {
   font-family: "new-order", sans-serif;
   font-weight: 400;
   font-size: 1.5rem;
-  color: white;
+  color: #ab9bbc;
 }
 
 nav a {
@@ -94,7 +93,8 @@ img {
 }
 
 .productListHeader {
-  font-family: "Sarina", cursive;
+  font-family: "blenny", sans-serif;
+  font-weight: 900;
   color: #4c5b2f;
   font-size: 3rem;
 }
@@ -175,10 +175,6 @@ img {
   background-color: #ffffff;
 }
 
-.qtyButtonPlusMinus:hover {
-  cursor: pointer;
-}
-
 .qtyText {
   color: #4c5b2fa3;
   font-family: "new-order", sans-serif;
@@ -198,6 +194,44 @@ img {
   width: 10rem;
 }
 
-.addToCartButton:hover {
+.qtyButtonPlusMinus:hover,
+.addToCartButton:hover,
+.formButton:hover {
   cursor: pointer;
+}
+
+.loginFormParentDiv {
+  display: flex;
+  justify-content: center;
+}
+
+.loginForm {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+}
+
+.formLabel {
+  font-family: "new-order", sans-serif;
+  font-weight: 400;
+  color: #ab9bbc;
+}
+
+.formButton {
+  border: none;
+  border-radius: 50px;
+  background-color: #ab9bbc;
+  padding: 0.75rem;
+  font-family: "new-order", sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  color: #ffffff;
+  width: 7rem;
+}
+
+.formInput {
+  font-family: "new-order", sans-serif;
+  color: #4c5b2fa3;
+  padding: 0.5rem;
+  border: 1px solid #ab9bbc;
 }

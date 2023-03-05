@@ -25,7 +25,7 @@ const ProductList = () => {
 
   return (
     <div className="productListParentDiv">
-      <h1 className="productListHeader">All Products</h1>
+      <h1 className="productListHeader">ALL PRODUCTS</h1>
       {loggedInAdmin && (
         <NavLink to={`/addproduct`} className="newProduct">
           Add New Product

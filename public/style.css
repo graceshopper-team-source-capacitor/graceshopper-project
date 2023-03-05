@@ -74,16 +74,16 @@ img {
 .productInList {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  align-items: center;
   width: 17rem;
-  border: 2px solid #e26969;
+  border: 2px solid #4c5b2fa3;
   padding: 1rem;
 }
 
 .productNameProductList {
   font-family: "new-order", sans-serif;
   font-weight: 700;
-  color: #4c5b2f;
+  color: #4c5b2fa3;
   margin: 0;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
@@ -97,4 +97,8 @@ img {
   font-family: "Sarina", cursive;
   color: #4c5b2f;
   font-size: 3rem;
+}
+
+.productNameProductList:hover {
+  color: #4c5b2f;
 }

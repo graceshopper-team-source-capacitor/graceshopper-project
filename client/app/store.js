@@ -8,7 +8,7 @@ import UsersSlice from '../features/users/userListSlice'
 import storage from 'redux-persist/lib/storage'
 import { persistReducer } from 'redux-persist'
 import { combineReducers } from '@reduxjs/toolkit'
-import cartSlice from '../features/cart/cartSlice'
+import cartSlice from '../features/cart/userCartSlice'
 
 // redux-persist is a library that persists state of redux store on refresh
 

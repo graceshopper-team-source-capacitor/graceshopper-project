@@ -13,6 +13,7 @@ const Navbar = () => {
     dispatch(logout())
     navigate('/login')
   }
+  const me = useSelector((state) => state.auth.me)
 
   return (
     <div>
@@ -21,6 +22,7 @@ const Navbar = () => {
         {isLoggedIn ? (
           <div>
             {/* The navbar will show these links after you log in */}
+            <p>{me.username}</p>
             <Link to="/home">Home</Link>
             <button type="button" onClick={logoutAndRedirectHome}>
               Logout
@@ -34,7 +36,8 @@ const Navbar = () => {
             <Link to="/login">Login</Link>
             <Link to="/signup">Sign Up</Link>
             <Link to="/products">Products</Link>
-            <Link to="/cart">Cart({numItemsInCart})</Link>
+            {/* <Link to="/cart">Cart({numItemsInCart})</Link> */}
+            <Link to="/cart">Cart</Link>
           </div>
         )}
       </nav>

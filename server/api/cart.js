@@ -45,8 +45,27 @@ router.delete('/:userId', async (req, res, next) => {
   }
 })
 
+// /api/cart/:userId/:productId - DELETE A LINE ITEM FOR USER CART
+// THUNK WRITTEN & WORKING
+router.delete('/:orderId/:productId', async (req, res, next) => {
+  const orderId = +req.params.orderId
+  console.log('ORDER ID', orderId)
+  const productId = Number(req.params.productId)
+  try {
+    const destroyed = await LineItem.destroy({
+      where: {
+        productId: productId,
+        orderId: orderId,
+      },
+    })
+    res.json(destroyed)
+  } catch (err) {
+    next(err)
+  }
+})
+
 // /api/cart/:userId/:productId - ADD A LINE ITEM FOR USER CART
-// THUNK IN PROGRESS, ROUTE IN POSTMAN WORKING
+// THUNK WRITTEN & WORKING
 router.post('/:userId/:productId', async (req, res, next) => {
   try {
     // console.log('req.params', req.params.userId)
@@ -54,6 +73,14 @@ router.post('/:userId/:productId', async (req, res, next) => {
       where: { userId: req.params.userId },
       include: LineItem,
     })
+
+    // if there's an existing order
+    // and that line item doesnt exist by id
+    // then creat a new line item
+
+    // if there's an existing order
+    // and that line item does exist by id
+    // update the qty passed in as amount
 
     if (existingOrder) {
       const orderId = existingOrder.dataValues.id
@@ -90,7 +117,7 @@ router.put('/addOne/:userId/:productId', async (req, res, next) => {
       include: LineItem,
     })
     const lineItem = await LineItem.findOne({
-      where: { id: req.params.productId },
+      where: { productId: req.params.productId },
     })
     const orderId = orderById.dataValues.id
     const updatedLineItem = await lineItem.update({
@@ -146,10 +173,10 @@ router.put('/subtractOne/:userId/:productId', async (req, res, next) => {
       include: LineItem,
     })
     const lineItem = await LineItem.findOne({
-      where: { id: req.params.productId },
+      where: { productId: req.params.productId },
     })
     const orderId = orderById.dataValues.id
-    const updatedLineItem = await lineItem.update({
+    const updatedLineItem = await lineItem?.update({
       id: req.body.id,
       qty: lineItem.dataValues.qty - 1,
       productId: req.params.productId,

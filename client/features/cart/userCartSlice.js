@@ -19,6 +19,15 @@ export const deleteWholeCartById = createAsyncThunk('cart/delete', async (userId
 })
 
 // WORKING
+export const deleteLineItemById = createAsyncThunk(
+  'cart/lineItem/delete',
+  async ({ orderId, productId }) => {
+    const { data } = await axios.delete(`/api/cart/${orderId}/${productId}`)
+    return data
+  }
+)
+
+// WORKING
 export const addOneToLineItemQty = createAsyncThunk(
   'cart/lineItem/addOneToQty',
   async ({ userId, productId, amount }) => {
@@ -26,6 +35,7 @@ export const addOneToLineItemQty = createAsyncThunk(
       productId: productId,
       qty: amount,
     })
+    console.log('thunk data', data)
     return data
   }
 )
@@ -38,7 +48,7 @@ export const subtractOneFromLineItemQty = createAsyncThunk(
       productId: productId,
       qty: amount,
     })
-    console.log('thunk', data)
+    // console.log('thunk', data)
     return data
   }
 )
@@ -55,9 +65,6 @@ export const addManyToLineItemQty = createAsyncThunk(
   }
 )
 
-//IN PROGRESS
-// adding line item for user cart
-// adding line item but not handling amount
 export const addLineItemForUserCart = createAsyncThunk(
   'cart/lineItem/addLineItemToCart',
   async ({ userId, productId, amount }) => {
@@ -72,7 +79,17 @@ export const addLineItemForUserCart = createAsyncThunk(
 const cartSlice = createSlice({
   name: 'cart',
   initialState: {},
-  reducers: {},
+  reducers: {
+    increment: (state) => {
+      state.numItemsInCart += 1
+    },
+    incrementByAmount: (state, action) => {
+      state.numItemsInCart += action.payload
+    },
+    decrement: (state) => {
+      state.numItemsInCart -= 1
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(fetchCartById.fulfilled, (state, action) => {
       return action.payload
@@ -80,8 +97,13 @@ const cartSlice = createSlice({
       builder.addCase(deleteWholeCartById.fulfilled, (state, action) => {
         return action.payload
       })
-    builder.addCase(addOneToLineItemQty.fulfilled, (state, action) => {
+    builder.addCase(deleteLineItemById.fulfilled, (state, action) => {
       return action.payload
+    })
+    builder.addCase(addOneToLineItemQty.fulfilled, (state, action) => {
+      console.log('action', action.payload)
+      state.cart = action.payload
+      // console.log('state of cart', state.cart)
     })
     builder.addCase(subtractOneFromLineItemQty.fulfilled, (state, action) => {
       return action.payload

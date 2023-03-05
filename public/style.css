@@ -1,6 +1,8 @@
-body {
-  font-family: sans-serif;
-}
+/* body {
+  display: flex;
+  justify-content: center;
+  margin: 0;
+} */
 
 a {
   text-decoration: none;
@@ -8,6 +10,27 @@ a {
 
 label {
   display: block;
+}
+
+nav {
+  background-color: #e26969;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.navLink {
+  font-family: "new-order", sans-serif;
+  font-weight: 400;
+  font-size: 1.5rem;
+  color: #4c5b2f;
+}
+
+.navLink:hover {
+  font-family: "new-order", sans-serif;
+  font-weight: 400;
+  font-size: 1.5rem;
+  color: white;
 }
 
 nav a {
@@ -22,4 +45,20 @@ form div {
 
 img {
   width: 300px;
+}
+
+.homePageParentDiv {
+  display: flex;
+  justify-content: center;
+}
+
+.homeTitleText {
+  font-family: "blenny", sans-serif;
+  font-weight: 900;
+  font-size: 7rem;
+  color: #4c5b2f00;
+  letter-spacing: 0.5rem;
+  -webkit-text-stroke: 1px #4c5b2f;
+  text-shadow: 30px 30px #4c5b2f;
+  margin-top: 0;
 }

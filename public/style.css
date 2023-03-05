@@ -273,20 +273,23 @@ img {
   background-color: #4c5b2f;
 }
 
-.newProductParentDiv {
+.newProductParentDiv,
+.editProductParentDiv {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-#newProduct {
+#newProduct,
+#editProduct {
   display: flex;
   flex-direction: column;
   width: 30rem;
   gap: 0.5rem;
 }
 
-.addProductSubmit {
+.addProductSubmit,
+.editProductSubmit {
   border: none;
   border-radius: 50px;
   background-color: #ab9bbc;
@@ -306,13 +309,21 @@ img {
 }
 
 .formButton:hover,
-.addProductSubmit:hover {
+.addProductSubmit:hover,
+.editProductSubmit:hover {
   cursor: pointer;
   background-color: #80738d;
 }
 
-.addProductH2 {
+.addProductH2,
+.editProductH2 {
   font-family: "new-order", sans-serif;
   font-weight: 700;
+  color: #80738d;
+}
+
+.currEditProduct {
+  font-family: "new-order", sans-serif;
+  font-weight: 400;
   color: #80738d;
 }

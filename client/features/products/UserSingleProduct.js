@@ -65,36 +65,38 @@ const UserSingleProduct = () => {
   }, [dispatch])
 
   const subtractFromAmount = () => {
-    setAmount(amount - 1)
+    if (amount > 1) {
+      setAmount(amount - 1)
+      console.log('amount', amount)
+    }
   }
 
   const addToAmount = () => {
     setAmount(amount + 1)
+    console.log('amount', amount)
   }
 
   const addToCart = (id, amount) => {
-    // returns the product object if it exists in the local storage cart
-    const itemAlreadyInCart = cart.find((cartItem) => cartItem.id === product.id)
-    // returns the product object index if it exists in the local storage cart
-    const itemAlreadyInCartIndex = cart.findIndex((cartItem) => cartItem.id === product.id)
-
-    // the product object plus a new key value pair of quanity of product
-    const addedItem = { ...product, qty: amount }
-
-    if (cart.length === 0) {
-      setCart([addedItem])
-    } else if (cart.length > 0) {
-      //if the item does not already exist in the local storage cart
-      if (itemAlreadyInCart === undefined) {
-        const newCart = [...cart, addedItem]
-        // add that item to the local storage cart
-        setCart(newCart)
-      } else {
-        // if the item already exists in local storage cart, update the quantity
-        cart[itemAlreadyInCartIndex].qty = itemAlreadyInCart.qty + amount
-        setCart([...cart])
-      }
-    }
+    // // returns the product object if it exists in the local storage cart
+    // const itemAlreadyInCart = cart.find((cartItem) => cartItem.id === product.id)
+    // // returns the product object index if it exists in the local storage cart
+    // const itemAlreadyInCartIndex = cart.findIndex((cartItem) => cartItem.id === product.id)
+    // // the product object plus a new key value pair of quanity of product
+    // const addedItem = { ...product, qty: amount }
+    // if (cart.length === 0) {
+    //   setCart([addedItem])
+    // } else if (cart.length > 0) {
+    //   //if the item does not already exist in the local storage cart
+    //   if (itemAlreadyInCart === undefined) {
+    //     const newCart = [...cart, addedItem]
+    //     // add that item to the local storage cart
+    //     setCart(newCart)
+    //   } else {
+    //     // if the item already exists in local storage cart, update the quantity
+    //     cart[itemAlreadyInCartIndex].qty = itemAlreadyInCart.qty + amount
+    //     setCart([...cart])
+    //   }
+    // }
     // add amount of items to the total number of items
     // needed to update navbar cart counter
     // dispatch(incrementByAmount(amount))

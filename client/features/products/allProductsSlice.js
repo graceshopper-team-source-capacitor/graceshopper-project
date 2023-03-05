@@ -3,6 +3,7 @@ import axios from 'axios'
 
 export const fetchProductsAsync = createAsyncThunk('products', async (category) => {
   const { data } = await axios.get(`/api/products?type=${category.type}`)
+  // console.log(category)
   return data
 })
 

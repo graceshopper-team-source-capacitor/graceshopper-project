@@ -212,7 +212,7 @@ async function seed() {
         price: 6.99,
         type: 'dairy',
         description: `kosher, vegetarian, local`,
-        imageUrl: 'wholemilk.jpg',
+        imageUrl: 'butter.jpg',
       }),
       Product.create({
         name: 'Van Leeuwen Mint Chip ',

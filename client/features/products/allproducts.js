@@ -15,16 +15,16 @@ const ProductList = () => {
   const loggedInAdmin = useSelector((state) => !!state.auth.me.isAdmin)
   // console.log(useSelector((state) => state.auth.me.isAdmin));
 
-  const [category, setCategory] = useState("allCategories")
+  // const [category, setCategory] = useState("allCategories")
 
-  const categories =
-  useSelector((state) => {
-    return state.categories;
-  }) || [];
+  // const categories =
+  // useSelector((state) => {
+  //   return state.categories;
+  // }) || [];
 
-  // useEffect(() => {
-  //   dispatch(fetchProductsAsync())
-  // }, [dispatch])
+  useEffect(() => {
+    dispatch(fetchProductsAsync())
+  }, [dispatch])
 
   const handleDelete = async (id) => {
     await dispatch(deleteProductAsync(id))
@@ -32,7 +32,6 @@ const ProductList = () => {
   }
 
   const handleFilter = async (event) => {
-    console.log(event.target.value)
     await dispatch(fetchProductsAsync({type: event.target.value}))
   }
   
@@ -40,6 +39,7 @@ const ProductList = () => {
   return (
     <div>
         <label>Filter Category:</label>
+        <button onClick={handleFilter} value="all">All</button>
         <button onClick={handleFilter} value="dairy">Dairy</button>
         <button onClick={handleFilter} value="produce">Produce</button>
         <button onClick={handleFilter} value="bakery">Bakery</button>

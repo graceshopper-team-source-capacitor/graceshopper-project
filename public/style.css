@@ -197,8 +197,7 @@ img {
 }
 
 .qtyButtonPlusMinus:hover,
-.addToCartButton:hover,
-.formButton:hover {
+.addToCartButton:hover {
   cursor: pointer;
 }
 
@@ -238,6 +237,10 @@ img {
   border: 1px solid #ab9bbc;
 }
 
+.formInput:focus {
+  outline: 3px solid #80738d;
+}
+
 .newProduct {
   font-family: "new-order", sans-serif;
   color: #4c5b2fa3;
@@ -268,4 +271,48 @@ img {
 .delete:hover {
   cursor: pointer;
   background-color: #4c5b2f;
+}
+
+.newProductParentDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#newProduct {
+  display: flex;
+  flex-direction: column;
+  width: 30rem;
+  gap: 0.5rem;
+}
+
+.addProductSubmit {
+  border: none;
+  border-radius: 50px;
+  background-color: #ab9bbc;
+  padding: 0.75rem;
+  font-family: "new-order", sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  color: #ffffff;
+  width: 7rem;
+}
+
+.formLabelPadded {
+  font-family: "new-order", sans-serif;
+  font-weight: 400;
+  color: #ab9bbc;
+  padding-top: 1.5rem;
+}
+
+.formButton:hover,
+.addProductSubmit:hover {
+  cursor: pointer;
+  background-color: #80738d;
+}
+
+.addProductH2 {
+  font-family: "new-order", sans-serif;
+  font-weight: 700;
+  color: #80738d;
 }

@@ -20,7 +20,7 @@ const Navbar = () => {
         {isLoggedIn ? (
           <div>
             {/* The navbar will show these links after you log in */}
-            <Link to="/home" className="navLink">
+            <Link to="/" className="navLink">
               Home
             </Link>
             <button
@@ -36,10 +36,14 @@ const Navbar = () => {
             <Link to="/cart" className="navLink">
               Cart
             </Link>
+            <hr></hr>
           </div>
         ) : (
           <div>
             {/* The navbar will show these links before you log in */}
+            <Link to="/" className="navLink">
+              Home
+            </Link>
             <Link to="/login" className="navLink">
               Login
             </Link>

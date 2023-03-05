@@ -11,7 +11,7 @@ import {
   deleteWholeCartById,
   fetchCartById,
   selectCart,
-} from '../cart/cartSlice'
+} from '../cart/userCartSlice'
 // import { me } from '../auth/authSlice'
 
 const UserSingleProduct = () => {

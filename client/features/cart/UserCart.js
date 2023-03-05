@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   addOneToLineItemQty,
@@ -7,8 +7,9 @@ import {
   fetchCartById,
   selectCart,
   subtractOneFromLineItemQty,
-} from '../cart/cartSlice'
+} from './userCartSlice'
 import { fetchProductsAsync, selectProducts } from '../products/allProductsSlice'
+import { decrement } from './guestCartSlice'
 
 /**
  * COMPONENT
@@ -70,6 +71,8 @@ const UserCart = (props) => {
 
       // workaround but is not optimal:
       window.location.reload()
+
+      dispatch(decrement())
     } else {
       // remove whole line item
       dispatch(deleteLineItemById({ orderId: fetchedCart.id, productId: itemId }))
@@ -79,6 +82,7 @@ const UserCart = (props) => {
 
       // workaround but is not optimal:
       window.location.reload()
+      dispatch(increment())
     }
   }
   // SUBTRACT FROM QTY (END)
@@ -133,8 +137,10 @@ const UserCart = (props) => {
       <ul>
         {allUserProductsWithQty.map((item, index) => (
           <li key={item.id}>
-            <h4>{item.name}</h4>
-            <img src={item.imageUrl} />
+            <Link to={`/products/${item.id}`}>{item.name}</Link>
+            <div>
+              <img src={item.imageUrl} />
+            </div>
             <div>
               <button onClick={() => subtractFromQty(item.id, item.qty)}>-</button>
               <h4>Quantity: {item.qty}</h4>

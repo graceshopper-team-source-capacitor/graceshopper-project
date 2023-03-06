@@ -90,7 +90,6 @@ const UserSingleProduct = () => {
 
   const addToCart = (id, amount) => {
     // if there is a line item already, update line item
-
     if (lineItemProductIdsArray.includes(id)) {
       if (amount === 1) {
         dispatch(addOneToLineItemQty({ userId: me.id, productId: id, amount }))
@@ -101,18 +100,6 @@ const UserSingleProduct = () => {
       //if there's not already a line item, create a line item with the qty
       dispatch(addLineItemForUserCart({ userId: me.id, productId: id, amount }))
     }
-
-    // if (amount === 1) {
-    //   dispatch(addLineItemForUserCart({ userId: me.id, productId: id, amount }))
-    // } else {
-    //   dispatch(addManyToLineItemQty({ userId: me.id, productId: id, amount }))
-    // }
-    // navigate('/cart')
-
-    // console.log('amount', amount)
-
-    //   }
-    // }
     // add amount of items to the total number of items
     // needed to update navbar cart counter
     // dispatch(incrementByAmount(amount))

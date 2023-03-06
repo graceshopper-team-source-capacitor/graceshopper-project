@@ -56,35 +56,40 @@ const EditProduct = () => {
         <label>Product Name:</label>
         <input
           name="name"
-          value={name}
+          defaultValue={product.name}
+          // value={name}
           onChange={(e) => setName(e.target.value)}
         />
 
         <label>Product Image:</label>
         <input
           name="ProductimgUrl"
-          value={imageUrl}
+          defaultValue={product.imageUrl}
+          // value={imageUrl}
           onChange={(e) => setImage(e.target.value)}
         />
 
         <label>Product Price:</label>
         <input
           name="price"
-          value={price}
+          defaultValue={product.price}
+          // value={price}
           onChange={(e) => setPrice(e.target.value)}
         />
 
         <label>Product Description:</label>
         <input
           name="ProductDescription"
-          value={description}
+          defaultValue={product.description}
+          // value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
 
         <label>Product Type:</label>
         <input
           name="type"
-          value={type}
+          defaultValue={product.type}
+          // value={type}
           onChange={(e) => setType(e.target.value)}
         />
 

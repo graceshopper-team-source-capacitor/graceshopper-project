@@ -25,7 +25,7 @@ const ProductList = () => {
   // }) || [];
 
   useEffect(() => {
-    dispatch(fetchProductsAsync())
+    dispatch(fetchProductsAsync(products))
   }, [dispatch])
 
   const handleDelete = async (id) => {

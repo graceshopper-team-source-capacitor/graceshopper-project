@@ -39,7 +39,7 @@ const ProductList = () => {
 
   return (
     <div className="productListParentDiv">
-      {/* <label>Filter Category:</label>
+      <label>Filter Category:</label>
       <button onClick={handleFilter} value="all">
         All
       </button>
@@ -54,7 +54,7 @@ const ProductList = () => {
       </button>
       <button onClick={handleFilter} value="specialty">
         Snacks
-      </button> */}
+      </button>
       <h1 className="productListHeader">ALL PRODUCTS</h1>
       {loggedInAdmin && (
         <NavLink to={`/addproduct`} className="newProduct">

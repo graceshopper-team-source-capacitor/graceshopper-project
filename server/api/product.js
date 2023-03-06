@@ -8,18 +8,18 @@ module.exports = router
 router.get('/', async (req, res, next) => {
   try {
     const category = {}
-    // if (req.query.type === 'bakery') {
-    //   category.where = { type: 'bakery' }
-    // }
-    // if (req.query.type === 'produce') {
-    //   category.where = { type: 'produce' }
-    // }
-    // if (req.query.type === 'dairy') {
-    //   category.where = { type: 'dairy' }
-    // }
-    // if (req.query.type === 'specialty') {
-    //   category.where = { type: 'specialty' }
-    // }
+    if (req.query.type === 'bakery') {
+      category.where = { type: 'bakery' }
+    }
+    if (req.query.type === 'produce') {
+      category.where = { type: 'produce' }
+    }
+    if (req.query.type === 'dairy') {
+      category.where = { type: 'dairy' }
+    }
+    if (req.query.type === 'specialty') {
+      category.where = { type: 'specialty' }
+    }
     res.send(
       await Product.findAll(
         category

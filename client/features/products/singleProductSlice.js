@@ -29,7 +29,7 @@ export const singleProductSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchSingleProductAsync.fulfilled, (state, action) => {
-      return action.payload
+      state.product = action.payload;
     })
     builder.addCase(editProductAsync.fulfilled, (state, action) => {
       state = action.payload

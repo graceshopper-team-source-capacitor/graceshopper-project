@@ -7,8 +7,6 @@ import {
   selectSingleProduct,
 } from "../products/singleProductSlice";
 
-//unable to access edit page
-//api is not accessible either
 
 const EditProduct = () => {
   const dispatch = useDispatch();

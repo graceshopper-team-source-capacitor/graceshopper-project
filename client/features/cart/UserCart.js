@@ -42,24 +42,24 @@ const UserCart = (props) => {
   // function getUserProductWithQtyFunc() {
   //   const productIdArr = []
 
-    // console.log('sorted product id array', sortedProductIds)
-    // const productQtyArr = []
-    // const userProducts = []
-    // const allUserProductsWithQty = []
-    // for (let i = 0; i < fetchedCart.lineItems?.length; i++) {
-    //   productIdArr.push(fetchedCart.lineItems[i].productId)
-    //   productQtyArr.push(fetchedCart.lineItems[i].qty)
-    // }
-    // const sortedProductIds = productIdArr.sort(function (a, b) {
-    //   return a - b
-    // })
-    // for (let i = 0; i < allProducts.length; i++) {
-    //   for (let j = 0; j < productIdArr.length; j++) {
-    //     if (allProducts[i].id === productIdArr[j]) {
-    //       userProducts.push(allProducts[i])
-    //     }
-    //   }
-    // }
+  // console.log('sorted product id array', sortedProductIds)
+  // const productQtyArr = []
+  // const userProducts = []
+  // const allUserProductsWithQty = []
+  // for (let i = 0; i < fetchedCart.lineItems?.length; i++) {
+  //   productIdArr.push(fetchedCart.lineItems[i].productId)
+  //   productQtyArr.push(fetchedCart.lineItems[i].qty)
+  // }
+  // const sortedProductIds = productIdArr.sort(function (a, b) {
+  //   return a - b
+  // })
+  // for (let i = 0; i < allProducts.length; i++) {
+  //   for (let j = 0; j < productIdArr.length; j++) {
+  //     if (allProducts[i].id === productIdArr[j]) {
+  //       userProducts.push(allProducts[i])
+  //     }
+  //   }
+  // }
   //   for (let i = 0; i < userProducts.length; i++) {
   //     allUserProductsWithQty.push({ ...userProducts[i], qty: productQtyArr[i] })
   //   }
@@ -150,21 +150,25 @@ const UserCart = (props) => {
     <>
       <h3>Cart</h3>
       <ul>
-        {fetchedCart.lineItems?.map((item, index) => (
-          <li key={item.product.id}>
-            <Link to={`/products/${item.product.id}`}>{item.product.name}</Link>
-            <div>
-              <img src={item.product.imageUrl} />
-            </div>
-            <div>
-              <button onClick={() => subtractFromQty(item.product.id, item.qty)}>-</button>
-              <h4>Quantity: {item.qty}</h4>
-              <button onClick={() => addToQty(item.product.id)}>+</button>
-            </div>
-            <h4>Price: ${Number(item.qty * item.product.price).toFixed(2)}</h4>
-            <button onClick={() => removeFromCart(item.product.id, item.qty)}>Remove</button>
-          </li>
-        ))}
+        {fetchedCart.lineItems?.map((item, index) => {
+          const { product, qty } = item
+          const { id, name, imageUrl, price } = item.product
+          return (
+            <li key={id}>
+              <Link to={`/products/${id}`}>{name}</Link>
+              <div>
+                <img src={imageUrl} />
+              </div>
+              <div>
+                <button onClick={() => subtractFromQty(id, qty)}>-</button>
+                <h4>Quantity: {qty}</h4>
+                <button onClick={() => addToQty(id)}>+</button>
+              </div>
+              <h4>Price: ${Number(qty * price).toFixed(2)}</h4>
+              <button onClick={() => removeFromCart(id, qty)}>Remove</button>
+            </li>
+          )
+        })}
       </ul>
       <h4>Total Price: ${sumOfPrices.toFixed(2)}</h4>
       <button onClick={handleCheckoutButton}>Checkout</button>

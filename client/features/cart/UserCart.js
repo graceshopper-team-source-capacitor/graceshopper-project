@@ -17,7 +17,7 @@ import { decrement } from './guestCartSlice'
 const UserCart = (props) => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const [amount, setAmount] = useState(1)
+  const [amount, setAmount] = useState(2)
   const fetchedCart = useSelector(selectCart)
   const allProducts = useSelector(selectProducts)
   const me = useSelector((state) => state.auth.me)
@@ -78,7 +78,7 @@ const UserCart = (props) => {
       dispatch(decrement())
     } else {
       // remove whole line item
-      dispatch(deleteLineItemById({ orderId: fetchedCart.id, productId: itemId }))
+      dispatch(deleteLineItemById({ orderId: fetchedCart.id, productId: itemId, amount }))
       // TODO:
       // updating qty in database but not updating view
       // need to query from database again
@@ -92,7 +92,7 @@ const UserCart = (props) => {
 
   // ADD TO QTY (START)
   function addToQty(itemId) {
-    dispatch(addOneToLineItemQty({ userId: me.id, productId: itemId, amount }))
+    dispatch(addOneToLineItemQty({ userId: me.id, productId: itemId,  }))
     // TODO:
     // updating qty in database but not updating view
     // need to query from database again

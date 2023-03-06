@@ -24,15 +24,7 @@ const GuestSingleProduct = () => {
   const [amount, setAmount] = useState(1)
   const [cart, setCart] = useState([])
 
-  useEffect(() => {}, [])
-
-  // console.log(me.id)
-  // console.log('id', id)
-  // console.log('product id', product.id)
-  // console.log('fetchedCart', fetchedCart)
-
-  // on first render, gets the cart saved in local storage
-  // local storage persist on refresh
+  
   useEffect(() => {
     try {
       // USER CART READS AND WRITES FROM/TO LOCAL STORAGE
@@ -51,17 +43,7 @@ const GuestSingleProduct = () => {
   }, [cart])
 
   useEffect(() => {
-    // dispatch(addManyToLineItemQty({ userId: me.id, productId: id, amount }))
-    // dispatch(addLineItemForUserCart({ userId: me.id, productId: id, amount }))
-  }, [amount])
-
-  useEffect(() => {
     dispatch(fetchSingleProductAsync(id))
-
-    // dispatch(fetchCartById(me.id))
-    // dispatch(deleteWholeCartById(me.id))
-    // dispatch(addOneToLineItemQty({ userId: me.id, productId: id, amount }))
-    // dispatch(subtractOneFromLineItemQty({ userId: me.id, productId: id, amount }))
   }, [dispatch])
 
   const subtractFromAmount = () => {

@@ -12,7 +12,6 @@ import {
   fetchCartById,
   selectCart,
 } from '../cart/userCartSlice'
-// import { me } from '../auth/authSlice'
 
 const UserSingleProduct = () => {
   const dispatch = useDispatch()
@@ -25,44 +24,8 @@ const UserSingleProduct = () => {
   const [amount, setAmount] = useState(1)
   const [cart, setCart] = useState([])
 
-  useEffect(() => {}, [])
-
-  // console.log(me.id)
-  // console.log('id', id)
-  // console.log('product id', product.id)
-  // console.log('fetchedCart', fetchedCart)
-
-  // on first render, gets the cart saved in local storage
-  // local storage persist on refresh
-  useEffect(() => {
-    // try {
-    //   // USER CART READS AND WRITES FROM/TO LOCAL STORAGE
-    //   // IF LOGGED IN, SET LS CART TO DB CART
-    //   // IF NOT LOGGED IN CONTINUE BELOW
-    //   let localCart = localStorage.getItem('cart') || ''
-    //   // convert cart into json because local storage can only read strings & primative types
-    //   let jsonCart = JSON.parse(localCart)
-    //   if (localCart) setCart(jsonCart)
-    // } catch (err) {}
-  }, [])
-
-  // when cart updates set cart local storage
-  // useEffect(() => {
-  //   localStorage.setItem('cart', JSON.stringify(cart))
-  // }, [cart])
-
-  useEffect(() => {
-    // dispatch(addManyToLineItemQty({ userId: me.id, productId: id, amount }))
-    // dispatch(addLineItemForUserCart({ userId: me.id, productId: id, amount }))
-  }, [amount])
-
   useEffect(() => {
     dispatch(fetchSingleProductAsync(id))
-
-    // dispatch(fetchCartById(me.id))
-    // dispatch(deleteWholeCartById(me.id))
-    // dispatch(addOneToLineItemQty({ userId: me.id, productId: id, amount }))
-    // dispatch(subtractOneFromLineItemQty({ userId: me.id, productId: id, amount }))
   }, [dispatch])
 
   const subtractFromAmount = () => {

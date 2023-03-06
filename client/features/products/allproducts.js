@@ -6,39 +6,33 @@ import { useDispatch } from 'react-redux'
 import { fetchProductsAsync, deleteProductAsync } from './allProductsSlice'
 import { me } from '../../../client/app/store'
 import AuthForm from '../auth/AuthForm'
+import { fetchSingleProductAsync, selectSingleProduct } from './singleProductSlice'
+import { addOneToLineItemQty, selectCart } from '../cart/userCartSlice'
 
 const ProductList = () => {
-  // const location = useLocation()
   const dispatch = useDispatch()
   const products = useSelector(selectProducts)
   const Navigate = useNavigate()
+  const isLoggedIn = useSelector((state) => !!state.auth.me.id)
   const loggedInAdmin = useSelector((state) => !!state.auth.me.isAdmin)
-  // console.log(useSelector((state) => state.auth.me.isAdmin));
-
-  // const [category, setCategory] = useState("allCategories")
-
-  // const categories =
-  // useSelector((state) => {
-  //   return state.categories;
-  // }) || [];
 
   useEffect(() => {
     dispatch(fetchProductsAsync(products))
   }, [dispatch])
+
+  // useEffect(() => {
+  //   dispatch(addOneToLineItemQty({ userId: me.id, productId: itemId, amount }))
+  // }, [dispatch])
 
   const handleDelete = async (id) => {
     await dispatch(deleteProductAsync(id))
     Navigate('/products')
   }
 
-  // const handleEdit = async (id) => {
-  //   await dispatch(editProductAsync(id))
-  // }
-
   const handleFilter = async (event) => {
     await dispatch(fetchProductsAsync({ type: event.target.value }))
   }
-  
+
   console.log("Product", products[0])
 
   return (
@@ -74,8 +68,8 @@ const ProductList = () => {
             <NavLink to={`/products/${product.id}`} className="productNameProductList">
               <h2 className="productNameProductList">{product.name}</h2>
             </NavLink>
+            {/* <button onClick={isLoggedIn ? () => userAddToCart : () => guestAddToCart}>Add to Cart</button> */}
             <hr></hr>
-            {/* vvv These buttons need to be exclusively for the admin. vvv */}
             {loggedInAdmin && (
               <div>
                 <div className="deleteEditButtonsDiv">
@@ -88,13 +82,14 @@ const ProductList = () => {
                 </div>
               </div>
             )}
-            {/* ^^^These buttons need to be exclusively for the admin.^^^ */}
             {/* <h3>${Number(product.price).toFixed(2)}</h3> */}
           </div>
         ))}
       </div>
     </div>
-  )
-}
+  )}
+// }}
+
+
 
 export default ProductList

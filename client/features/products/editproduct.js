@@ -7,8 +7,10 @@ import {
   selectSingleProduct,
 } from "../products/singleProductSlice";
 
-//unable to access edit page
-//api is not accessible either
+//when navigating to an edit page for a different product, the name for the last product shows up in the input bar until you refresh, at which point it corrects itself
+//if you've edited the value before, the previous value prior to being edited shows up as the default value
+//editing perceives the defaultvalue as being an empty string 
+//so every single input has to be changed for the submission to go through due to the model's validation for notEmpty: true.
 
 const EditProduct = () => {
   const dispatch = useDispatch();
@@ -47,49 +49,59 @@ const EditProduct = () => {
   console.log(product)
   return (
     <> 
-      <div key={product.id}>
+    <h2>Editing Product</h2>
+      {/* <div key={product.id}>
         <h2>Currently Editing: </h2>
         <Link to={`/products/${product.id}`}>
           <h2>{product.name}</h2>
         </Link>
         <p>Price: {product.price}</p>
-      </div>
-      <form onSubmit={handleSubmit}>
+      </div> */}
+      <form onSubmit={handleSubmit} key={product.id}>
         <label>Product Name:</label>
         <input
           name="name"
-          value={name}
+          defaultValue={product.name}
+          // value={name}
           onChange={(e) => setName(e.target.value)}
         />
 
         <label>Product Image:</label>
         <input
           name="ProductimgUrl"
-          value={imageUrl}
+          defaultValue={product.imageUrl}
+          // value={imageUrl}
           onChange={(e) => setImage(e.target.value)}
         />
 
         <label>Product Price:</label>
         <input
           name="price"
-          value={price}
+          defaultValue={product.price}
+          // value={price}
           onChange={(e) => setPrice(e.target.value)}
         />
 
         <label>Product Description:</label>
         <input
           name="ProductDescription"
-          value={description}
+          defaultValue={product.description}
+          // value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
 
         <label>Product Type:</label>
-        <input
+        <select
           name="type"
-          value={type}
+          defaultValue={product.type}
+          // value={type}
           onChange={(e) => setType(e.target.value)}
-        />
-
+        >
+        <option value="bakery">Bakery</option>
+        <option value="produce">Produce</option>
+        <option value="dairy">Dairy</option>
+        <option value="specialty">Specialty</option>
+        </select>
         <button type="submit">Edit</button>
       </form>
     </>

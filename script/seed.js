@@ -16,8 +16,8 @@ async function seed() {
 
     // Creating Users
     const users = await Promise.all([
-      // User.create({ username: 'cody', password: '123', isAdmin: true }),
-      // User.create({ username: 'murphy', password: '123' }),
+      User.create({ username: 'cody', password: '123', isAdmin: true }),
+      User.create({ username: 'murphy', password: '123' }),
       User.create({ username: 'rumi', password: '123' }),
       // User.create({ username: 'alicia', password: 'alicia' }),
     ])
@@ -339,14 +339,14 @@ async function seed() {
         userId: 1,
         // lineItemId: 1,
       }),
-      // Order.create({
-      //   confirmationNum: 2,
-      //   name: 'nameOnCard',
-      //   cardNum: 1000000002,
-      //   shippingAddress: '456 Fake Address',
-      //   userId: 2,
-      //   lineItemId: 2,
-      // }),
+      Order.create({
+        confirmationNum: 2,
+        name: 'nameOnCard',
+        cardNum: 1000000002,
+        shippingAddress: '456 Fake Address',
+        userId: 2,
+        // lineItemId: 2,
+      }),
     ])
 
     // creates a line item
@@ -411,9 +411,9 @@ async function seed() {
 
     return {
       users: {
-        // cody: users[0],
-        // murphy: users[1],
-        rumi: users[0],
+        cody: users[0],
+        murphy: users[1],
+        rumi: users[2],
       },
       orders: {
         murphy: orders[0],

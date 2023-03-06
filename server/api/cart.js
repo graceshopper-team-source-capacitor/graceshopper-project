@@ -190,3 +190,27 @@ router.put('/subtractOne/:userId/:productId', async (req, res, next) => {
 })
 
 module.exports = router
+
+// export const findOrMakeCart = (itemId, userId, UUID) => {
+//   return async (dispatch) => {
+//     try {
+//       const { data } = await axios.post(`/api/cart`, { itemId, userId, UUID });
+//       if (userId==0){
+//         localStorage.setItem('UUID', data.UUID)
+//       }
+//       dispatch(updateQuantities(data.id, data.UUID, userId, itemId, 'inc'))
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   };
+// };
+// export const attachCartOnSignUp = (userId,UUID) => {
+//   return async (dispatch) => {
+//     try {
+//       await axios.put(`/api/cart/attach/${userId}`, {UUID})
+//       dispatch(fetchCart(userId,UUID));
+//     } catch (error) {
+//       console.log('uh oh something went wrong attaching guest cart to new User.')
+//     }
+//   }
+// }

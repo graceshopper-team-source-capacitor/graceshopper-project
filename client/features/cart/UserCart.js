@@ -160,8 +160,9 @@ const UserCart = (props) => {
       <h3>Cart</h3>
       <ul>
         {fetchedCart.lineItems?.map((item, index) => {
-          const { product, qty } = item;
-          const { id, name, imageUrl, price } = item.product || {};
+          const { product, qty } = item
+          const { id, name, imageUrl, price } = item.product || {}
+
           return (
             <li key={id}>
               <Link to={`/products/${id}`}>{name}</Link>

@@ -18,7 +18,8 @@ async function seed() {
     const users = await Promise.all([
       User.create({ username: 'cody', password: '123', isAdmin: true }),
       User.create({ username: 'murphy', password: '123' }),
-      User.create({username: 'rumi', password: '12'})
+      User.create({ username: 'rumi', password: '12' }),
+      User.create({ username: 'alicia', password: 'alicia' }),
     ])
 
     // Creating products
@@ -174,77 +175,77 @@ async function seed() {
       Product.create({
         name: 'Oatly',
         price: 5.99,
-        type: 'Dairy and Dairy Alternatives',
+        type: 'dairy',
         description: `dairy-free, gluten-free, kosher, vegan`,
         imageUrl: 'oatmilk.jpg',
       }),
       Product.create({
         name: 'Califia Farms Unsweetened Almond Milk',
         price: 5.39,
-        type: 'Dairy and Dairy Alternatives',
+        type: 'dairy',
         description: `dairy-free, kosher, paleo-friendly, vegan`,
         imageUrl: 'almondmilk.jpg',
       }),
       Product.create({
         name: 'GT Cocoyo',
         price: 6.69,
-        type: 'Dairy and Dairy Alternatives',
+        type: 'dairy',
         description: `kosher, paleo-friendly, organic, vegan`,
         imageUrl: 'coconutyogurt.jpg',
       }),
       Product.create({
         name: 'Daiya Mozzarella ',
         price: 5.99,
-        type: 'Dairy and Dairy Alternatives',
+        type: 'dairy',
         description: `dairy-free, gluten-free, vegan, kosher`,
         imageUrl: 'daiyacheese.jpg',
       }),
       Product.create({
         name: 'Maple Hill Creamery ',
         price: 6.99,
-        type: 'Dairy and Dairy Alternatives',
+        type: 'dairy',
         description: `organic, vegetarian`,
         imageUrl: 'wholemilk.jpg',
       }),
       Product.create({
         name: 'Ronny Brook Farm European Style Butter ',
         price: 6.99,
-        type: 'Dairy and Dairy Alternatives',
+        type: 'dairy',
         description: `kosher, vegetarian, local`,
-        imageUrl: 'wholemilk.jpg',
+        imageUrl: 'butter.jpg',
       }),
       Product.create({
         name: 'Van Leeuwen Mint Chip ',
         price: 7.99,
-        type: 'Dairy and Dairy Alternatives',
+        type: 'dairy',
         description: `vegan, local`,
         imageUrl: `veganicecream.jpg`,
       }),
       Product.create({
         name: 'Vital Farms Eggs',
         price: 9.99,
-        type: 'Dairy and Dairy Alternatives',
+        type: 'dairy',
         description: `dairy-free, paleo, vegetarian`,
         imageUrl: `eggs.jpg`,
       }),
       Product.create({
         name: 'Just Eggs',
         price: 3.99,
-        type: 'Dairy and Dairy Alternatives',
+        type: 'dairy',
         description: `vegan, gluten-free`,
         imageUrl: `veganegg.jpg`,
       }),
       Product.create({
         name: 'Urban Remedy Blue Magic Cashew Milk',
         price: 9.99,
-        type: 'Dairy and Dairy Alternatives',
+        type: 'dairy',
         description: `vegan, gluten-free, organic`,
         imageUrl: `cashewmilk.jpg`,
       }),
       Product.create({
         name: 'Miyoko Oat Milk Butter',
         price: 5.99,
-        type: 'Dairy and Dairy Alternatives',
+        type: 'dairy',
         description: `vegan, gluten-free, kosher, keto-friendly`,
         imageUrl: `veganbutter.jpg`,
       }),
@@ -332,26 +333,26 @@ async function seed() {
     const orders = await Promise.all([
       Order.create({
         confirmationNum: 1,
-        name: 'cody',
+        name: 'nameOnCard',
         cardNum: 1000000001,
         shippingAddress: '123 Fake Address',
         userId: 1,
-        lineItemId: 1
+        lineItemId: 1,
       }),
       Order.create({
         confirmationNum: 2,
-        name: 'murphy',
+        name: 'nameOnCard',
         cardNum: 1000000002,
         shippingAddress: '456 Fake Address',
         userId: 2,
-        lineItemId: 2
+        lineItemId: 2,
       }),
     ])
-
 
     // creates a line item
     const lineItems = await Promise.all([
       LineItem.create({ productId: 1, qty: 4, orderId: 1 }), //expect to see croissants
+      LineItem.create({ productId: 30, qty: 4, orderId: 1 }), //expect to see croissants
       LineItem.create({ productId: 3, qty: 5, orderId: 2 }), //expect tortillas
     ])
 
@@ -413,10 +414,10 @@ async function seed() {
         cody: users[0],
         murphy: users[1],
       },
-      orders:{
+      orders: {
         murphy: orders[0],
         cody: orders[1],
-      }
+      },
     }
   } catch (err) {
     console.log(err)

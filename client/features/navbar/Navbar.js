@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
-import { logout } from "../../app/store";
-import { selectGuestCart } from "../cart/guestCartSlice";
+import React, { useState, useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { Link, useNavigate } from 'react-router-dom'
+import { logout } from '../../app/store'
+import { selectGuestCart } from '../cart/guestCartSlice'
 
 const Navbar = () => {
-  const isLoggedIn = useSelector((state) => !!state.auth.me.id);
-  const numItemsInCart = useSelector((state) => state.guestCart.numItemsInCart);
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const isLoggedIn = useSelector((state) => !!state.auth.me.id)
+  const numItemsInCart = useSelector((state) => state.guestCart.numItemsInCart)
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
   const logoutAndRedirectHome = () => {
-    dispatch(logout());
-    navigate("/login");
-  };
+    dispatch(logout())
+    navigate('/login')
+  }
 
   return (
     <div>
@@ -23,11 +23,7 @@ const Navbar = () => {
             <Link to="/" className="navLink">
               Home
             </Link>
-            <button
-              className="navLink"
-              type="button"
-              onClick={logoutAndRedirectHome}
-            >
+            <button className="navLink" type="button" onClick={logoutAndRedirectHome}>
               Logout
             </button>
             <Link to="/products" className="navLink">
@@ -54,14 +50,18 @@ const Navbar = () => {
               Products
             </Link>
             <Link to="/cart" className="navLink">
-              Cart({numItemsInCart})
+              Cart
             </Link>
+            {/* <Link to="/cart" className="navLink">
+              Cart({numItemsInCart})
+            </Link> */}
+            {/* <Link to="/cart">Cart</Link> */}
             <hr></hr>
           </div>
         )}
       </nav>
     </div>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar

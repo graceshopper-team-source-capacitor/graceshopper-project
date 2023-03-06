@@ -1,54 +1,49 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import axios from 'axios'
 
-export const fetchProductsAsync = createAsyncThunk("products", async () => {
-  const { data } = await axios.get("/api/products");
-  console.log("axios", data);
-  return data;
-});
+export const fetchProductsAsync = createAsyncThunk('products', async (category) => {
+  const { data } = await axios.get(`/api/products?type=${category.type}`)
+  // console.log(category)
+  return data
+})
 
 export const addProductAsync = createAsyncThunk(
-  "products/new",
+  'products/new',
   async ({ name, imageUrl, price, type, description }) => {
-    const { data } = await axios.post("/api/products", {
+    const { data } = await axios.post('/api/products', {
       name,
       imageUrl,
       price,
       type,
       description,
-    });
-    return data;
+    })
+    return data
   }
-);
+)
 
-export const deleteProductAsync = createAsyncThunk(
-  "products/deleteProduct",
-  async (id) => {
-    const { data } = await axios.delete(`/api/products/${id}`);
-    return data;
-  }
-);
+export const deleteProductAsync = createAsyncThunk('products/deleteProduct', async (id) => {
+  const { data } = await axios.delete(`/api/products/${id}`)
+  return data
+})
 
 export const productsSlice = createSlice({
-  name: "products",
+  name: 'products',
   initialState: [],
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchProductsAsync.fulfilled, (state, action) => {
-      return action.payload;
-    });
+      return action.payload
+    })
     builder.addCase(addProductAsync.fulfilled, (state, action) => {
-      state.push(action.payload);
-    });
+      state.push(action.payload)
+    })
     builder.addCase(deleteProductAsync.fulfilled, (state, action) => {
-      const newState = state.filter(
-        (product) => product.id !== action.payload.id
-      );
-      return newState;
-    });
+      const newState = state.filter((product) => product.id !== action.payload.id)
+      return newState
+    })
   },
-});
+})
 
-export const selectProducts = (state) => state.products;
+export const selectProducts = (state) => state.products
 
-export default productsSlice.reducer;
+export default productsSlice.reducer

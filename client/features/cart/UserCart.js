@@ -24,7 +24,6 @@ const UserCart = (props) => {
   // console.log(me)
   // console.log('line items', fetchedCart.lineItems)
   // console.log('allProducts', allProducts)
-  console.log('fetched cart', fetchedCart)
 
   useEffect(() => {
     dispatch(fetchCartById(me.id))
@@ -33,6 +32,10 @@ const UserCart = (props) => {
   useEffect(() => {
     fetchProductsAsync()
   }, [dispatch])
+
+  useEffect(() => {
+    getUserProductWithQtyFunc()
+  }, [fetchedCart])
 
   // FETCHING A USERS CART - (START)
   // creates an array of all the product's in user cart with qtys
@@ -130,6 +133,9 @@ const UserCart = (props) => {
   function handleCheckoutButton() {
     navigate('/confirm')
   }
+
+  console.log('fetched cart', fetchedCart)
+  console.log('all user products with qty', allUserProductsWithQty)
 
   return (
     <>

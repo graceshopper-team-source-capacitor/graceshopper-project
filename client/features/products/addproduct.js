@@ -25,45 +25,53 @@ const AddProduct = () => {
   };
 
   return (
-    <form id="newProduct" onSubmit={handleSubmit}>
-      <h2>Add New Product</h2>
-      <label>Product Name:</label>
-      <input
-        name="ProductName"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-      />
+    <div className="newProductParentDiv">
+      <h2 className="addProductH2">Add a New Product</h2>
+      <form id="newProduct" onSubmit={handleSubmit}>
+        <label className="formLabelPadded">Product Name:</label>
+        <input
+          name="ProductName"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          className="formInput"
+        />
 
-      <label>Product Image:</label>
-      <input
-        name="ProductimgUrl"
-        value={imageUrl}
-        onChange={(e) => setImage(e.target.value)}
-      />
+        <label className="formLabelPadded">Product Image:</label>
+        <input
+          name="ProductimgUrl"
+          value={imageUrl}
+          onChange={(e) => setImage(e.target.value)}
+          className="formInput"
+        />
 
-      <label>Product Price:</label>
-      <input
-        name="ProductPrice"
-        value={price}
-        onChange={(e) => setPrice(e.target.value)}
-      />
+        <label className="formLabelPadded">Product Price:</label>
+        <input
+          name="ProductPrice"
+          value={price}
+          onChange={(e) => setPrice(e.target.value)}
+          className="formInput"
+        />
 
-      <label>Product Description:</label>
-      <input
-        name="ProductDescription"
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
-      />
+        <label className="formLabelPadded">Product Description:</label>
+        <input
+          name="ProductDescription"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          className="formInput"
+        />
 
-      <label>Product Type:</label>
-      <input
-        name="ProductType"
-        value={type}
-        onChange={(e) => setType(e.target.value)}
-      />
-
-      <button type="submit">Submit</button>
-    </form>
+        <label className="formLabelPadded">Product Type:</label>
+        <input
+          name="ProductType"
+          value={type}
+          onChange={(e) => setType(e.target.value)}
+          className="formInput"
+        />
+        <button type="submit" className="addProductSubmit">
+          Submit
+        </button>
+      </form>
+    </div>
   );
 };
 

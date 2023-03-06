@@ -34,54 +34,61 @@ const ProductList = () => {
   }
 
   const handleFilter = async (event) => {
-    await dispatch(fetchProductsAsync({type: event.target.value}))
+    await dispatch(fetchProductsAsync({ type: event.target.value }))
   }
-  
 
   return (
-    <div>
-        <label>Filter Category:</label>
-        <button onClick={handleFilter} value="all">All</button>
-        <button onClick={handleFilter} value="dairy">Dairy</button>
-        <button onClick={handleFilter} value="produce">Produce</button>
-        <button onClick={handleFilter} value="bakery">Bakery</button>
-        <button onClick={handleFilter} value="specialty">Snacks</button>
-      <ul id="products">
-        {/* The add new product page is rendering the single product page as well? for some reason?*/}
-        {loggedInAdmin && (
-          <NavLink to={`/addproduct`} className="newProduct">
-            Add New Product
-          </NavLink>
-        )}
-        <h2>Currently Available Products</h2>
+    <div className="productListParentDiv">
+      <label>Filter Category:</label>
+      <button onClick={handleFilter} value="all">
+        All
+      </button>
+      <button onClick={handleFilter} value="dairy">
+        Dairy
+      </button>
+      <button onClick={handleFilter} value="produce">
+        Produce
+      </button>
+      <button onClick={handleFilter} value="bakery">
+        Bakery
+      </button>
+      <button onClick={handleFilter} value="specialty">
+        Snacks
+      </button>
+      <h1 className="productListHeader">ALL PRODUCTS</h1>
+      {loggedInAdmin && (
+        <NavLink to={`/addproduct`} className="newProduct">
+          + Add New Product
+        </NavLink>
+      )}
+      <div id="productsList">
         {products.map((product) => (
-          <li key={product.id}>
-            {/* <NavLink
-            to={`/Products/${product.id}`}
-            key={`All Products: ${product.id}`}
-          > */}
+          <div className="productInList" key={product.id}>
             <NavLink to={`/products/${product.id}`}>
-              <h2>{product.name}</h2>
+              <img src={`/${product.imageUrl}`} className="productListImg" />
             </NavLink>
-            {/* </NavLink> */}
-            <NavLink to={`/products/${product.id}`} />
-            <img src={`/${product.imageUrl}`} />
+            <NavLink to={`/products/${product.id}`} className="productNameProductList">
+              <h2 className="productNameProductList">{product.name}</h2>
+            </NavLink>
+            <hr></hr>
             {/* vvv These buttons need to be exclusively for the admin. vvv */}
             {loggedInAdmin && (
               <div>
-                <button className="delete" onClick={() => handleDelete(product.id)}>
-                  X
-                </button>
-                <NavLink to={`/products/${product.id}/edit`}>
-                  <button>Edit</button>
-                </NavLink>
+                <div className="deleteEditButtonsDiv">
+                  <NavLink to={`/products/${product.id}/edit`}>
+                    <button className="edit">Edit</button>
+                  </NavLink>
+                  <button className="delete" onClick={() => handleDelete(product.id)}>
+                    Delete
+                  </button>
+                </div>
               </div>
             )}
             {/* ^^^These buttons need to be exclusively for the admin.^^^ */}
-            <h3>${Number(product.price).toFixed(2)}</h3>
-          </li>
+            {/* <h3>${Number(product.price).toFixed(2)}</h3> */}
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   )
 }

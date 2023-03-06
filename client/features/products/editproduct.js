@@ -12,7 +12,7 @@ const EditProduct = () => {
   const dispatch = useDispatch();
   const productObject = useSelector(selectSingleProduct);
   const productId = useParams().id;
-  console.log(productId)
+  console.log(productId);
 
   const Navigate = useNavigate();
 
@@ -24,7 +24,8 @@ const EditProduct = () => {
 
   useEffect(() => {
     dispatch(fetchSingleProductAsync(productId));
-  }, [dispatch, productId]); console.log(productId)
+  }, [dispatch, productId]);
+  console.log(productId);
 
   const handleSubmit = async (evt) => {
     evt.preventDefault();
@@ -41,61 +42,70 @@ const EditProduct = () => {
     Navigate(`/products`);
   };
 
-  const product  = productObject;
-  console.log(product)
+  const product = productObject;
+  console.log(product);
   return (
-    <> 
+    <div className="editProductParentDiv">
+      <h2 className="editProductH2">Currently Editing: </h2>
       <div key={product.id}>
-        <h2>Currently Editing: </h2>
         <Link to={`/products/${product.id}`}>
-          <h2>{product.name}</h2>
+          <h2 className="currEditProduct">{product.name}</h2>
         </Link>
-        <p>Price: {product.price}</p>
+        <p className="currEditProduct">
+          Price: ${Number(product.price).toFixed(2)}
+        </p>
       </div>
-      <form onSubmit={handleSubmit}>
-        <label>Product Name:</label>
+      <form id="editProduct" onSubmit={handleSubmit}>
+        <label className="formLabelPadded">Product Name:</label>
         <input
           name="name"
           defaultValue={product.name}
           // value={name}
           onChange={(e) => setName(e.target.value)}
+          className="formInput"
         />
 
-        <label>Product Image:</label>
+        <label className="formLabelPadded">Product Image:</label>
         <input
           name="ProductimgUrl"
           defaultValue={product.imageUrl}
           // value={imageUrl}
           onChange={(e) => setImage(e.target.value)}
+          className="formInput"
         />
 
-        <label>Product Price:</label>
+        <label className="formLabelPadded">Product Price:</label>
         <input
           name="price"
           defaultValue={product.price}
           // value={price}
           onChange={(e) => setPrice(e.target.value)}
+          className="formInput"
         />
 
-        <label>Product Description:</label>
+        <label className="formLabelPadded">Product Description:</label>
         <input
           name="ProductDescription"
           defaultValue={product.description}
           // value={description}
           onChange={(e) => setDescription(e.target.value)}
+          className="formInput"
         />
 
-        <label>Product Type:</label>
+        <label className="formLabelPadded">Product Type:</label>
         <input
           name="type"
           defaultValue={product.type}
           // value={type}
           onChange={(e) => setType(e.target.value)}
+          className="formInput"
         />
 
-        <button type="submit">Edit</button>
+        <button type="submit" className="editProductSubmit">
+          Edit
+        </button>
       </form>
-    </>
+    </div>
   );
 };
 

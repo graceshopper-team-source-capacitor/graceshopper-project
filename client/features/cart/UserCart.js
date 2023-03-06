@@ -19,11 +19,7 @@ const UserCart = (props) => {
   const navigate = useNavigate()
   const [amount, setAmount] = useState(1)
   const fetchedCart = useSelector(selectCart)
-  const allProducts = useSelector(selectProducts)
   const me = useSelector((state) => state.auth.me)
-  // console.log(me)
-  // console.log('line items', fetchedCart.lineItems)
-  // console.log('allProducts', allProducts)
 
   useEffect(() => {
     dispatch(fetchCartById(me.id))
@@ -32,46 +28,6 @@ const UserCart = (props) => {
   useEffect(() => {
     fetchProductsAsync()
   }, [dispatch])
-
-  // useEffect(() => {
-  //   getUserProductWithQtyFunc()
-  // }, [fetchedCart])
-
-  // FETCHING A USERS CART - (START)
-  // creates an array of all the product's in user cart with qtys
-  // function getUserProductWithQtyFunc() {
-  //   const productIdArr = []
-
-  // console.log('sorted product id array', sortedProductIds)
-  // const productQtyArr = []
-  // const userProducts = []
-  // const allUserProductsWithQty = []
-  // for (let i = 0; i < fetchedCart.lineItems?.length; i++) {
-  //   productIdArr.push(fetchedCart.lineItems[i].productId)
-  //   productQtyArr.push(fetchedCart.lineItems[i].qty)
-  // }
-  // const sortedProductIds = productIdArr.sort(function (a, b) {
-  //   return a - b
-  // })
-  // for (let i = 0; i < allProducts.length; i++) {
-  //   for (let j = 0; j < productIdArr.length; j++) {
-  //     if (allProducts[i].id === productIdArr[j]) {
-  //       userProducts.push(allProducts[i])
-  //     }
-  //   }
-  // }
-  //   for (let i = 0; i < userProducts.length; i++) {
-  //     allUserProductsWithQty.push({ ...userProducts[i], qty: productQtyArr[i] })
-  //   }
-  //   console.log('sorted product id array', sortedProductIds)
-  //   console.log('product qty array', productQtyArr)
-  //   console.log('userproducts', userProducts)
-  //   console.log('allUserProductsWithQty', allUserProductsWithQty)
-  //   return allUserProductsWithQty
-  // }
-
-  // const allUserProductsWithQty = getUserProductWithQtyFunc()
-  // FETCHING A USERS CART - (END)
 
   // SUBTRACT FROM QTY (START)
   function subtractFromQty(itemId, itemQty) {
@@ -142,9 +98,6 @@ const UserCart = (props) => {
   function handleCheckoutButton() {
     navigate('/confirm')
   }
-
-  console.log('fetched cart', fetchedCart)
-  console.log('all user products with qty', fetchedCart)
 
   return (
     <>

@@ -12,6 +12,10 @@ import { editProductAsync } from './singleProductSlice'
 //however, deleting goes into immediate effect?
 //changes are going through to the database
 //when category is changed, order in which is is inserted into the line up is random despite the ID not changing
+//the updated product also shows up in the api
+//the product that was edited shows up as the old product name even after being edited.
+//"Cannot read properties of undefined (reading 'type')"
+//edited data shows up in the edit page + input boxes, but do not update the list even upon refresh
 
 const ProductList = () => {
   // const location = useLocation()
@@ -30,7 +34,7 @@ const ProductList = () => {
 
   useEffect(() => {
     dispatch(fetchProductsAsync())
-  }, [dispatch])
+  }, [dispatch, products])
 
   const handleDelete = async (id) => {
     await dispatch(deleteProductAsync(id))
@@ -45,6 +49,7 @@ const ProductList = () => {
     await dispatch(fetchProductsAsync({type: event.target.value}))
   }
   
+  console.log("Product", products[0])
 
   return (
     <div>

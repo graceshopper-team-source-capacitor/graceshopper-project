@@ -11,6 +11,7 @@ import {
 //if you've edited the value before, the previous value prior to being edited shows up as the default value
 //editing perceives the defaultvalue as being an empty string 
 //so every single input has to be changed for the submission to go through due to the model's validation for notEmpty: true.
+//the updated product also shows up in the api
 
 const EditProduct = () => {
   const dispatch = useDispatch();
@@ -46,7 +47,7 @@ const EditProduct = () => {
   };
 
   const product  = productObject;
-  console.log(product)
+  console.log(product.name, product.imageUrl, product.price)
   return (
     <> 
     <h2>Editing Product</h2>

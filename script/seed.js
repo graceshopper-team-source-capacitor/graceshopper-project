@@ -350,11 +350,11 @@ async function seed() {
     ])
 
     // creates a line item
-    const lineItems = await Promise.all([
-      LineItem.create({ productId: 1, qty: 4, orderId: 1 }), //expect to see croissants
-      LineItem.create({ productId: 30, qty: 4, orderId: 1 }), //expect to see croissants
+    // const lineItems = await Promise.all([
+    //   LineItem.create({ productId: 1, qty: 4, orderId: 1 }), //expect to see croissants
+    //   LineItem.create({ productId: 30, qty: 4, orderId: 1 }), //expect to see croissants
       // LineItem.create({ productId: 3, qty: 5, orderId: 2 }), //expect tortillas
-    ])
+    // ])
 
     const [cody, murphy] = users
     const [
@@ -402,7 +402,7 @@ async function seed() {
       pistachios,
     ] = products
 
-    const [lineItem1, lineItem2] = lineItems
+    // const [lineItem1, lineItem2] = lineItems
 
     // Magic method associations
     // console.log(lineItem1)
@@ -416,8 +416,8 @@ async function seed() {
         rumi: users[2],
       },
       orders: {
-        murphy: orders[0],
-        cody: orders[1],
+        murphy: orders[1],
+        cody: orders[0],
       },
     }
   } catch (err) {

@@ -76,5 +76,5 @@ Sync and seed your database by running `npm run seed`. Running `npm run start:de
     - By doing this, you really set yourselves up to tackle many of the points throughout the tiers. In the long run, this will save you, potentially, tons of time.
     - For example, seed hundreds of products with dummy data so that when you get to the “pagination” user story, you won’t have to worry about adding more products.
     - Likewise, add a bunch of users with products in their carts so editing the cart can be worked on without already having the “add to cart” functionality built out.
-  [] user data to be secure so that no one can unrightfully manipulate information. <- no one should be able to edit an other existing user's cart, keeping routes secure, and ensuring the buttons to edit, add, and delete things require admin privileges (authorization -> needs a token for admin)
+  [x] user data to be secure so that no one can unrightfully manipulate information. <- no one should be able to edit an other existing user's cart, keeping routes secure, and ensuring the buttons to edit, add, and delete things require admin privileges (authorization -> needs a token for admin)
 

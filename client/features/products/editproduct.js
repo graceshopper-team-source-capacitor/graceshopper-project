@@ -42,12 +42,13 @@ const EditProduct = () => {
     Navigate(`/products`);
   };
 
-  const product = productObject;
-  console.log(product);
+  const product  = productObject;
+  console.log(product.name, product.imageUrl, product.price)
   return (
-    <div className="editProductParentDiv">
-      <h2 className="editProductH2">Currently Editing: </h2>
+    <>
+    <h2>Editing Product</h2>
       <div key={product.id}>
+        <h2>Currently Editing: </h2>
         <Link to={`/products/${product.id}`}>
           <h2 className="currEditProduct">{product.name}</h2>
         </Link>
@@ -93,19 +94,20 @@ const EditProduct = () => {
         />
 
         <label className="formLabelPadded">Product Type:</label>
-        <input
+        <select
           name="type"
           defaultValue={product.type}
           // value={type}
           onChange={(e) => setType(e.target.value)}
-          className="formInput"
-        />
-
-        <button type="submit" className="editProductSubmit">
-          Edit
-        </button>
+        >
+        <option value="bakery">Bakery</option>
+        <option value="produce">Produce</option>
+        <option value="dairy">Dairy</option>
+        <option value="specialty">Specialty</option>
+        </select>
+        <button type="submit">Edit</button>
       </form>
-    </div>
+    </>
   );
 };
 

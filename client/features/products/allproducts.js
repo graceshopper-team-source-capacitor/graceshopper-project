@@ -7,8 +7,6 @@ import { fetchProductsAsync, deleteProductAsync } from './allProductsSlice'
 import { me } from '../../../client/app/store'
 import AuthForm from '../auth/AuthForm'
 
-//all products does not render the changes made to the database, but the single page does
-
 const ProductList = () => {
   // const location = useLocation()
   const dispatch = useDispatch()
@@ -33,9 +31,15 @@ const ProductList = () => {
     Navigate('/products')
   }
 
+  // const handleEdit = async (id) => {
+  //   await dispatch(editProductAsync(id))
+  // }
+
   const handleFilter = async (event) => {
     await dispatch(fetchProductsAsync({ type: event.target.value }))
   }
+  
+  console.log("Product", products[0])
 
   return (
     <div className="productListParentDiv">

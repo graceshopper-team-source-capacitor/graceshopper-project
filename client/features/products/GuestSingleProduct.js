@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from 'react'
-import { fetchSingleProductAsync, selectSingleProduct } from './singleProductSlice'
-import { useSelector, useDispatch } from 'react-redux'
-import { useParams, Link, useNavigate } from 'react-router-dom'
-import { incrementByAmount } from '../cart/guestCartSlice'
+import React, { useEffect, useState } from "react";
+import {
+  fetchSingleProductAsync,
+  selectSingleProduct,
+} from "./singleProductSlice";
+import { useSelector, useDispatch } from "react-redux";
+import { useParams, Link, useNavigate } from "react-router-dom";
+import { incrementByAmount } from "../cart/guestCartSlice";
 import {
   addOneToLineItemQty,
   addManyToLineItemQty,
@@ -11,20 +14,20 @@ import {
   deleteWholeCartById,
   fetchCartById,
   selectCart,
-} from '../cart/userCartSlice'
+} from "../cart/userCartSlice";
 // import { me } from '../auth/authSlice'
 
 const GuestSingleProduct = () => {
-  const dispatch = useDispatch()
-  const id = useParams().id
-  const product = useSelector(selectSingleProduct)
-  const fetchedCart = useSelector(selectCart)
+  const dispatch = useDispatch();
+  const id = useParams().id;
+  const product = useSelector(selectSingleProduct);
+  const fetchedCart = useSelector(selectCart);
   // const me = useSelector((state) => state.auth.me)
 
-  const [amount, setAmount] = useState(1)
-  const [cart, setCart] = useState([])
+  const [amount, setAmount] = useState(1);
+  const [cart, setCart] = useState([]);
 
-  useEffect(() => {}, [])
+  useEffect(() => {}, []);
 
   // console.log(me.id)
   // console.log('id', id)
@@ -38,82 +41,101 @@ const GuestSingleProduct = () => {
       // USER CART READS AND WRITES FROM/TO LOCAL STORAGE
       // IF LOGGED IN, SET LS CART TO DB CART
       // IF NOT LOGGED IN CONTINUE BELOW
-      let localCart = localStorage.getItem('cart') || ''
+      let localCart = localStorage.getItem("cart") || "";
       // convert cart into json because local storage can only read strings & primative types
-      let jsonCart = JSON.parse(localCart)
-      if (localCart) setCart(jsonCart)
+      let jsonCart = JSON.parse(localCart);
+      if (localCart) setCart(jsonCart);
     } catch (err) {}
-  }, [])
+  }, []);
 
   // when cart updates set cart local storage
   useEffect(() => {
-    localStorage.setItem('cart', JSON.stringify(cart))
-  }, [cart])
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
 
   useEffect(() => {
     // dispatch(addManyToLineItemQty({ userId: me.id, productId: id, amount }))
     // dispatch(addLineItemForUserCart({ userId: me.id, productId: id, amount }))
-  }, [amount])
+  }, [amount]);
 
   useEffect(() => {
-    dispatch(fetchSingleProductAsync(id))
+    dispatch(fetchSingleProductAsync(id));
 
     // dispatch(fetchCartById(me.id))
     // dispatch(deleteWholeCartById(me.id))
     // dispatch(addOneToLineItemQty({ userId: me.id, productId: id, amount }))
     // dispatch(subtractOneFromLineItemQty({ userId: me.id, productId: id, amount }))
-  }, [dispatch])
+  }, [dispatch]);
 
   const subtractFromAmount = () => {
-    setAmount(amount - 1)
-  }
+    setAmount(amount - 1);
+  };
 
   const addToAmount = () => {
-    setAmount(amount + 1)
-  }
+    setAmount(amount + 1);
+  };
 
   const addToCart = (id, amount) => {
     // returns the product object if it exists in the local storage cart
-    const itemAlreadyInCart = cart.find((cartItem) => cartItem.id === product.id)
+    const itemAlreadyInCart = cart.find(
+      (cartItem) => cartItem.id === product.id
+    );
     // returns the product object index if it exists in the local storage cart
-    const itemAlreadyInCartIndex = cart.findIndex((cartItem) => cartItem.id === product.id)
+    const itemAlreadyInCartIndex = cart.findIndex(
+      (cartItem) => cartItem.id === product.id
+    );
 
     // the product object plus a new key value pair of quanity of product
-    const addedItem = { ...product, qty: amount }
+    const addedItem = { ...product, qty: amount };
 
     if (cart.length === 0) {
-      setCart([addedItem])
+      setCart([addedItem]);
     } else if (cart.length > 0) {
       //if the item does not already exist in the local storage cart
       if (itemAlreadyInCart === undefined) {
-        const newCart = [...cart, addedItem]
+        const newCart = [...cart, addedItem];
         // add that item to the local storage cart
-        setCart(newCart)
+        setCart(newCart);
       } else {
         // if the item already exists in local storage cart, update the quantity
-        cart[itemAlreadyInCartIndex].qty = itemAlreadyInCart.qty + amount
-        setCart([...cart])
+        cart[itemAlreadyInCartIndex].qty = itemAlreadyInCart.qty + amount;
+        setCart([...cart]);
       }
     }
     // add amount of items to the total number of items
     // needed to update navbar cart counter
     // dispatch(incrementByAmount(amount))
     // dispatch(fetchCartById(me.id))
-  }
+  };
 
   return (
-    <div>
+    <div className="singleProductParentDiv">
       <img src={`/${product.imageUrl}`} />
-      <p>{product.name}</p>
-      <p>${Number(product.price).toFixed(2)}</p>
-      <p>{product.type}</p>
-      <p>{product.description}</p>
-      <button onClick={subtractFromAmount}>-</button>
-      <p>{amount}</p>
-      <button onClick={addToAmount}>+</button>
-      <button onClick={() => addToCart(product.id, amount)}>Add to Cart</button>
+      <div className="singleProductInfo">
+        <p className="productNameSingleProduct">{product.name}</p>
+        <p className="productDescription">{product.description}</p>
+        <p className="productPrice">${Number(product.price).toFixed(2)}</p>
+        <div className="buttonsDiv">
+          <div className="qtyButton">
+            <button className="qtyButtonPlusMinus" onClick={subtractFromAmount}>
+              -
+            </button>
+            <p className="qtyText">{amount}</p>
+            <button className="qtyButtonPlusMinus" onClick={addToAmount}>
+              +
+            </button>
+          </div>
+          <button
+            className="addToCartButton"
+            onClick={() => addToCart(product.id, amount)}
+          >
+            Add to Cart
+          </button>
+        </div>
+        <p className="productTypeSpecialty">{product.type}</p>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default GuestSingleProduct
+export default GuestSingleProduct;

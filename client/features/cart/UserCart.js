@@ -41,6 +41,8 @@ const UserCart = (props) => {
   // creates an array of all the product's in user cart with qtys
   function getUserProductWithQtyFunc() {
     const productIdArr = []
+
+    console.log('sorted product id array', sortedProductIds)
     const productQtyArr = []
     const userProducts = []
     const allUserProductsWithQty = []
@@ -48,16 +50,23 @@ const UserCart = (props) => {
       productIdArr.push(fetchedCart.lineItems[i].productId)
       productQtyArr.push(fetchedCart.lineItems[i].qty)
     }
+    const sortedProductIds = productIdArr.sort(function (a, b) {
+      return a - b
+    })
     for (let i = 0; i < allProducts.length; i++) {
-      for (let j = 0; j < productIdArr.length; j++) {
-        if (allProducts[i].id === productIdArr[j]) {
+      for (let j = 0; j < sortedProductIds.length; j++) {
+        if (allProducts[i].id === sortedProductIds[j]) {
           userProducts.push(allProducts[i])
         }
       }
     }
     for (let i = 0; i < userProducts.length; i++) {
-      allUserProductsWithQty.push(({ ...userProducts[i], qty: productQtyArr[i] }))
+      allUserProductsWithQty.push({ ...userProducts[i], qty: productQtyArr[i] })
     }
+    console.log('sorted product id array', sortedProductIds)
+    console.log('product qty array', productQtyArr)
+    console.log('userproducts', userProducts)
+    console.log('allUserProductsWithQty', allUserProductsWithQty)
     return allUserProductsWithQty
   }
 

@@ -54,6 +54,7 @@ const AppRoutes = () => {
       )}
       {isLoggedIn && loggedInAdmin && (
         <Routes>
+          
           <Route path="/products/:id/edit" element={<EditProduct />} />
           <Route exact path="/addproduct" element={<AddProduct />} />
           <Route path="/users" element={<UserList />} />

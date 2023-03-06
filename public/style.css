@@ -1,13 +1,29 @@
-body {
-  font-family: sans-serif;
-}
-
 a {
   text-decoration: none;
 }
 
 label {
   display: block;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.navLink {
+  font-family: "new-order", sans-serif;
+  font-weight: 400;
+  font-size: 1.5rem;
+  color: #4c5b2f;
+}
+
+.navLink:hover {
+  font-family: "new-order", sans-serif;
+  font-weight: 400;
+  font-size: 1.5rem;
+  color: #ab9bbc;
 }
 
 nav a {
@@ -22,4 +38,292 @@ form div {
 
 img {
   width: 300px;
+}
+
+.homePageParentDiv {
+  display: flex;
+  justify-content: center;
+}
+
+.homeTitleText {
+  font-family: "blenny", sans-serif;
+  font-weight: 900;
+  font-size: 7rem;
+  color: #4c5b2f00;
+  letter-spacing: 0.5rem;
+  -webkit-text-stroke: 1px #4c5b2f;
+  text-shadow: 30px 30px #4c5b2f;
+  margin-top: 0;
+}
+
+.productListParentDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 3rem;
+  gap: 2rem;
+}
+
+#productsList {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 5rem;
+}
+
+.productInList {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 17rem;
+  border: 2px solid #4c5b2fa3;
+  padding: 1rem;
+}
+
+.productNameProductList {
+  font-family: "new-order", sans-serif;
+  font-weight: 700;
+  color: #4c5b2fa3;
+  margin: 0;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.productListImg {
+  width: 250px;
+}
+
+.productListHeader {
+  font-family: "blenny", sans-serif;
+  font-weight: 900;
+  color: #4c5b2f;
+  font-size: 3rem;
+}
+
+.productNameProductList:hover,
+.newProduct:hover {
+  color: #4c5b2f;
+}
+
+.singleProductParentDiv {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.singleProductInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 20%;
+}
+
+.productNameSingleProduct {
+  font-family: "new-order", sans-serif;
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: #4c5b2fa3;
+}
+
+.productDescription {
+  font-family: "new-order", sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  color: #4c5b2fa3;
+}
+
+.productPrice {
+  font-family: "new-order", sans-serif;
+  font-weight: 700;
+  font-size: 2rem;
+  color: #4c5b2fa3;
+}
+
+.productTypeSpecialty {
+  background-color: #4c5b2fa3;
+  font-family: "new-order", sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  color: #ffffff;
+  padding: 1rem;
+}
+
+.buttonsDiv {
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+}
+
+.qtyButton {
+  border: 2px solid #4c5b2fa3;
+  border-radius: 50px;
+  width: 5rem;
+  height: 1.5rem;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.qtyButtonPlusMinus {
+  border: none;
+  color: #4c5b2fa3;
+  font-family: "new-order", sans-serif;
+  font-weight: 400;
+  font-size: 1.75rem;
+  background-color: #ffffff;
+}
+
+.qtyText {
+  color: #4c5b2fa3;
+  font-family: "new-order", sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.addToCartButton {
+  border: none;
+  border-radius: 50px;
+  background-color: #4c5b2fa3;
+  padding: 0.75rem;
+  font-family: "new-order", sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  color: #ffffff;
+  width: 10rem;
+}
+
+.qtyButtonPlusMinus:hover,
+.addToCartButton:hover {
+  cursor: pointer;
+}
+
+.loginFormParentDiv {
+  display: flex;
+  justify-content: center;
+}
+
+.loginForm {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+}
+
+.formLabel {
+  font-family: "new-order", sans-serif;
+  font-weight: 400;
+  color: #ab9bbc;
+}
+
+.formButton {
+  border: none;
+  border-radius: 50px;
+  background-color: #ab9bbc;
+  padding: 0.75rem;
+  font-family: "new-order", sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  color: #ffffff;
+  width: 7rem;
+}
+
+.formInput {
+  font-family: "new-order", sans-serif;
+  color: #4c5b2fa3;
+  padding: 0.5rem;
+  border: 1px solid #ab9bbc;
+}
+
+.formInput:focus {
+  outline: 3px solid #80738d;
+}
+
+.newProduct {
+  font-family: "new-order", sans-serif;
+  color: #4c5b2fa3;
+  font-size: 1.5rem;
+  font-style: italic;
+}
+
+.deleteEditButtonsDiv {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+}
+
+.edit,
+.delete {
+  border: none;
+  border-radius: 50px;
+  background-color: #4c5b2fa3;
+  padding: 0.75rem;
+  font-family: "new-order", sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  color: #ffffff;
+  width: 6rem;
+}
+
+.edit:hover,
+.delete:hover {
+  cursor: pointer;
+  background-color: #4c5b2f;
+}
+
+.newProductParentDiv,
+.editProductParentDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#newProduct,
+#editProduct {
+  display: flex;
+  flex-direction: column;
+  width: 30rem;
+  gap: 0.5rem;
+}
+
+.addProductSubmit,
+.editProductSubmit {
+  border: none;
+  border-radius: 50px;
+  background-color: #ab9bbc;
+  padding: 0.75rem;
+  font-family: "new-order", sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  color: #ffffff;
+  width: 7rem;
+}
+
+.formLabelPadded {
+  font-family: "new-order", sans-serif;
+  font-weight: 400;
+  color: #ab9bbc;
+  padding-top: 1.5rem;
+}
+
+.formButton:hover,
+.addProductSubmit:hover,
+.editProductSubmit:hover {
+  cursor: pointer;
+  background-color: #80738d;
+}
+
+.addProductH2,
+.editProductH2 {
+  font-family: "new-order", sans-serif;
+  font-weight: 700;
+  color: #80738d;
+}
+
+.currEditProduct {
+  font-family: "new-order", sans-serif;
+  font-weight: 400;
+  color: #80738d;
 }

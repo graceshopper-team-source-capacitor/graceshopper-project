@@ -7,6 +7,8 @@ import { fetchProductsAsync, deleteProductAsync } from './allProductsSlice'
 import { me } from '../../../client/app/store'
 import AuthForm from '../auth/AuthForm'
 
+//all products does not render the changes made to the database, but the single page does
+
 const ProductList = () => {
   // const location = useLocation()
   const dispatch = useDispatch()

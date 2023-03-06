@@ -77,12 +77,39 @@ const UserSingleProduct = () => {
     console.log('amount', amount)
   }
 
-  const addToCart = (id, amount) => {
-    dispatch(addLineItemForUserCart({ userId: me.id, productId: id, amount }))
-    dispatch(addManyToLineItemQty({ userId: me.id, productId: id, amount }))
-    navigate('/cart')
+  console.log('fetched cart', fetchedCart)
+  function lineItemProductIdsArrayFunc() {
+    const productIdArr = []
+    for (let i = 0; i < fetchedCart.lineItems?.length; i++) {
+      productIdArr.push(fetchedCart.lineItems[i].productId)
+    }
+    return productIdArr
+  }
 
-    console.log('amount', amount)
+  const lineItemProductIdsArray = lineItemProductIdsArrayFunc()
+
+  const addToCart = (id, amount) => {
+    // if there is a line item already, update line item
+
+    if (lineItemProductIdsArray.includes(id)) {
+      if (amount === 1) {
+        dispatch(addOneToLineItemQty({ userId: me.id, productId: id, amount }))
+      } else {
+        dispatch(addManyToLineItemQty({ userId: me.id, productId: id, amount }))
+      }
+    } else {
+      //if there's not already a line item, create a line item with the qty
+      dispatch(addLineItemForUserCart({ userId: me.id, productId: id, amount }))
+    }
+
+    // if (amount === 1) {
+    //   dispatch(addLineItemForUserCart({ userId: me.id, productId: id, amount }))
+    // } else {
+    //   dispatch(addManyToLineItemQty({ userId: me.id, productId: id, amount }))
+    // }
+    // navigate('/cart')
+
+    // console.log('amount', amount)
 
     //   }
     // }

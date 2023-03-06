@@ -76,7 +76,7 @@ router.post('/:userId/:productId', async (req, res, next) => {
 
     // if there's an existing order
     // and that line item doesnt exist by id
-    // then creat a new line item
+    // then create a new line item
 
     // if there's an existing order
     // and that line item does exist by id

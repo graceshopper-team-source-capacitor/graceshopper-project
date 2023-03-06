@@ -117,7 +117,8 @@ router.put('/addOne/:userId/:productId', async (req, res, next) => {
       include: LineItem,
     })
     const lineItem = await LineItem.findOne({
-      where: { productId: req.params.productId },
+      where: { productId: req.params.productId},
+      // , userId: req.params.userId
     })
     const orderId = orderById.dataValues.id
     const updatedLineItem = await lineItem.update({
@@ -144,13 +145,13 @@ router.put('/addMany/:userId/:productId', async (req, res, next) => {
     if (orderById) {
       console.log('orderById', orderById)
       const lineItem = await LineItem.findOne({
-        where: { id: req.params.productId },
+        where: { productId: req.params.productId },
       })
       console.log('lineItem', lineItem)
       const orderId = orderById.dataValues.id
       // console.log('orderID', orderById.dataValues.lineItems.dataValues.qty)
       // const previousLineItemQty = orderById.dataValues.lineItems.dataValues.qty
-      const updatedLineItem = await lineItem.update({
+      const updatedLineItem = await lineItem?.update({
         id: req.body.id,
         qty: lineItem.dataValues.qty + req.body.qty,
         productId: req.params.productId,

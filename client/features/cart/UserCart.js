@@ -41,12 +41,12 @@ const UserCart = (props) => {
   // creates an array of all the product's in user cart with qtys
   function getUserProductWithQtyFunc() {
     const productIdArr = []
-    const producQtyArr = []
+    const productQtyArr = []
     const userProducts = []
     const allUserProductsWithQty = []
     for (let i = 0; i < fetchedCart.lineItems?.length; i++) {
       productIdArr.push(fetchedCart.lineItems[i].productId)
-      producQtyArr.push(fetchedCart.lineItems[i].qty)
+      productQtyArr.push(fetchedCart.lineItems[i].qty)
     }
     for (let i = 0; i < allProducts.length; i++) {
       for (let j = 0; j < productIdArr.length; j++) {
@@ -56,7 +56,7 @@ const UserCart = (props) => {
       }
     }
     for (let i = 0; i < userProducts.length; i++) {
-      allUserProductsWithQty.push((userProducts[i] = { ...userProducts[i], qty: producQtyArr[i] }))
+      allUserProductsWithQty.push(({ ...userProducts[i], qty: productQtyArr[i] }))
     }
     return allUserProductsWithQty
   }

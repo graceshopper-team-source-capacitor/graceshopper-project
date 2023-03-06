@@ -78,7 +78,7 @@ const UserCart = (props) => {
       dispatch(decrement())
     } else {
       // remove whole line item
-      dispatch(deleteLineItemById({ orderId: fetchedCart.id, productId: itemId, amount }))
+      dispatch(deleteLineItemById({ orderId: fetchedCart.id, productId: itemId }))
       // TODO:
       // updating qty in database but not updating view
       // need to query from database again

@@ -112,16 +112,27 @@ const GuestSingleProduct = () => {
     <div className="singleProductParentDiv">
       <img src={`/${product.imageUrl}`} />
       <div className="singleProductInfo">
-        <p>{product.name}</p>
-        <p>${Number(product.price).toFixed(2)}</p>
-        <p>{product.type}</p>
-        <p>{product.description}</p>
-        <button onClick={subtractFromAmount}>-</button>
-        <p>{amount}</p>
-        <button onClick={addToAmount}>+</button>
-        <button onClick={() => addToCart(product.id, amount)}>
-          Add to Cart
-        </button>
+        <p className="productNameSingleProduct">{product.name}</p>
+        <p className="productDescription">{product.description}</p>
+        <p className="productPrice">${Number(product.price).toFixed(2)}</p>
+        <div className="buttonsDiv">
+          <div className="qtyButton">
+            <button className="qtyButtonPlusMinus" onClick={subtractFromAmount}>
+              -
+            </button>
+            <p className="qtyText">{amount}</p>
+            <button className="qtyButtonPlusMinus" onClick={addToAmount}>
+              +
+            </button>
+          </div>
+          <button
+            className="addToCartButton"
+            onClick={() => addToCart(product.id, amount)}
+          >
+            Add to Cart
+          </button>
+        </div>
+        <p className="productTypeSpecialty">{product.type}</p>
       </div>
     </div>
   );

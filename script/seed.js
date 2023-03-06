@@ -18,8 +18,8 @@ async function seed() {
     const users = await Promise.all([
       User.create({ username: 'cody', password: '123', isAdmin: true }),
       User.create({ username: 'murphy', password: '123' }),
-      User.create({ username: 'rumi', password: '12' }),
-      User.create({ username: 'alicia', password: 'alicia' }),
+      User.create({ username: 'rumi', password: '123' }),
+      // User.create({ username: 'alicia', password: 'alicia' }),
     ])
 
     // Creating products
@@ -337,7 +337,7 @@ async function seed() {
         cardNum: 1000000001,
         shippingAddress: '123 Fake Address',
         userId: 1,
-        lineItemId: 1,
+        // lineItemId: 1,
       }),
       Order.create({
         confirmationNum: 2,
@@ -345,16 +345,16 @@ async function seed() {
         cardNum: 1000000002,
         shippingAddress: '456 Fake Address',
         userId: 2,
-        lineItemId: 2,
+        // lineItemId: 2,
       }),
     ])
 
     // creates a line item
-    const lineItems = await Promise.all([
-      LineItem.create({ productId: 1, qty: 4, orderId: 1 }), //expect to see croissants
-      LineItem.create({ productId: 30, qty: 4, orderId: 1 }), //expect to see croissants
-      LineItem.create({ productId: 3, qty: 5, orderId: 2 }), //expect tortillas
-    ])
+    // const lineItems = await Promise.all([
+    //   LineItem.create({ productId: 1, qty: 4, orderId: 1 }), //expect to see croissants
+    //   LineItem.create({ productId: 30, qty: 4, orderId: 1 }), //expect to see croissants
+      // LineItem.create({ productId: 3, qty: 5, orderId: 2 }), //expect tortillas
+    // ])
 
     const [cody, murphy] = users
     const [
@@ -402,7 +402,7 @@ async function seed() {
       pistachios,
     ] = products
 
-    const [lineItem1, lineItem2] = lineItems
+    // const [lineItem1, lineItem2] = lineItems
 
     // Magic method associations
     // console.log(lineItem1)
@@ -413,10 +413,11 @@ async function seed() {
       users: {
         cody: users[0],
         murphy: users[1],
+        rumi: users[2],
       },
       orders: {
-        murphy: orders[0],
-        cody: orders[1],
+        murphy: orders[1],
+        cody: orders[0],
       },
     }
   } catch (err) {

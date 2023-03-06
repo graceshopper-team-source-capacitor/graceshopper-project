@@ -24,7 +24,6 @@ const UserCart = (props) => {
   // console.log(me)
   // console.log('line items', fetchedCart.lineItems)
   // console.log('allProducts', allProducts)
-  console.log('fetched cart', fetchedCart)
 
   useEffect(() => {
     dispatch(fetchCartById(me.id))
@@ -34,16 +33,20 @@ const UserCart = (props) => {
     fetchProductsAsync()
   }, [dispatch])
 
+  useEffect(() => {
+    getUserProductWithQtyFunc()
+  }, [fetchedCart])
+
   // FETCHING A USERS CART - (START)
   // creates an array of all the product's in user cart with qtys
   function getUserProductWithQtyFunc() {
     const productIdArr = []
-    const producQtyArr = []
+    const productQtyArr = []
     const userProducts = []
     const allUserProductsWithQty = []
     for (let i = 0; i < fetchedCart.lineItems?.length; i++) {
       productIdArr.push(fetchedCart.lineItems[i].productId)
-      producQtyArr.push(fetchedCart.lineItems[i].qty)
+      productQtyArr.push(fetchedCart.lineItems[i].qty)
     }
     for (let i = 0; i < allProducts.length; i++) {
       for (let j = 0; j < productIdArr.length; j++) {
@@ -53,7 +56,7 @@ const UserCart = (props) => {
       }
     }
     for (let i = 0; i < userProducts.length; i++) {
-      allUserProductsWithQty.push((userProducts[i] = { ...userProducts[i], qty: producQtyArr[i] }))
+      allUserProductsWithQty.push(({ ...userProducts[i], qty: productQtyArr[i] }))
     }
     return allUserProductsWithQty
   }
@@ -130,6 +133,9 @@ const UserCart = (props) => {
   function handleCheckoutButton() {
     navigate('/confirm')
   }
+
+  console.log('fetched cart', fetchedCart)
+  console.log('all user products with qty', allUserProductsWithQty)
 
   return (
     <>

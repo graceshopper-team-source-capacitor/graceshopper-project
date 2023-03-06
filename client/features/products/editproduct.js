@@ -7,17 +7,12 @@ import {
   selectSingleProduct,
 } from "../products/singleProductSlice";
 
-//when navigating to an edit page for a different product, the name for the last product shows up in the input bar until you refresh, at which point it corrects itself
-//if you've edited the value before, the previous value prior to being edited shows up as the default value
-//editing perceives the defaultvalue as being an empty string 
-//so every single input has to be changed for the submission to go through due to the model's validation for notEmpty: true.
-//the updated product also shows up in the api
 
 const EditProduct = () => {
   const dispatch = useDispatch();
   const productObject = useSelector(selectSingleProduct);
   const productId = useParams().id;
-  console.log(productId)
+  console.log(productId);
 
   const Navigate = useNavigate();
 
@@ -29,7 +24,8 @@ const EditProduct = () => {
 
   useEffect(() => {
     dispatch(fetchSingleProductAsync(productId));
-  }, [dispatch, productId]); console.log(productId)
+  }, [dispatch, productId]);
+  console.log(productId);
 
   const handleSubmit = async (evt) => {
     evt.preventDefault();
@@ -49,49 +45,55 @@ const EditProduct = () => {
   const product  = productObject;
   console.log(product.name, product.imageUrl, product.price)
   return (
-    <> 
+    <>
     <h2>Editing Product</h2>
-      {/* <div key={product.id}>
+      <div key={product.id}>
         <h2>Currently Editing: </h2>
         <Link to={`/products/${product.id}`}>
-          <h2>{product.name}</h2>
+          <h2 className="currEditProduct">{product.name}</h2>
         </Link>
-        <p>Price: {product.price}</p>
-      </div> */}
-      <form onSubmit={handleSubmit} key={product.id}>
-        <label>Product Name:</label>
+        <p className="currEditProduct">
+          Price: ${Number(product.price).toFixed(2)}
+        </p>
+      </div>
+      <form id="editProduct" onSubmit={handleSubmit}>
+        <label className="formLabelPadded">Product Name:</label>
         <input
           name="name"
           defaultValue={product.name}
           // value={name}
           onChange={(e) => setName(e.target.value)}
+          className="formInput"
         />
 
-        <label>Product Image:</label>
+        <label className="formLabelPadded">Product Image:</label>
         <input
           name="ProductimgUrl"
           defaultValue={product.imageUrl}
           // value={imageUrl}
           onChange={(e) => setImage(e.target.value)}
+          className="formInput"
         />
 
-        <label>Product Price:</label>
+        <label className="formLabelPadded">Product Price:</label>
         <input
           name="price"
           defaultValue={product.price}
           // value={price}
           onChange={(e) => setPrice(e.target.value)}
+          className="formInput"
         />
 
-        <label>Product Description:</label>
+        <label className="formLabelPadded">Product Description:</label>
         <input
           name="ProductDescription"
           defaultValue={product.description}
           // value={description}
           onChange={(e) => setDescription(e.target.value)}
+          className="formInput"
         />
 
-        <label>Product Type:</label>
+        <label className="formLabelPadded">Product Type:</label>
         <select
           name="type"
           defaultValue={product.type}

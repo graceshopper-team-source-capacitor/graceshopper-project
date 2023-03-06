@@ -42,7 +42,8 @@ img {
 
 .homePageParentDiv {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 .homeTitleText {
@@ -54,6 +55,17 @@ img {
   -webkit-text-stroke: 1px #4c5b2f;
   text-shadow: 30px 30px #4c5b2f;
   margin-top: 0;
+}
+
+.homeCategories {
+  display: flex;
+  flex-direction: row-wrap;
+}
+
+.homeCategoryText {
+  font-family: "new-order", sans-serif;
+  font-weight: 700;
+  font-size: 2rem;
 }
 
 .productListParentDiv {

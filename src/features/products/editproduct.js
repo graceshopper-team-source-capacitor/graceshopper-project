@@ -5,7 +5,7 @@ import {
   fetchSingleProductAsync,
   editProductAsync,
   selectSingleProduct,
-} from './singleProductSlice'
+} from '../products/singleProductSlice'
 
 const EditProduct = () => {
   const dispatch = useDispatch()
@@ -52,15 +52,13 @@ const EditProduct = () => {
   const product = productObject
   console.log(product.name, product.imageUrl, product.price)
   return (
-    <>
-      <h2>Editing Product</h2>
-      <div key={product.id}>
-        <h2>Currently Editing: </h2>
-        <Link to={`/products/${product.id}`}>
-          <h2 className="currEditProduct">{product.name}</h2>
-        </Link>
-        <p className="currEditProduct">Price: ${Number(product.price).toFixed(2)}</p>
-      </div>
+    <div className="editProductParentDiv" key={product.id}>
+      <h2 className="addProductH2">Currently Editing: </h2>
+      <Link to={`/products/${product.id}`}>
+        <h2 className="currEditProduct">{product.name}</h2>
+      </Link>
+      <p className="currEditProduct">Price: ${Number(product.price).toFixed(2)}</p>
+
       <form id="editProduct" onSubmit={handleSubmit}>
         <label className="formLabelPadded">Product Name:</label>
         <input
@@ -101,6 +99,7 @@ const EditProduct = () => {
 
         <label className="formLabelPadded">Product Type:</label>
         <select
+          className="productTypeDropDown"
           name="type"
           defaultValue={product.type}
           // value={type}
@@ -111,10 +110,11 @@ const EditProduct = () => {
           <option value="dairy">Dairy</option>
           <option value="specialty">Specialty</option>
         </select>
-        <button type="submit">Edit</button>
+        <button type="submit" className="addProductSubmit">
+          Edit
+        </button>
       </form>
-    </>
+    </div>
   )
 }
-
 export default EditProduct

@@ -55,17 +55,22 @@ img {
   -webkit-text-stroke: 1px #4c5b2f;
   text-shadow: 30px 30px #4c5b2f;
   margin-top: 0;
+  margin-bottom: 1rem;
 }
 
 .homeCategories {
   display: flex;
-  flex-direction: row-wrap;
+  flex-direction: row;
+  justify-content: center;
+  gap: 4rem;
 }
 
 .homeCategoryText {
   font-family: "new-order", sans-serif;
   font-weight: 700;
   font-size: 2rem;
+  color: #e26969;
+  text-align: center;
 }
 
 .productListParentDiv {
@@ -255,9 +260,13 @@ img {
   width: 10rem;
 }
 
-.qtyButtonPlusMinus:hover,
+.qtyButtonPlusMinus:hover {
+  cursor: pointer;
+}
+
 .addToCartButton:hover {
   cursor: pointer;
+  background-color: #4c5b2f;
 }
 
 .loginFormParentDiv {
@@ -291,12 +300,13 @@ img {
 
 .formInput {
   font-family: "new-order", sans-serif;
-  color: #4c5b2fa3;
+  color: #70657c;
   padding: 0.5rem;
   border: 1px solid #ab9bbc;
 }
 
-.formInput:focus {
+.formInput:focus,
+.productTypeDropDown:focus {
   outline: 3px solid #80738d;
 }
 
@@ -348,7 +358,8 @@ img {
 }
 
 .addProductSubmit,
-.editProductSubmit {
+.editProductSubmit,
+.cartRemove {
   border: none;
   border-radius: 50px;
   background-color: #ab9bbc;
@@ -385,4 +396,229 @@ img {
   font-family: "new-order", sans-serif;
   font-weight: 400;
   color: #80738d;
+}
+
+.cartParentDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.allCartProductsParentDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.cartProductParentDiv {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.cartProductInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.qtyButtonPurple {
+  border: 2px solid #ab9bbc;
+  border-radius: 50px;
+  width: 5rem;
+  height: 1.5rem;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.qtyButtonPlusMinusPurple {
+  border: none;
+  color: #ab9bbc;
+  font-family: "new-order", sans-serif;
+  font-weight: 400;
+  font-size: 1.75rem;
+  background-color: #ffffff;
+}
+
+.qtyButtonPlusMinusPurple:hover {
+  cursor: pointer;
+}
+
+.qtyTextPurple {
+  color: #ab9bbc;
+  font-family: "new-order", sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.productNameSingleProductPurple {
+  font-family: "new-order", sans-serif;
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: #ab9bbc;
+  margin: 0;
+}
+
+.productPricePurple {
+  font-family: "new-order", sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  color: #ab9bbc;
+  margin: 0;
+}
+
+.cartTotalDiv {
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.cartTitleText {
+  font-family: "blenny", sans-serif;
+  font-weight: 900;
+  font-size: 4rem;
+  color: #ab9bbc;
+  letter-spacing: 0.5rem;
+  margin: 0;
+  text-decoration: underline;
+}
+
+.cartTotalDarkPurple {
+  font-family: "new-order", sans-serif;
+  font-weight: 700;
+  font-size: 2rem;
+  color: #70657c;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.checkoutButton {
+  border: none;
+  border-radius: 50px;
+  background-color: #70657c;
+  padding: 0.75rem;
+  font-family: "new-order", sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  color: #ffffff;
+  width: 7rem;
+}
+
+.checkoutButton:hover {
+  cursor: pointer;
+  background-color: #ab9bbc;
+}
+
+.cartRemove:hover,
+.backToHomeButton:hover {
+  cursor: pointer;
+  background-color: #70657c;
+}
+
+.cartDivider {
+  /* size: 10px;
+  color: #ab9bbc; */
+  width: 40%;
+}
+
+.confirmation-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.confirmationTitleText {
+  font-family: "new-order", sans-serif;
+  font-weight: 700;
+  font-size: 2.5rem;
+  color: #ab9bbc;
+  margin: 0;
+}
+
+.confirmationSubText {
+  font-family: "new-order", sans-serif;
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: #70657c;
+  margin: 0;
+}
+
+.confirmationOrderNum {
+  font-family: "new-order", sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  color: #70657c;
+  margin: 0;
+}
+
+.backToHomeButton {
+  border: none;
+  border-radius: 50px;
+  background-color: #ab9bbc;
+  padding: 0.75rem;
+  font-family: "new-order", sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  color: #ffffff;
+  width: 10rem;
+}
+
+.productTypeDropDown {
+  font-family: "new-order", sans-serif;
+  font-weight: 400;
+  color: #70657c;
+}
+
+.homeImage {
+  width: 800px;
+  padding: 0;
+}
+
+.confirmImage {
+  width: 200px;
+  padding: 0;
+}
+
+.profileParentDiv,
+.userListParentDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.profileTitleText {
+  font-family: "new-order", sans-serif;
+  text-decoration: underline;
+  font-weight: 700;
+  font-size: 2.5rem;
+  color: #ab9bbc;
+  margin: 0;
+}
+
+.profileSubText,
+.userListNames {
+  font-family: "new-order", sans-serif;
+  font-weight: 400;
+  font-size: 1.5rem;
+  color: #ab9bbc;
+  margin: 0;
+}
+
+.viewAllUsers {
+  font-family: "new-order", sans-serif;
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: #ab9bbc;
+  margin: 0;
+  font-style: italic;
+}
+
+.userListLi {
+  color: #ab9bbc;
 }

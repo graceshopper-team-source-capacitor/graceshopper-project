@@ -55,17 +55,27 @@ img {
   -webkit-text-stroke: 1px #4c5b2f;
   text-shadow: 30px 30px #4c5b2f;
   margin-top: 0;
+  margin-bottom: 1rem;
 }
 
 .homeCategories {
   display: flex;
-  flex-direction: row-wrap;
+  flex-direction: row;
+  justify-content: center;
+  gap: 4rem;
 }
 
 .homeCategoryText {
   font-family: "new-order", sans-serif;
   font-weight: 700;
   font-size: 2rem;
+  color: #e26969;
+  text-align: center;
+}
+
+.homeCategoryText:hover {
+  cursor: pointer;
+  color: #e2696996;
 }
 
 .productListParentDiv {
@@ -567,4 +577,14 @@ img {
   font-family: "new-order", sans-serif;
   font-weight: 400;
   color: #70657c;
+}
+
+.homeImage {
+  width: 800px;
+  padding: 0;
+}
+
+.confirmImage {
+  width: 200px;
+  padding: 0;
 }

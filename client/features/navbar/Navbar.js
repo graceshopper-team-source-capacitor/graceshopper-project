@@ -3,10 +3,14 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import { logout } from '../../app/store'
 import { selectGuestCart } from '../cart/guestCartSlice'
+import { initialState } from '../cart/userCartSlice'
 
 const Navbar = () => {
   const isLoggedIn = useSelector((state) => !!state.auth.me.id)
   const numItemsInCart = useSelector((state) => state.guestCart.numItemsInCart)
+  // const numItemsInUserCart = useSelector((state) => state.cart.numItemsInCart)
+  // const numItemsInUserCart = initialState.numItemsInCart
+  const numItemsInUserCart = useSelector((state) => state)
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const logoutAndRedirectHome = () => {
@@ -37,6 +41,8 @@ const Navbar = () => {
   //   initialValue
   // )
 
+  console.log('guest', numItemsInCart)
+  console.log('user', numItemsInUserCart)
   return (
     <div>
       <nav>
@@ -53,7 +59,7 @@ const Navbar = () => {
               Products
             </Link>
             <Link to="/cart" className="navLink">
-              Cart
+              Cart({numItemsInUserCart})
             </Link>
             <hr></hr>
           </div>

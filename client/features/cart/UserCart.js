@@ -9,7 +9,7 @@ import {
   subtractOneFromLineItemQty,
 } from './userCartSlice'
 import { fetchProductsAsync, selectProducts } from '../products/allProductsSlice'
-import { decrement } from './guestCartSlice'
+import { increment, decrement, decrementByAmount } from '../cart/userCartSlice'
 
 /**
  * COMPONENT
@@ -39,8 +39,6 @@ const UserCart = (props) => {
 
       // workaround but is not optimal:
       window.location.reload()
-
-      dispatch(decrement())
     } else {
       // remove whole line item
       dispatch(deleteLineItemById({ orderId: fetchedCart.id, productId: itemId }))
@@ -50,8 +48,8 @@ const UserCart = (props) => {
 
       // workaround but is not optimal:
       window.location.reload()
-      dispatch(increment())
     }
+    dispatch(decrement())
   }
   // SUBTRACT FROM QTY (END)
 
@@ -64,12 +62,14 @@ const UserCart = (props) => {
 
     // workaround but is not optimal:
     window.location.reload()
+    dispatch(increment())
   }
   // ADD TO QTY (END)
 
   // REMOVE FROM CART (START)
-  function removeFromCart(itemId) {
+  function removeFromCart(itemId, qty) {
     // remove whole line item
+    dispatch(decrementByAmount(qty))
     dispatch(deleteLineItemById({ orderId: fetchedCart.id, productId: itemId }))
     // TODO:
     // updating qty in database but not updating view

@@ -76,9 +76,14 @@ export const addLineItemForUserCart = createAsyncThunk(
   }
 )
 
+export const initialState = {
+  numItemsInCart: 0,
+  cart: {},
+}
+
 const cartSlice = createSlice({
   name: 'cart',
-  initialState: {},
+  initialState,
   reducers: {
     increment: (state) => {
       state.numItemsInCart += 1
@@ -88,6 +93,9 @@ const cartSlice = createSlice({
     },
     decrement: (state) => {
       state.numItemsInCart -= 1
+    },
+    decrementByAmount: (state, action) => {
+      state.numItemsInCart -= action.payload
     },
   },
   extraReducers: (builder) => {
@@ -118,5 +126,9 @@ const cartSlice = createSlice({
 })
 
 export const selectCart = (state) => state.cart
+
+// console.log('cart qty', selectCartQty)
+
+export const { increment, incrementByAmount, decrement, decrementByAmount } = cartSlice.actions
 
 export default cartSlice.reducer

@@ -507,7 +507,8 @@ img {
   background-color: #ab9bbc;
 }
 
-.cartRemove:hover {
+.cartRemove:hover,
+.backToHomeButton:hover {
   cursor: pointer;
   background-color: #70657c;
 }
@@ -516,4 +517,47 @@ img {
   /* size: 10px;
   color: #ab9bbc; */
   width: 40%;
+}
+
+.confirmation-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.confirmationTitleText {
+  font-family: "new-order", sans-serif;
+  font-weight: 700;
+  font-size: 2.5rem;
+  color: #ab9bbc;
+  margin: 0;
+}
+
+.confirmationSubText {
+  font-family: "new-order", sans-serif;
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: #70657c;
+  margin: 0;
+}
+
+.confirmationOrderNum {
+  font-family: "new-order", sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  color: #70657c;
+  margin: 0;
+}
+
+.backToHomeButton {
+  border: none;
+  border-radius: 50px;
+  background-color: #ab9bbc;
+  padding: 0.75rem;
+  font-family: "new-order", sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  color: #ffffff;
+  width: 10rem;
 }

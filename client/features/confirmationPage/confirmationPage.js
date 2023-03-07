@@ -10,12 +10,12 @@ const ConfirmationPage = () => {
 
   return (
     <div className="confirmation-page">
-      <h1>We've received your order!</h1>
-      <h1>Here are your order details </h1>
-      <h3>{`Order Number: #${orderNumber}`}</h3>
-      {/* <NavLink to='/products'>
-                <button>Back to Homepage</button>
-            </NavLink> */}
+      <h1 className="confirmationTitleText">We've received your order!</h1>
+      <h1 className="confirmationSubText">Here are your order details. </h1>
+      <h3 className="confirmationOrderNum">{`Order Number: #${orderNumber}`}</h3>
+      <NavLink to="/home">
+        <button className="backToHomeButton">Back to Home</button>
+      </NavLink>
     </div>
   );
 };

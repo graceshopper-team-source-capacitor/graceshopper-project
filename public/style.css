@@ -615,6 +615,15 @@ img {
   margin: 0;
 }
 
+.viewAllUsers {
+  font-family: "new-order", sans-serif;
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: #ab9bbc;
+  margin: 0;
+  font-style: italic;
+}
+
 .userListLi {
   color: #ab9bbc;
 }

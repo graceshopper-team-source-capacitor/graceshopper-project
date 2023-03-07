@@ -424,7 +424,9 @@ img {
 .cartProductInfo {
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
   gap: 1rem;
+  max-width: 20rem;
 }
 
 .qtyButtonPurple {

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { increment } from '../cart/guestCartSlice'
-import { decrement } from '../cart/guestCartSlice'
+import { increment } from './guestCartSlice'
+import { decrement } from './guestCartSlice'
 
 /**
  * COMPONENT

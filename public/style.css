@@ -42,7 +42,8 @@ img {
 
 .homePageParentDiv {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 .homeTitleText {
@@ -56,12 +57,70 @@ img {
   margin-top: 0;
 }
 
+.homeCategories {
+  display: flex;
+  flex-direction: row-wrap;
+}
+
+.homeCategoryText {
+  font-family: "new-order", sans-serif;
+  font-weight: 700;
+  font-size: 2rem;
+}
+
 .productListParentDiv {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   margin: 3rem;
-  gap: 2rem;
+  gap: 8rem;
+}
+
+.sortSideMenu {
+  display: flex;
+  flex-direction: column;
+}
+
+.sortByAllButton,
+.sortByDairyButton,
+.sortByProduceButton,
+.sortByBakeryButton,
+.sortBySpecialtyButton {
+  border: none;
+  background-color: white;
+  font-family: "new-order", sans-serif;
+  font-weight: 400;
+  font-size: 1.25rem;
+  text-align: right;
+  color: #4c5b2f;
+}
+
+.sortByDairyButton:hover,
+.sortByDairyButton:focus {
+  color: #ab9bbc;
+  cursor: pointer;
+}
+
+.sortByBakeryButton:hover,
+.sortByBakeryButton:focus {
+  color: #ddb537;
+  cursor: pointer;
+}
+
+.sortByProduceButton:hover,
+.sortByProduceButton:focus {
+  color: #4c5b2fa3;
+  cursor: pointer;
+}
+
+.sortBySpecialtyButton:hover,
+.sortBySpecialtyButton:focus {
+  color: #e26969;
+  cursor: pointer;
+}
+
+.sortByAllButton:hover {
+  cursor: pointer;
 }
 
 #productsList {

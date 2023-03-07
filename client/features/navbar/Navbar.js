@@ -9,8 +9,8 @@ const Navbar = () => {
   const isLoggedIn = useSelector((state) => !!state.auth.me.id)
   const numItemsInCart = useSelector((state) => state.guestCart.numItemsInCart)
   // const numItemsInUserCart = useSelector((state) => state.cart.numItemsInCart)
-  // const numItemsInUserCart = initialState.numItemsInCart
-  const numItemsInUserCart = useSelector((state) => state)
+  const numItemsInUserCart = initialState.numItemsInCart
+  // const numItemsInUserCart = useSelector((state) => state)
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const logoutAndRedirectHome = () => {

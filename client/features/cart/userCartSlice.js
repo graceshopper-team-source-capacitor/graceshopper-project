@@ -82,9 +82,9 @@ export const initialState = {
   cart: {},
 }
 
-const cartSlice = createSlice({
+export const cartSlice = createSlice({
   name: 'cart',
-  initialState,
+  initialState: initialState,
   reducers: {
     increment: (state) => {
       state.numItemsInCart += 1

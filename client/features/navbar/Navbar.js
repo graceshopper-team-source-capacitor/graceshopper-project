@@ -14,6 +14,29 @@ const Navbar = () => {
     navigate('/login')
   }
 
+  const [cart, setCart] = useState([])
+
+  useEffect(() => {
+    try {
+      let localCart = localStorage.getItem('cart') || ''
+      let jsonCart = JSON.parse(localCart)
+      if (localCart) setCart(jsonCart)
+    } catch (err) {}
+  }, [])
+
+  console.log('cart', cart)
+
+  const totalNumItems = []
+  for (let i = 0; i < cart.length; i++) {
+    totalNumItems.push(cart[i].qty)
+  }
+
+  const initialValue = 0
+  const sumOfQtys = totalNumItems.reduce(
+    (previousValue, currentValue) => previousValue + currentValue,
+    initialValue
+  )
+
   return (
     <div>
       <nav>
@@ -49,12 +72,12 @@ const Navbar = () => {
             <Link to="/products" className="navLink">
               Products
             </Link>
-            <Link to="/cart" className="navLink">
-              Cart
-            </Link>
             {/* <Link to="/cart" className="navLink">
-              Cart({numItemsInCart})
+              Cart
             </Link> */}
+            <Link to="/cart" className="navLink">
+              Cart({numItemsInCart})
+            </Link>
             {/* <Link to="/cart">Cart</Link> */}
             <hr></hr>
           </div>

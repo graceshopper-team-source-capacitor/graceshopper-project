@@ -18,11 +18,14 @@ const guestCartSlice = createSlice({
     decrement: (state) => {
       state.numItemsInCart -= 1
     },
+    decrementByAmount: (state, action) => {
+      state.numItemsInCart -= action.payload
+    },
   },
 })
 
 export const selectGuestCart = (state) => state.guestCart
 
-export const { increment, incrementByAmount, decrement } = guestCartSlice.actions
+export const { increment, incrementByAmount, decrement, decrementByAmount } = guestCartSlice.actions
 
 export default guestCartSlice.reducer

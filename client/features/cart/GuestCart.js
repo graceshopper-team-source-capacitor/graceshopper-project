@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { increment } from '../cart/guestCartSlice'
-import { decrement } from '../cart/guestCartSlice'
+import { decrement, decrementByAmount } from '../cart/guestCartSlice'
 
 /**
  * COMPONENT
@@ -62,12 +62,19 @@ const GuestCart = (props) => {
 
   // REMOVING ITEM FROM CART (START)
   const removeFromCart = (index, cart) => {
+    console.log(cart, index)
+    console.log(cart[index].qty)
+    dispatch(decrementByAmount(cart[index].qty))
     // delete one item at index from the cart
     let splicedCart = cart.splice(index, 1)
     // set the cart (not including the removed item)
     // need to create a clone of cart since you cannot modify state directly
+
     setCart(structuredClone(cart))
+
+    // dispatch(decrementByAmount())
   }
+
   // REMOVING ITEM FROM CART (END)
 
   // TOTAL CART PRICE (START)

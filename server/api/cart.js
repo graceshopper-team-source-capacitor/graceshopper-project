@@ -189,6 +189,25 @@ router.put('/subtractOne/:userId/:productId', async (req, res, next) => {
   }
 })
 
+
+// router.post("/", async (req, res, next) => {
+//   try {
+//     const { userId } = req.body;
+//     //ableToCreate is checking to see if there is already a cart with unpurchased items then it will send that cart insted of creating one.
+//     const ableToCreate = await getCartByUser(userId);
+
+//     if (ableToCreate.isPurchased === false) {
+//       res.send(ableToCreate);
+//     } else {
+//       const response = await createCart({ userId });
+
+//       res.send(response);
+//     }
+//   } catch (error) {
+//     next(error);
+//   }
+// });
+
 module.exports = router
 
 // export const findOrMakeCart = (itemId, userId, UUID) => {
@@ -210,26 +229,9 @@ module.exports = router
 //       await axios.put(`/api/cart/attach/${userId}`, {UUID})
 //       dispatch(fetchCart(userId,UUID));
 //     } catch (error) {
-//       console.log('uh oh unable guest cart to new User.')
+//       console.log('unable guest cart to new User.')
 //     }
 //   }
 // }
 
 //create cart
-router.post("/", async (req, res, next) => {
-  try {
-    const { userId } = req.body;
-    //ableToCreate is checking to see if there is already a cart with unpurchased items then it will send that cart insted of creating one.
-    const ableToCreate = await getCartByUser(userId);
-
-    if (ableToCreate.isPurchased === false) {
-      res.send(ableToCreate);
-    } else {
-      const response = await createCart({ userId });
-
-      res.send(response);
-    }
-  } catch (error) {
-    next(error);
-  }
-});

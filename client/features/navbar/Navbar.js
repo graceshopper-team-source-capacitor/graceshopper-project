@@ -16,26 +16,26 @@ const Navbar = () => {
 
   const [cart, setCart] = useState([])
 
-  useEffect(() => {
-    try {
-      let localCart = localStorage.getItem('cart') || ''
-      let jsonCart = JSON.parse(localCart)
-      if (localCart) setCart(jsonCart)
-    } catch (err) {}
-  }, [])
+  // useEffect(() => {
+  //   try {
+  //     let localCart = localStorage.getItem('cart') || ''
+  //     let jsonCart = JSON.parse(localCart)
+  //     if (localCart) setCart(jsonCart)
+  //   } catch (err) {}
+  // }, [])
 
-  console.log('cart', cart)
+  // console.log('cart', cart)
 
-  const totalNumItems = []
-  for (let i = 0; i < cart.length; i++) {
-    totalNumItems.push(cart[i].qty)
-  }
+  // const totalNumItems = []
+  // for (let i = 0; i < cart.length; i++) {
+  //   totalNumItems.push(cart[i].qty)
+  // }
 
-  const initialValue = 0
-  const sumOfQtys = totalNumItems.reduce(
-    (previousValue, currentValue) => previousValue + currentValue,
-    initialValue
-  )
+  // const initialValue = 0
+  // const sumOfQtys = totalNumItems.reduce(
+  //   (previousValue, currentValue) => previousValue + currentValue,
+  //   initialValue
+  // )
 
   return (
     <div>
@@ -76,7 +76,7 @@ const Navbar = () => {
               Cart
             </Link> */}
             <Link to="/cart" className="navLink">
-              Cart({numItemsInCart})
+              Cart({numItemsInCart >= 0 ? numItemsInCart : 0})
             </Link>
             {/* <Link to="/cart">Cart</Link> */}
             <hr></hr>

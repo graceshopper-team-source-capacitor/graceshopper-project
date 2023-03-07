@@ -91,36 +91,50 @@ const GuestCart = (props) => {
 
   return (
     <div className="cartParentDiv">
-      <h3>Cart</h3>
-      {cart.map((item, index) => (
-        <div className="cartProductParentDiv" key={item.id}>
-          <img src={item.imageUrl} />
-          <div className="cartProductInfo">
-            <h4 className="productNameSingleProductPurple">{item.name}</h4>
-            <h4 className="productPricePurple">
-              Total Price: ${Number(item.qty * item.price).toFixed(2)}
-            </h4>
-            <div className="qtyButtonPurple">
+      <h3 className="cartTitleText">Cart</h3>
+      <div className="allCartProductsParentDiv">
+        {cart.map((item, index) => (
+          <div className="cartProductParentDiv" key={item.id}>
+            <img src={item.imageUrl} />
+            <div className="cartProductInfo">
+              <h4 className="productNameSingleProductPurple">{item.name}</h4>
+              <h4 className="productPricePurple">
+                Total Price: ${Number(item.qty * item.price).toFixed(2)}
+              </h4>
+              <div className="qtyButtonPurple">
+                <button
+                  className="qtyButtonPlusMinusPurple"
+                  onClick={() => subtractFromQty(index, cart)}
+                >
+                  -
+                </button>
+                <h4 className="qtyTextPurple">{item.qty}</h4>
+                <button
+                  className="qtyButtonPlusMinusPurple"
+                  onClick={() => addToQty(index, cart)}
+                >
+                  +
+                </button>
+              </div>
               <button
-                className="qtyButtonPlusMinusPurple"
-                onClick={() => subtractFromQty(index, cart)}
+                className="cartRemove"
+                onClick={() => removeFromCart(index, cart)}
               >
-                -
-              </button>
-              <h4 className="qtyTextPurple">{item.qty}</h4>
-              <button
-                className="qtyButtonPlusMinusPurple"
-                onClick={() => addToQty(index, cart)}
-              >
-                +
+                Remove
               </button>
             </div>
-            <button onClick={() => removeFromCart(index, cart)}>Remove</button>
           </div>
-        </div>
-      ))}
-      <h4>Total Price: ${sumOfPrices.toFixed(2)}</h4>
-      <button onClick={handleCheckoutButton}>Checkout</button>
+        ))}
+      </div>
+      <hr className="cartDivider"></hr>
+      <div className="cartTotalDiv">
+        <h4 className="cartTotalDarkPurple">
+          Cart Total: ${sumOfPrices.toFixed(2)}
+        </h4>
+        <button className="checkoutButton" onClick={handleCheckoutButton}>
+          Checkout
+        </button>
+      </div>
     </div>
   );
 };

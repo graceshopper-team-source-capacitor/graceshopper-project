@@ -255,9 +255,13 @@ img {
   width: 10rem;
 }
 
-.qtyButtonPlusMinus:hover,
+.qtyButtonPlusMinus:hover {
+  cursor: pointer;
+}
+
 .addToCartButton:hover {
   cursor: pointer;
+  background-color: #4c5b2f;
 }
 
 .loginFormParentDiv {
@@ -348,7 +352,8 @@ img {
 }
 
 .addProductSubmit,
-.editProductSubmit {
+.editProductSubmit,
+.cartRemove {
   border: none;
   border-radius: 50px;
   background-color: #ab9bbc;
@@ -393,10 +398,22 @@ img {
   align-items: center;
 }
 
+.allCartProductsParentDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
 .cartProductParentDiv {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  align-items: center;
+}
+
+.cartProductInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .qtyButtonPurple {
@@ -420,6 +437,10 @@ img {
   background-color: #ffffff;
 }
 
+.qtyButtonPlusMinusPurple:hover {
+  cursor: pointer;
+}
+
 .qtyTextPurple {
   color: #ab9bbc;
   font-family: "new-order", sans-serif;
@@ -432,6 +453,7 @@ img {
   font-weight: 700;
   font-size: 1.5rem;
   color: #ab9bbc;
+  margin: 0;
 }
 
 .productPricePurple {
@@ -439,4 +461,59 @@ img {
   font-weight: 700;
   font-size: 1rem;
   color: #ab9bbc;
+  margin: 0;
+}
+
+.cartTotalDiv {
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.cartTitleText {
+  font-family: "blenny", sans-serif;
+  font-weight: 900;
+  font-size: 4rem;
+  color: #ab9bbc;
+  letter-spacing: 0.5rem;
+  margin: 0;
+  text-decoration: underline;
+}
+
+.cartTotalDarkPurple {
+  font-family: "new-order", sans-serif;
+  font-weight: 700;
+  font-size: 2rem;
+  color: #70657c;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.checkoutButton {
+  border: none;
+  border-radius: 50px;
+  background-color: #70657c;
+  padding: 0.75rem;
+  font-family: "new-order", sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  color: #ffffff;
+  width: 7rem;
+}
+
+.checkoutButton:hover {
+  cursor: pointer;
+  background-color: #ab9bbc;
+}
+
+.cartRemove:hover {
+  cursor: pointer;
+  background-color: #70657c;
+}
+
+.cartDivider {
+  /* size: 10px;
+  color: #ab9bbc; */
+  width: 40%;
 }

@@ -39,6 +39,7 @@ const AppRoutes = () => {
           <Route exact path="/products" element={<ProductList />} />
           <Route exact path="/products/:id" element={<UserSingleProduct />} />
           <Route path="/userCart" element={<UserCart />} />
+          <Route path="/confirm" element={<ConfirmationPage />} />
         </Routes>
       )}
       {!isLoggedIn && (
@@ -67,7 +68,6 @@ const AppRoutes = () => {
           <Route path="/products/:id/edit" element={<EditProduct />} />
           <Route exact path="/addproduct" element={<AddProduct />} />
           <Route path="/users" element={<UserList />} />
-          <Route path="/confirm" element={<ConfirmationPage />} />
         </Routes>
       )}
     </div>

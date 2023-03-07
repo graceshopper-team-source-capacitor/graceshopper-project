@@ -589,7 +589,8 @@ img {
   padding: 0;
 }
 
-.profileParentDiv {
+.profileParentDiv,
+.userListParentDiv {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -605,10 +606,15 @@ img {
   margin: 0;
 }
 
-.profileSubText {
+.profileSubText,
+.userListNames {
   font-family: "new-order", sans-serif;
   font-weight: 400;
   font-size: 1.5rem;
   color: #ab9bbc;
   margin: 0;
+}
+
+.userListLi {
+  color: #ab9bbc;
 }

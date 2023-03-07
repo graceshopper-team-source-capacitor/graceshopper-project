@@ -73,11 +73,6 @@ img {
   text-align: center;
 }
 
-.homeCategoryText:hover {
-  cursor: pointer;
-  color: #e2696996;
-}
-
 .productListParentDiv {
   display: flex;
   flex-direction: row;

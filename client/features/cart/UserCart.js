@@ -17,7 +17,7 @@ const UserCart = (props) => {
   // const [amount, setAmount] = useState(1)
   const fetchedCart = useSelector(selectCart)
   const me = useSelector((state) => state.auth.me)
- 
+
   useEffect(() => {
     dispatch(fetchCartById(me.id))
   }, [dispatch])
@@ -25,23 +25,25 @@ const UserCart = (props) => {
   // useEffect(() => {
   //   fetchProductsAsync()
   // }, [dispatch])
-// useEffect(()=>{
-//   dispatch(fetchCartById(me.id))
-// }, [dispatch])
+  // useEffect(()=>{
+  //   dispatch(fetchCartById(me.id))
+  // }, [dispatch])
 
-// useEffect(()=>{
-//   setAmount
-// })
- 
+  // useEffect(()=>{
+  //   setAmount
+  // })
+
   // SUBTRACT FROM QTY (START)
   async function subtractFromQty(itemId, itemQty) {
     console.log(itemQty)
-    const newQty = itemQty-1
+    const newQty = itemQty - 1
     // const newAmount = amount-1;
-    if (itemQty >= 1) {
-      await dispatch(subtractOneFromLineItemQty({ userId: me.id, productId: itemId, amount: newQty }))
+    if (itemQty > 1) {
+      await dispatch(
+        subtractOneFromLineItemQty({ userId: me.id, productId: itemId, amount: newQty })
+      )
       //  setAmount(newAmount)
-       await dispatch(fetchCartById(me.id))
+      await dispatch(fetchCartById(me.id))
       // TODO:
       // updating qty in database but not updating view
       // need to query from database again
@@ -50,12 +52,11 @@ const UserCart = (props) => {
       // window.location.reload()
 
       // dispatch(decrement())
-      
     } else {
       // remove whole line item
       await dispatch(deleteLineItemById({ orderId: fetchedCart.id, productId: itemId }))
       //  setAmount(newAmount)
-       await dispatch(fetchCartById(me.id))
+      await dispatch(fetchCartById(me.id))
       // TODO:
       // updating qty in database but not updating view
       // need to query from database again
@@ -63,11 +64,9 @@ const UserCart = (props) => {
       // workaround but is not optimal:
       // window.location.reload()
       // dispatch(increment())
-   
     }
   }
   // SUBTRACT FROM QTY (END)
-
 
   // ADD TO QTY (START)
   async function addToQty(itemId, itemQty) {

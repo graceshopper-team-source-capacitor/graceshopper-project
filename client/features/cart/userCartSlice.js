@@ -11,6 +11,7 @@ export const fetchCartById = createAsyncThunk('cart/fetchById', async (userId) =
     console.log(err)
   }
 })
+//pass state into thunk so it passes back the new state
 
 // WORKING
 export const deleteWholeCartById = createAsyncThunk('cart/delete', async (userId) => {

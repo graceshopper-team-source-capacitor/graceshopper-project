@@ -121,7 +121,7 @@ router.put('/addOne/:userId/:productId', async (req, res, next) => {
       // , userId: req.params.userId
     })
     const orderId = orderById.dataValues.id
-    const updatedLineItem = await lineItem.update({
+    const updatedLineItem = await lineItem?.update({
       // id: req.body.id,
       qty: lineItem.dataValues.qty + 1,
       productId: req.params.productId,
@@ -178,7 +178,7 @@ router.put('/subtractOne/:userId/:productId', async (req, res, next) => {
     })
     const orderId = orderById.dataValues.id
     const updatedLineItem = await lineItem?.update({
-      id: req.body.id,
+      // id: req.body.id,
       qty: lineItem.dataValues.qty - 1,
       productId: req.params.productId,
       orderId: orderId,
@@ -194,11 +194,11 @@ module.exports = router
 // export const findOrMakeCart = (itemId, userId, UUID) => {
 //   return async (dispatch) => {
 //     try {
-//       const { data } = await axios.post(`/api/cart`, { itemId, userId, UUID });
+//       const { data } = await axios.post(`/api/cart`, { productId, userId, UUID });
 //       if (userId==0){
 //         localStorage.setItem('UUID', data.UUID)
 //       }
-//       dispatch(updateQuantities(data.id, data.UUID, userId, itemId, 'inc'))
+//       dispatch(updateQuantities(data.id, data.UUID, userId, productId, 'inc'))
 //     } catch (error) {
 //       console.log(error);
 //     }
@@ -210,7 +210,26 @@ module.exports = router
 //       await axios.put(`/api/cart/attach/${userId}`, {UUID})
 //       dispatch(fetchCart(userId,UUID));
 //     } catch (error) {
-//       console.log('uh oh something went wrong attaching guest cart to new User.')
+//       console.log('uh oh unable guest cart to new User.')
 //     }
 //   }
 // }
+
+//create cart
+router.post("/", async (req, res, next) => {
+  try {
+    const { userId } = req.body;
+    //ableToCreate is checking to see if there is already a cart with unpurchased items then it will send that cart insted of creating one.
+    const ableToCreate = await getCartByUser(userId);
+
+    if (ableToCreate.isPurchased === false) {
+      res.send(ableToCreate);
+    } else {
+      const response = await createCart({ userId });
+
+      res.send(response);
+    }
+  } catch (error) {
+    next(error);
+  }
+});

@@ -5,12 +5,14 @@ import { logout } from '../../app/store'
 import { selectGuestCart } from '../cart/guestCartSlice'
 import { initialState } from '../cart/userCartSlice'
 
+
 const Navbar = () => {
   const isLoggedIn = useSelector((state) => !!state.auth.me.id)
   const numItemsInCart = useSelector((state) => state.guestCart.numItemsInCart)
   // const numItemsInUserCart = useSelector((state) => state.cart.numItemsInCart)
   // const numItemsInUserCart = initialState.numItemsInCart
-  const numItemsInUserCart = useSelector((state) => state.cart.numItemsInCart)
+  const numItemsInUserCart = useSelector((state) => state)
+  // const numItemsInUserCart = useSelector((state) => state.cart.numItemsInCart ? state.cart.numItemsInCart : 0)
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -18,8 +20,7 @@ const Navbar = () => {
     dispatch(logout())
     navigate('/login')
   }
-
-  const [cart, setCart] = useState([])
+  // const [cart, setCart] = useState([])
 
   // useEffect(() => {
   //   try {
@@ -29,8 +30,14 @@ const Navbar = () => {
   //   } catch (err) {}
   // }, [])
 
-  // console.log('cart', cart)
+  // useEffect(() => {
+  //   dispatch(numItemsInUserCart);
+  // }, [numItemsInUserCart]);
 
+  // React.useEffect(() => {}, [numItemsInUserCart]);
+
+  // console.log('cart', cart)
+console.log("numItemsUser", numItemsInUserCart)
   // const totalNumItems = []
   // for (let i = 0; i < cart.length; i++) {
   //   totalNumItems.push(cart[i].qty)
@@ -42,8 +49,6 @@ const Navbar = () => {
   //   initialValue
   // )
 
-  console.log('guest', numItemsInCart)
-  console.log('user', numItemsInUserCart)
   return (
     <div>
       <nav>

@@ -104,21 +104,20 @@ const cartSlice = createSlice({
     }),
       builder.addCase(deleteWholeCartById.fulfilled, (state, action) => {
         return action.payload
-      })
+      }),
     builder.addCase(deleteLineItemById.fulfilled, (state, action) => {
       return action.payload
-    })
+    }),
     builder.addCase(addOneToLineItemQty.fulfilled, (state, action) => {
       console.log('action', action.payload)
       state.cart = action.payload
-      // console.log('state of cart', state.cart)
-    })
+    }),
     builder.addCase(subtractOneFromLineItemQty.fulfilled, (state, action) => {
       return action.payload
-    })
+    }),
     builder.addCase(addManyToLineItemQty.fulfilled, (state, action) => {
       return action.payload
-    })
+    }),
     builder.addCase(addLineItemForUserCart.fulfilled, (state, action) => {
       return action.payload
     })

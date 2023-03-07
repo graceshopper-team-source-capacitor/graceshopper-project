@@ -11,6 +11,7 @@ const Navbar = () => {
   // const numItemsInUserCart = useSelector((state) => state.cart.numItemsInCart)
   // const numItemsInUserCart = initialState.numItemsInCart
   const numItemsInUserCart = useSelector((state) => state.cart.numItemsInCart)
+
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const logoutAndRedirectHome = () => {

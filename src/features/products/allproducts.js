@@ -7,17 +7,20 @@ import { fetchProductsAsync, deleteProductAsync } from './allProductsSlice'
 import { me } from '../../app/store'
 import AuthForm from '../auth/AuthForm'
 import { addLineItemForUserCart, addOneToLineItemQty, selectCart } from '../cart/userCartSlice'
+import { selectSingleProduct } from './singleProductSlice'
 
 const ProductList = () => {
   // const location = useLocation()
   const dispatch = useDispatch()
   const products = useSelector(selectProducts)
+  const product = useSelector(selectSingleProduct)
   const Navigate = useNavigate()
   const fetchedCart = useSelector(selectCart)
   const loggedInAdmin = useSelector((state) => !!state.auth.me.isAdmin)
   const me = useSelector((state) => state.auth.me)
   const isLoggedIn = useSelector((state) => !!state.auth.me.id)
   const [amount, setAmount] = useState(1)
+  const [cart, setCart] = useState([])
   // console.log(useSelector((state) => state.auth.me.isAdmin));
 
   // const [category, setCategory] = useState("allCategories")
@@ -26,6 +29,23 @@ const ProductList = () => {
   // useSelector((state) => {
   //   return state.categories;
   // }) || [];
+
+  useEffect(() => {
+    try {
+      // USER CART READS AND WRITES FROM/TO LOCAL STORAGE
+      // IF LOGGED IN, SET LS CART TO DB CART
+      // IF NOT LOGGED IN CONTINUE BELOW
+      let localCart = localStorage.getItem('cart') || ''
+      // convert cart into json because local storage can only read strings & primative types
+      let jsonCart = JSON.parse(localCart)
+      if (localCart) setCart(jsonCart)
+    } catch (err) {}
+  }, [])
+
+  // when cart updates set cart local storage
+  useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(cart))
+  }, [cart])
 
   useEffect(() => {
     dispatch(fetchProductsAsync(products))
@@ -69,8 +89,29 @@ const ProductList = () => {
     }
   }
 
-  function guestAdd() {
+  function guestAdd(product, amount) {
     console.log('guest added')
+    const itemAlreadyInCart = cart.find((cartItem) => cartItem.id === product.id)
+    // returns the product object index if it exists in the local storage cart
+    const itemAlreadyInCartIndex = cart.findIndex((cartItem) => cartItem.id === product.id)
+
+    // the product object plus a new key value pair of quanity of product
+    const addedItem = { ...product, qty: amount }
+
+    if (cart.length === 0) {
+      setCart([addedItem])
+    } else if (cart.length > 0) {
+      //if the item does not already exist in the local storage cart
+      if (itemAlreadyInCart === undefined) {
+        const newCart = [...cart, addedItem]
+        // add that item to the local storage cart
+        setCart(newCart)
+      } else {
+        // if the item already exists in local storage cart, update the quantity
+        cart[itemAlreadyInCartIndex].qty = itemAlreadyInCart.qty + amount
+        setCart([...cart])
+      }
+    }
   }
 
   return (
@@ -111,7 +152,7 @@ const ProductList = () => {
             {isLoggedIn ? (
               <button onClick={() => loggedInAdd(product.id)}>Add One</button>
             ) : (
-              <button onClick={() => guestAdd()}>Add One</button>
+              <button onClick={() => guestAdd(product, amount)}>Add One</button>
             )}
             <hr></hr>
             {/* vvv These buttons need to be exclusively for the admin. vvv */}

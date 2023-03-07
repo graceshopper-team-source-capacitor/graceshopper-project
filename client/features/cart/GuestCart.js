@@ -91,7 +91,7 @@ const GuestCart = (props) => {
 
   return (
     <div className="cartParentDiv">
-      <h3 className="cartTitleText">Cart</h3>
+      <h3 className="cartTitleText">CART</h3>
       <div className="allCartProductsParentDiv">
         {cart.map((item, index) => (
           <div className="cartProductParentDiv" key={item.id}>

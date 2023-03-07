@@ -111,7 +111,7 @@ const UserCart = (props) => {
   }
   return (
     <div className="cartParentDiv">
-      <h3 className="cartTitleText">Cart</h3>
+      <h3 className="cartTitleText">CART</h3>
       <div className="allCartProductsParentDiv">
         {fetchedCart.lineItems?.map((item, index) => {
           const { product, qty } = item;

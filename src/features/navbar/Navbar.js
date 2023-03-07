@@ -7,6 +7,7 @@ import { selectGuestCart } from '../cart/guestCartSlice'
 const Navbar = () => {
   const isLoggedIn = useSelector((state) => !!state.auth.me.id)
   const numItemsInCart = useSelector((state) => state.guestCart.numItemsInCart)
+  const me = useSelector((state) => state.auth.me)
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const logoutAndRedirectHome = () => {
@@ -29,7 +30,10 @@ const Navbar = () => {
             <Link to="/products" className="navLink">
               Products
             </Link>
-            <Link to="/cart" className="navLink">
+            <Link to="/users" className="navLink">
+              Account({me.username})
+            </Link>
+            <Link to="/userCart" className="navLink">
               Cart
             </Link>
             <hr></hr>

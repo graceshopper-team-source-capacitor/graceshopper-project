@@ -34,7 +34,7 @@ const AppRoutes = () => {
     <div>
       {isLoggedIn && (
         <Routes>
-          <Route path="/users" element={<UserProfile />} />
+          <Route path="/profile" element={<UserProfile />} />
           <Route path="/" element={<Home />} />
           <Route exact path="/products" element={<ProductList />} />
           <Route exact path="/products/:id" element={<UserSingleProduct />} />

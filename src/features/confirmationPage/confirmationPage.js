@@ -14,7 +14,7 @@ const ConfirmationPage = () => {
       <h1 className="confirmationTitleText">We've received your order!</h1>
       <h1 className="confirmationSubText">Here are your order details. </h1>
       <h3 className="confirmationOrderNum">{`Order Number: #${orderNumber}`}</h3>
-      <NavLink to="/home">
+      <NavLink to="/">
         <button className="backToHomeButton">Back to Home</button>
       </NavLink>
     </div>

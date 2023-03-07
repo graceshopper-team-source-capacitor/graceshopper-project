@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { fetchProductsAsync, deleteProductAsync } from "./allProductsSlice";
-import { me } from "../../../client/app/store";
+import { me } from "../../app/store";
 import AuthForm from "../auth/AuthForm";
 
 const ProductList = () => {

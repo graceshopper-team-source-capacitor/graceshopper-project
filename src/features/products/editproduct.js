@@ -5,7 +5,7 @@ import {
   fetchSingleProductAsync,
   editProductAsync,
   selectSingleProduct,
-} from '../products/singleProductSlice'
+} from './singleProductSlice'
 
 const EditProduct = () => {
   const dispatch = useDispatch()

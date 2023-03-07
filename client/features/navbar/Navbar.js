@@ -3,16 +3,18 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import { logout } from '../../app/store'
 import { selectGuestCart } from '../cart/guestCartSlice'
-import { initialState } from '../cart/userCartSlice'
+import { fetchCartById, initialState, selectNumberOfItemsInCart } from '../cart/userCartSlice'
+
 
 
 const Navbar = () => {
   const isLoggedIn = useSelector((state) => !!state.auth.me.id)
   const numItemsInCart = useSelector((state) => state.guestCart.numItemsInCart)
+  const me = useSelector((state) => state.auth.me)
   // const numItemsInUserCart = useSelector((state) => state.cart.numItemsInCart)
   // const numItemsInUserCart = initialState.numItemsInCart
-  const numItemsInUserCart = useSelector((state) => state)
-  // const numItemsInUserCart = useSelector((state) => state.cart.numItemsInCart ? state.cart.numItemsInCart : 0)
+  // const numItemsInUCart = useSelector((state) => state)
+  const numItemsInUserCart = useSelector(selectNumberOfItemsInCart)
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -20,7 +22,7 @@ const Navbar = () => {
     dispatch(logout())
     navigate('/login')
   }
-  // const [cart, setCart] = useState([])
+  const [cart, setCart] = useState([])
 
   // useEffect(() => {
   //   try {
@@ -33,11 +35,20 @@ const Navbar = () => {
   // useEffect(() => {
   //   dispatch(numItemsInUserCart);
   // }, [numItemsInUserCart]);
+  // useEffect(() => {
+  //   // declare the data fetching function
+  //   const fetchData = async () => {
+  //   const data = await fetch('https://yourapi.com
+  //   }
+    useEffect(() => {
+    if (isLoggedIn) {
+     const fetchData = async()=> await dispatch(fetchCartById(me.id))
+     fetchData()}  
+  }, [numItemsInUserCart, dispatch])
 
-  // React.useEffect(() => {}, [numItemsInUserCart]);
-
+  // window.location.reload()
   // console.log('cart', cart)
-console.log("numItemsUser", numItemsInUserCart)
+// console.log("numItemsUser", numItemsInUserCart)
   // const totalNumItems = []
   // for (let i = 0; i < cart.length; i++) {
   //   totalNumItems.push(cart[i].qty)
@@ -48,7 +59,7 @@ console.log("numItemsUser", numItemsInUserCart)
   //   (previousValue, currentValue) => previousValue + currentValue,
   //   initialValue
   // )
-
+//when i update cart on any page 
   return (
     <div>
       <nav>
@@ -100,3 +111,6 @@ console.log("numItemsUser", numItemsInUserCart)
 }
 
 export default Navbar
+
+
+

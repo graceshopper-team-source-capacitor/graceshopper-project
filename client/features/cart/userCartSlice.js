@@ -119,13 +119,13 @@ const cartSlice = createSlice({
       return action.payload
     }),
     builder.addCase(addLineItemForUserCart.fulfilled, (state, action) => {
-      return action.payload
+      state.cart.lineItems.push(action.payload)
     })
   },
 })
 
 export const selectCart = (state) => state.cart
-
+export const selectNumberOfItemsInCart = (state) => state.cart.lineItems?.reduce((previousValue, currentItem) => previousValue + currentItem.qty, 0)
 // console.log('cart qty', selectCartQty)
 
 export const { increment, incrementByAmount, decrement, decrementByAmount } = cartSlice.actions

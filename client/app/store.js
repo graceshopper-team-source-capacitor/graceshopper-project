@@ -25,6 +25,7 @@ const reducer = combineReducers({
   guestCart: guestCartSlice,
   users: UsersSlice,
   cart: cartSlice,
+  // userCart: fetchCartById
 })
 
 const persistedReducer = persistReducer(persistConfig, reducer)

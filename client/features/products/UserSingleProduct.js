@@ -102,6 +102,7 @@ const UserSingleProduct = () => {
     }
     // add amount of items to the total number of items
     // needed to update navbar cart counter
+    console.log('amount', amount)
     dispatch(incrementByAmount(amount))
     // dispatch(fetchCartById(me.id))
   }

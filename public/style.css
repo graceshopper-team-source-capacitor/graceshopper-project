@@ -26,6 +26,10 @@ nav {
   color: #ab9bbc;
 }
 
+.navLink:focus {
+  color: #e26969;
+}
+
 nav a {
   display: inline-block;
   margin: 1em;

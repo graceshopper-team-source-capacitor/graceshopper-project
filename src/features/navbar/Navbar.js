@@ -24,13 +24,9 @@ const Navbar = () => {
             <Link to="/" className="navLink">
               Home
             </Link>
-            <button
-              className="navLink"
-              type="button"
-              onClick={logoutAndRedirectHome}
-            >
+            <Link className="navLink" onClick={logoutAndRedirectHome}>
               Logout
-            </button>
+            </Link>
             <Link to="/products" className="navLink">
               Products
             </Link>

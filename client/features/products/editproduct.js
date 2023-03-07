@@ -1,41 +1,41 @@
-import React, { useState, useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { useParams, Link, useNavigate } from 'react-router-dom'
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import {
   fetchSingleProductAsync,
   editProductAsync,
   selectSingleProduct,
-} from '../products/singleProductSlice'
+} from "../products/singleProductSlice";
 
 const EditProduct = () => {
-  const dispatch = useDispatch()
-  const productObject = useSelector(selectSingleProduct)
-  const productId = useParams().id
-  console.log(productId)
+  const dispatch = useDispatch();
+  const productObject = useSelector(selectSingleProduct);
+  const productId = useParams().id;
+  console.log(productId);
 
-  const Navigate = useNavigate()
+  const Navigate = useNavigate();
 
-  const [name, setName] = useState('')
-  const [imageUrl, setImage] = useState('')
-  const [price, setPrice] = useState('')
-  const [description, setDescription] = useState('')
-  const [type, setType] = useState('')
-
-  useEffect(() => {
-    dispatch(fetchSingleProductAsync(productId))
-  }, [dispatch, productId])
-  console.log(productId)
+  const [name, setName] = useState("");
+  const [imageUrl, setImage] = useState("");
+  const [price, setPrice] = useState("");
+  const [description, setDescription] = useState("");
+  const [type, setType] = useState("");
 
   useEffect(() => {
-    setName(productObject.name)
-    setImage(productObject.imageUrl)
-    setPrice(productObject.price)
-    setDescription(productObject.description)
-    setType(productObject.type)
-  }, [productObject])
+    dispatch(fetchSingleProductAsync(productId));
+  }, [dispatch, productId]);
+  console.log(productId);
+
+  useEffect(() => {
+    setName(productObject.name);
+    setImage(productObject.imageUrl);
+    setPrice(productObject.price);
+    setDescription(productObject.description);
+    setType(productObject.type);
+  }, [productObject]);
 
   const handleSubmit = async (evt) => {
-    evt.preventDefault()
+    evt.preventDefault();
     await dispatch(
       editProductAsync({
         id: productId,
@@ -45,29 +45,29 @@ const EditProduct = () => {
         description,
         type,
       })
-    )
-    Navigate(`/products`)
-  }
+    );
+    Navigate(`/products`);
+  };
 
-  const product = productObject
-  console.log(product.name, product.imageUrl, product.price)
+  const product = productObject;
+  console.log(product.name, product.imageUrl, product.price);
   return (
-    <>
-      <h2>Editing Product</h2>
-      <div key={product.id}>
-        <h2>Currently Editing: </h2>
-        <Link to={`/products/${product.id}`}>
-          <h2 className="currEditProduct">{product.name}</h2>
-        </Link>
-        <p className="currEditProduct">Price: ${Number(product.price).toFixed(2)}</p>
-      </div>
+    <div className="editProductParentDiv" key={product.id}>
+      <h2 className="addProductH2">Currently Editing: </h2>
+      <Link to={`/products/${product.id}`}>
+        <h2 className="currEditProduct">{product.name}</h2>
+      </Link>
+      <p className="currEditProduct">
+        Price: ${Number(product.price).toFixed(2)}
+      </p>
+
       <form id="editProduct" onSubmit={handleSubmit}>
         <label className="formLabelPadded">Product Name:</label>
         <input
           name="name"
           defaultValue={product.name}
           // value={name}
-          value={name || ''}
+          value={name || ""}
           onChange={(e) => setName(e.target.value)}
           className="formInput"
         />
@@ -101,6 +101,7 @@ const EditProduct = () => {
 
         <label className="formLabelPadded">Product Type:</label>
         <select
+          className="productTypeDropDown"
           name="type"
           defaultValue={product.type}
           // value={type}
@@ -111,10 +112,12 @@ const EditProduct = () => {
           <option value="dairy">Dairy</option>
           <option value="specialty">Specialty</option>
         </select>
-        <button type="submit">Edit</button>
+        <button type="submit" className="addProductSubmit">
+          Edit
+        </button>
       </form>
-    </>
-  )
-}
+    </div>
+  );
+};
 
-export default EditProduct
+export default EditProduct;

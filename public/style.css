@@ -295,12 +295,13 @@ img {
 
 .formInput {
   font-family: "new-order", sans-serif;
-  color: #4c5b2fa3;
+  color: #70657c;
   padding: 0.5rem;
   border: 1px solid #ab9bbc;
 }
 
-.formInput:focus {
+.formInput:focus,
+.productTypeDropDown:focus {
   outline: 3px solid #80738d;
 }
 
@@ -560,4 +561,10 @@ img {
   font-size: 1rem;
   color: #ffffff;
   width: 10rem;
+}
+
+.productTypeDropDown {
+  font-family: "new-order", sans-serif;
+  font-weight: 400;
+  color: #70657c;
 }

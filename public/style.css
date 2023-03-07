@@ -588,3 +588,27 @@ img {
   width: 200px;
   padding: 0;
 }
+
+.profileParentDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.profileTitleText {
+  font-family: "new-order", sans-serif;
+  text-decoration: underline;
+  font-weight: 700;
+  font-size: 2.5rem;
+  color: #ab9bbc;
+  margin: 0;
+}
+
+.profileSubText {
+  font-family: "new-order", sans-serif;
+  font-weight: 400;
+  font-size: 1.5rem;
+  color: #ab9bbc;
+  margin: 0;
+}

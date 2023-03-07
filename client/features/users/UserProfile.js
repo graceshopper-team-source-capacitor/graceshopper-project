@@ -1,17 +1,19 @@
-import React, { useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
 const UserProfile = (props) => {
-  const loggedInUser = useSelector((state) => state.auth.me)
+  const loggedInUser = useSelector((state) => state.auth.me);
 
   return (
-    <div>
-      <h1>User profile</h1>
-      <h3>Name: {loggedInUser.username}</h3>
-      <h3>Admin: {loggedInUser.isAdmin.toString()}</h3>
-      <img src={`${loggedInUser.imageUrl}`} />
+    <div className="profileParentDiv">
+      <h1 className="profileTitleText">{loggedInUser.username}'s Profile</h1>
+      <h3 className="profileSubText">Name: {loggedInUser.username}</h3>
+      <h3 className="profileSubText">
+        Admin: {loggedInUser.isAdmin.toString()}
+      </h3>
+      {/* <img src={`${loggedInUser.imageUrl}`} /> */}
     </div>
-  )
-}
+  );
+};
 
-export default UserProfile
+export default UserProfile;
